@@ -1,10 +1,12 @@
 Team:                   Hungry Bunch
+Team leader:            Carl Blomqvist
 Application name:       feedme!
 Description:            The application displays the 10 student restaurant lunch menu's at Otaniemi.
-Document version:       1
+Document version:       2
 Last update:            15.3.2012
 By:                     Cale
 History:                1: Created.
+                        2: Added team leader.
 ----------------------------------------------------------------------------------------------------
 
 Primary use cases:
