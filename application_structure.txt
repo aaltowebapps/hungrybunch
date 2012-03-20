@@ -1,0 +1,43 @@
+Initial file structure
+======================
+
+Pages
+	index.html - basic html structure of the app
+
+Templates
+	restaurants.html - template for listing of restaurants
+	menu.html - template for listing the menu of a restaurant
+	info.html - template for restaurant specific information
+
+Scripts
+	application.js - application functionality common to all pages
+	data.js - methods for communicating with the server api and handling local data
+	restaurants.js - scripts for listing restaurants
+	menu.js - scripts for listing a menu
+	info.js - scripts for functionality on info page
+
+Styles
+	stylesheet.css
+
+Business logic
+==============
+
+All application logic is implemented using JavaScript and jQuery Mobile. JavaScript application communicates to a public REST API already available at http://www.lounasaika.net/api/. For the basic functionality (show menus with location information) we don't need our own server backend at all.
+
+Storage
+=======
+
+For application data storage we use local storage, making offline usage possible. Data needs to be refreshed from the api once a week.
+
+HTML5 application
+=================
+
+Since all data will be fetched from a rest api or local storage, dynamic pages must be generated entirely using JavaScript. Basic html structure for each page will reside in template files. 
+
+Application is navigated using jQuery Mobile url hashes. The logic for selecting page can use the pagebeforechange event. Example of a link in this application: <a href="#list-menu?restaurant=täffä">Täffä menu</a>.
+
+See: http://jquerymobile.com/test/docs/pages/page-dynamic.html
+
+Templates will be populated with data using jQuery Mobile events. Delegate page forming functionality to 'pageinit/pagebeforeinit' events. After page is formed, event 'create' will be triggered.
+
+See: http://jquerymobile.com/test/docs/pages/page-scripting.html
