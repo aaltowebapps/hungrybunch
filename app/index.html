@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>FeedMe! by Hungry Bunch</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css" />
+	<link rel="stylesheet" type="text/css" href="styles/styles.css" />
+	<!-- Scripts -->
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
+	<script type="text/javascript" src="scripts/scripts.js"></script>
+	<script type="text/javascript" src="scripts/lscache.js"></script>	
+	<script>
+		$(document).ready(function () {
+			init()
+		});
+	</script>
+</head>
+<body>
+	<div data-role="page">
+		<div data-role="header">
+			<h1>FeedMe!</h1>
+			<nav>
+				<ul>
+					<li><a href="#">List</a></li>
+					<li><a href="#">Menu</a></li>
+					<li><a href="#">Info</a></li>
+					<li><a href="#">Favorites</a></li>
+				</ul>
+			</nav>
+			
+		</div><!-- /header -->
+
+		<ul data-role="listview" data-inset="true" data-filter="false">
+			<li><a href="#">Täffä</a></li>
+			<li><a href="#">Teekkariravintolat</a></li>
+			<li><a href="#">Cantina</a></li>
+			<li><a href="#">Kvarkki</a></li>
+			<li><a href="#">Tuas</a></li>
+		</ul>
+
+	<div data-role="footer">
+		<h1>End of menu</h1>
+	</div><!-- /footer -->
+	</div><!-- /page -->
+</body>
+</html>
