@@ -34,14 +34,25 @@
     <script type='text/javascript'>
       //<![CDATA[
         var Templates = {};
-        var articles;
+        var tasks;
         
-        var Article = Backbone.Model.extend ({
+        var timespan = function() {
+          this.start = null;
+          this.stop = null;
+          this.getTime = function() {
+            return this.stop ? this.stop - this.start : 0;
+          }
+
+        }
+        var Task = Backbone.Model.extend ({
+          name : '',
+          times : [],
+          
         });
         
-        var Articles = Backbone.Collection.extend ({
-          model: Article,
-          localStorage: new Backbone.LocalStorage("Articles")
+        var Tasks = Backbone.Collection.extend ({
+          model: Task,
+          localStorage: new Backbone.LocalStorage("Tasks")
         });
               
         $(function() {
@@ -54,27 +65,46 @@
           var ItemView = Backbone.View.extend ({
             tagName: "li",
             events: {
-              "blur [contenteditable]": "saveValues"
+              "click a.start" : "setStartTime",
+              "click a.stop" : "setStopTime",
+              "click a.delete" : "deleteTask"
             },
             initialize: function() { 
               this.model.bind('change', this.render, this);
-              this.template = Templates.article;  
+              this.template = Templates.task;  
             },
             render: function() { 
               $(this.el).html( this.template(this.model.toJSON()) ); 
               return this; 
             },
+            setStartTime : function() {
+              alert("Got Start!");
+              var newTimespan = new Timespan();
+              newTimespan.start = new Date().getTime();
+              newTimespan.stop = null;
+              this.model.times.push(newTimespan);
+            },
+            setStopTime : function() {
+              this.model.times[this.model.times.length-1].stop = new Date().getTime();
+            },
+            deleteTask : function() {
+              alert("Got Delete!");
+              this.model.destroy();
+            },
+            /*
             saveValues: function() {
               this.model.save({
                 title: this.$("[data-name='title']").html(), 
                 content: this.$("[data-name='content']").html()
               },{silent: true});
-            }        
+            },*/
+
+        
           });
           
           //View for rendering the list of entries
           var ListView = Backbone.View.extend ({
-            el: $("#articlesList"),
+            el: $("#tasksList"),
             events: {
             },
             initialize: function() {
@@ -91,6 +121,16 @@
               this.$el.listview('refresh');
               return this;
             },
+            calculateAverage : function() {
+              return (times.lenght > 0) ? (this.calculateTotal/times.length) : 0;
+            },
+            calculateTotal : function() {
+              var total = 0;
+              $.each(times, function(index, value) {
+                total += value.getTime();
+              });
+              return total;
+            } 
           });
           
           //View for creating a new entry
@@ -100,8 +140,8 @@
               "click #postEntry": "createNew"
             },
             initialize: function() {
-              this.title = this.$("#title");
-              this.content = this.$("#content");
+              this.name = this.$("#title");
+              //this.content = this.$("#content");
               
             },
             createNew: function() {
@@ -111,13 +151,10 @@
                 return false;
               }
               this.collection.create({
-                title: this.title.val(), 
-                content: this.content.val(),
-                email: localStorage.email,
-                name: localStorage.name
+                name: this.name.val()
+                //name: localStorage.name
               }, {at: 0});
-              this.title.val("");
-              this.content.val("");
+              this.name.val("");
             } 
           });
         
@@ -148,39 +185,41 @@
           
           //Trigger an update of the articles collection 
           $("#refresh").live('click',function () {
-            articles.fetch();
+            tasks.fetch();
           });    
           
           //Instantiate the collection of articles
-          articles = new Articles();
+          tasks = new Tasks();
         
           //Instantiate the views
-          var listView = new ListView({collection: articles});
-          var newView = new NewView({collection: articles});
+          var listView = new ListView({collection: tasks});
+          var newView = new NewView({collection: tasks});
           var optionsView = new OptionsView();
           
           //Fetch the latest articles and trigger an update of the views
-          articles.fetch();
+          tasks.fetch();
         })
       //]]>
     </script>
   </head>
   <body>
-    <script id='article' type='text/x-handlebars-template'>
+    <script id='task' type='text/x-handlebars-template'>
       <p class='ui-li-aside'>
         {{timestamp}}
       </p>
       <h3 contenteditable='true' data-id='{{id}}' data-name='title'>
-        {{title}}
+        {{name}}
       </h3>
       <p>
         <strong>
-          {{email}}
+          {{calculateTotal}} {{calculateAverage}}
         </strong>
       </p>
       <p contenteditable='true' data-id='{{id}}' data-name='content'>
         {{content}}
       </p>
+      <a class="timingActionButton start">Start/stop</a>
+      <a class="delete">Delete</a>
     </script>
     <div data-role='page' id='home'>
       <div data-role='header'>
@@ -188,7 +227,7 @@
         <a class='ui-btn-right' data-icon='gear' data-transition='slidedown' href='#options'>Options</a>
       </div>
       <div data-role='content'>
-        <ul data-role='listview' id='articlesList'></ul>
+        <ul data-role='listview' id='tasksList'></ul>
       </div>
       <div data-position='fixed' data-role='footer'>
         <div data-role='navbar'>
