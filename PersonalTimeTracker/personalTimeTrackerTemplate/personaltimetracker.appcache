@@ -1,0 +1,18 @@
+CACHE MANIFEST
+# 2012-03-26:v1
+
+# Explicitly cached 'master entries'.
+CACHE:
+index.html
+bacbone.js
+backbone.localStorage.js
+handlebars-1.0.0.beta.6.js
+json2.js
+underscore.js
+error.png
+
+# Resources that require the user to be online.
+NETWORK:
+
+# static.html will be served if main.py is inaccessible
+FALLBACK:
