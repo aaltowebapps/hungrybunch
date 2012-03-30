@@ -10,39 +10,55 @@
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
 	<script type="text/javascript" src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
 	<script type="text/javascript" src="scripts/scripts.js"></script>
-	<script type="text/javascript" src="scripts/lscache.js"></script>	
+	<script type="text/javascript" src="scripts/lscache.js"></script>
+
 	<script>
+		(function() {
+			var fixgeometry = function() {
+			  scroll(0, 0);
+
+			  /* Calculate the geometry that our content area should take */
+			  var header = $(".header:visible");
+			  var footer = $(".footer:visible");
+			  var content = $(".content:visible");
+			  var viewport_height = $(window).height();
+			  
+			  var content_height = viewport_height - header.outerHeight() - footer.outerHeight();
+			  
+			  /* Trim margin/border/padding height */
+			  content_height -= (content.outerHeight() - content.height());
+			  content.height(content_height);
+		}; /* fixgeometry */
+
 		$(document).ready(function () {
-			init()
+			$(window).bind("orientationchange resize pageshow", fixgeometry);
 		});
+      })();
 	</script>
 </head>
 <body>
 	<div data-role="page">
-		<div data-role="header">
+		<div class="header" data-role="header">
 			<h1>FeedMe!</h1>
-			<nav>
-				<ul>
-					<li><a href="#">List</a></li>
-					<li><a href="#">Menu</a></li>
-					<li><a href="#">Info</a></li>
-					<li><a href="#">Favorites</a></li>
-				</ul>
-			</nav>
-			
 		</div><!-- /header -->
-
-		<ul data-role="listview" data-inset="true" data-filter="false">
-			<li><a href="#">Täffä</a></li>
-			<li><a href="#">Teekkariravintolat</a></li>
-			<li><a href="#">Cantina</a></li>
-			<li><a href="#">Kvarkki</a></li>
-			<li><a href="#">Tuas</a></li>
-		</ul>
-
-	<div data-role="footer">
-		<h1>End of menu</h1>
-	</div><!-- /footer -->
+		<div class='content' data-role='content'> 
+			<ul data-role="listview" data-inset="true" data-filter="false">
+				<li><a href="#">Täffä</a></li>
+				<li><a href="#">Teekkariravintolat</a></li>
+				<li><a href="#">Cantina</a></li>
+				<li><a href="#">Kvarkki</a></li>
+				<li><a href="#">Tuas</a></li>
+			</ul>
+        </div> 
+		<div class="footer" data-role="footer">		
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#">Favorites</a></li>
+					<li><a href="#">Menus</a></li>
+					<li><a href="#" class="ui-btn-active">Restaurants</a></li>
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
 	</div><!-- /page -->
 </body>
 </html>
