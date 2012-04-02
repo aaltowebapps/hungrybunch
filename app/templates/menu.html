@@ -1,0 +1,14 @@
+<script id='restaurants' type='text/x-handlebars-template'>
+	<ul data-role="listview" class="ui-listview">
+		{{#with days}}
+		<li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-btn ui-bar-b">{{dayName}}</li>
+		{{#with foodChoices}}
+		<li data-corners="false" data-shadow="false" data-iconshadow="true" data-inline="false" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-up-c ui-btn-icon-right ui-li-has-arrow ui-li">
+			<div class="ui-btn-inner ui-li">
+				<div class="ui-btn-text">{{foodTitle}}</div>
+			</div>
+		</li>
+		{{/foodChoices}}
+		{{/with}}
+	</ul>
+</script>
