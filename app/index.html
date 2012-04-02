@@ -80,6 +80,7 @@
 		// Placeholder for templates
 		var Templates = {};
 
+			var restaurants, days;
 
 		// Models
 		var Day = Backbone.Model.extend ({
@@ -92,7 +93,10 @@
 		  name : '',
 		  menus : []
 		});
-		// Collections
+		// Collections		
+		var Days  = Backbone.Collection.extend ({
+		  model: Day,
+		});
 		var Restaurants = Backbone.Collection.extend ({
 		  model: Restaurant,
 		  localStorage: new Backbone.LocalStorage("Restaurants")
@@ -100,7 +104,7 @@
 
 		var fixgeometry = function() {
 		  scroll(0, 0);
-
+		  
 		  /* Calculate the geometry that our content area should take */
 		  var header = $(".header:visible");
 		  var footer = $(".footer:visible");
@@ -187,7 +191,91 @@
 	
 			loadMenu();
 		});
-	</script>
+
+  			// View for rendering a day's meals
+	        var DayView = Backbone.View.extend ({
+	            tagName: "li",
+	            events: {
+	              "click a.start" : "setStartTime",
+				},
+	            initialize: function() { 
+	              this.model.bind('change', this.render, this);
+	              this.template = Templates.restaurants;  
+	            },
+	            render: function() { 
+	              $(this.el).html( this.template(this.model.toJSON()) ); 
+	              return this; 
+	            }
+			});
+
+  			//View for rendering one restaurant in a list of restaurants
+	        var RestaurantView = Backbone.View.extend ({
+	            tagName: "li",
+	            events: {
+	              "click a.start" : "setStartTime",
+				},
+	            initialize: function() { 
+	              this.model.bind('change', this.render, this);
+	              this.template = Templates.restaurants;  
+	            },
+	            render: function() { 
+	              $(this.el).html( this.template(this.model.toJSON()) ); 
+	              return this; 
+	            }
+			});
+
+	        //View for rendering the list of entries
+	        var DaysListView = Backbone.View.extend ({
+	            el: $("#daysList"),
+	            events: {
+	            },
+	            initialize: function() {
+	              this.collection.bind('reset', this.render, this);
+	              this.collection.bind('all', this.render, this);
+	            },
+	            render: function() {
+	              var el = this.$el;
+	              el.empty();
+	              this.collection.each(function(item) {
+	                var itemView = new DayView({model: day});
+	                el.append(itemView.render().el);
+	              });
+	              this.$el.listview('refresh');
+	              return this;
+	            }
+          	});
+
+
+	        //View for rendering the list of entries
+	        var RestaurantsListView = Backbone.View.extend ({
+	            el: $("#restaurantsList"),
+	            events: {
+	            },
+	            initialize: function() {
+	              this.collection.bind('reset', this.render, this);
+	              this.collection.bind('all', this.render, this);
+	            },
+	            render: function() {
+	              var el = this.$el;
+	              el.empty();
+	              this.collection.each(function(item) {
+	                var itemView = new RestaurantView({model: restaurant});
+	                el.append(itemView.render().el);
+	              });
+	              this.$el.listview('refresh');
+	              return this;
+	            }
+          	});
+
+			days = new Days();
+			restaurants = new Restaurants();
+
+	    	//Instantiate the views
+	    	var daysView = new RestaurantView({collection: restaurants});
+	    	var restaurantsView = new RestaurantView({collection: restaurants});
+      
+
+	  </script>
 </head>
 <body>
 	<div data-role="page">
