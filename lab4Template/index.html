@@ -88,21 +88,6 @@
             }, false);  
           }
 
-			// save snapshot locally
-			 $("#save").bind("click", function(e) {
-				e.preventDefault();
-				//Take a snapshot of the canvas as base64 encoded data URL
-				var snapshot = ctx.canvas.toDataURL('image/png');
-				//Store it in the last used slot in the localStorage
-				localStorage.setItem('snap_' + localStorage.index, snapshot);
-				//Replace the image in the saved page
-				$("#snap_" + localStorage.index).attr('src',snapshot);
-				//Increment the index 
-				localStorage.index = (JSON.parse(localStorage.index)+1) % 2;
-			  });
-
-        
-
           $("#refresh").bind("click", function(e) {
             e.preventDefault();
           });
@@ -111,6 +96,14 @@
           });
           $("#save_server").bind("click", function(e) {
             e.preventDefault();
+			//Take a snapshot of the canvas as base64 encoded data URL
+			var snapshot = ctx.canvas.toDataURL('image/png');
+			//Store it in the last used slot in the localStorage
+			localStorage.setItem('snap_' + localStorage.index, snapshot);
+			//Replace the image in the saved page
+			$("#snap_" + localStorage.index).attr('src',snapshot);
+			//Increment the index 
+			localStorage.index = (JSON.parse(localStorage.index)+1) % 2;
           });
         })
       //]]>
