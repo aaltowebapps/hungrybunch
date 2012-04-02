@@ -18,33 +18,20 @@
           var canvas = $canvas[0];
           var ctx = canvas.getContext('2d');
 
-<<<<<<< HEAD
-		   if (!localStorage.index || localStorage.index==undefined) {
-            localStorage.index = 0;
-          }
-		  
-=======
-          // Get from local storage
-          var previousDrawState = localStorage.getItem('DrawState');
-          if( previousDrawState ) {
-            var initialImage = new Image;
-
-            initialImage.src = previousDrawState;
-            initialImage.onload = function(){
-              ctx.drawImage(initialImage, 0, 0);
-            }
-          }
-          
->>>>>>> 6a3c1574f87a589fbd636d48f411f8acc653f917
-          var header = $('div[data-role="header"]:visible');
+		  var header = $('div[data-role="header"]:visible');
           var footer = $('div[data-role="footer"]:visible');
           var content = $('div[data-role="content"]:visible');
           var viewport_height = $(window).height();
           var viewport_width = $(window).width();
           var content_height = viewport_height - header.outerHeight() - footer.outerHeight();
+		  
+		  
+		if (!localStorage.length) {
+			$("#snap_0").attr('src',localStorage.getItem("DrawState"));
+		}
+		
           /* Trim margin/border/padding height */
           content_height -= (content.outerHeight() - content.height());
-          
           canvas.width = viewport_width;
           canvas.height = content_height;
 
@@ -109,40 +96,23 @@
             e.preventDefault();
           });
           $("#save_local").bind("click", function(e) {
-<<<<<<< HEAD
-
-=======
+            e.preventDefault();
+		  
             var exportImage = ctx.canvas.toDataURL('image/png');
             localStorage.setItem('DrawState', exportImage);
->>>>>>> 6a3c1574f87a589fbd636d48f411f8acc653f917
-            e.preventDefault();
-			//Take a snapshot of the canvas as base64 encoded data URL
-			var snapshot = ctx.canvas.toDataURL('image/png');
-			//Store it in the last used slot in the localStorage
-			localStorage.setItem('snap_' + localStorage.index, snapshot);
-			//Replace the image in the saved page
-			$("#snap_" + localStorage.index).attr('src',snapshot);
-			//Increment the index 
-			localStorage.index = (JSON.parse(localStorage.index)+1) % 2;
-          
-			  if (!localStorage.length) {
-				$("#snap_0").attr('src',localStorage.getItem("snap_undefined"));
-			  }
+	  
+			$("#snap_0").attr('src',localStorage.getItem("DrawState"));
+			
           });
           $("#save_server").bind("click", function(e) {
             e.preventDefault();
-			//Take a snapshot of the canvas as base64 encoded data URL
-			var snapshot = ctx.canvas.toDataURL('image/png');
-			//Store it in the last used slot in the localStorage
-			localStorage.setItem('snap_' + localStorage.index, snapshot);
-			//Replace the image in the saved page
-			$("#snap_" + localStorage.index).attr('src',snapshot);
-			//Increment the index 
-			localStorage.index = (JSON.parse(localStorage.index)+1) % 2;
-          
-			  if (!localStorage.length) {
-				$("#snap_0").attr('src',localStorage.getItem("snap_undefined"));
-			  }
+			
+			var exportImage = ctx.canvas.toDataURL('image/png');
+            localStorage.setItem('DrawState', exportImage);
+	  
+			if (!localStorage.length) {
+				$("#snap_0").attr('src',localStorage.getItem("DrawState"));
+			}
 		  });
 		  
 		  
