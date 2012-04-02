@@ -18,7 +18,17 @@
           var canvas = $canvas[0];
           var ctx = canvas.getContext('2d');
 
+          // Get from local storage
+          var previousDrawState = localStorage.getItem('DrawState');
+          if( previousDrawState ) {
+            var initialImage = new Image;
 
+            initialImage.src = previousDrawState;
+            initialImage.onload = function(){
+              ctx.drawImage(initialImage, 0, 0);
+            }
+          }
+          
           var header = $('div[data-role="header"]:visible');
           var footer = $('div[data-role="footer"]:visible');
           var content = $('div[data-role="content"]:visible');
@@ -96,6 +106,8 @@
             e.preventDefault();
           });
           $("#save_local").bind("click", function(e) {
+            var exportImage = ctx.canvas.toDataURL('image/png');
+            localStorage.setItem('DrawState', exportImage);
             e.preventDefault();
           });
           $("#save_server").bind("click", function(e) {
