@@ -18,10 +18,24 @@
           var canvas = $canvas[0];
           var ctx = canvas.getContext('2d');
 
+<<<<<<< HEAD
 		   if (!localStorage.index || localStorage.index==undefined) {
             localStorage.index = 0;
           }
 		  
+=======
+          // Get from local storage
+          var previousDrawState = localStorage.getItem('DrawState');
+          if( previousDrawState ) {
+            var initialImage = new Image;
+
+            initialImage.src = previousDrawState;
+            initialImage.onload = function(){
+              ctx.drawImage(initialImage, 0, 0);
+            }
+          }
+          
+>>>>>>> 6a3c1574f87a589fbd636d48f411f8acc653f917
           var header = $('div[data-role="header"]:visible');
           var footer = $('div[data-role="footer"]:visible');
           var content = $('div[data-role="content"]:visible');
@@ -95,7 +109,12 @@
             e.preventDefault();
           });
           $("#save_local").bind("click", function(e) {
+<<<<<<< HEAD
 
+=======
+            var exportImage = ctx.canvas.toDataURL('image/png');
+            localStorage.setItem('DrawState', exportImage);
+>>>>>>> 6a3c1574f87a589fbd636d48f411f8acc653f917
             e.preventDefault();
 			//Take a snapshot of the canvas as base64 encoded data URL
 			var snapshot = ctx.canvas.toDataURL('image/png');
