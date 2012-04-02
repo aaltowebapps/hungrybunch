@@ -18,7 +18,10 @@
           var canvas = $canvas[0];
           var ctx = canvas.getContext('2d');
 
-
+		   if (!localStorage.index || localStorage.index==undefined) {
+            localStorage.index = 0;
+          }
+		  
           var header = $('div[data-role="header"]:visible');
           var footer = $('div[data-role="footer"]:visible');
           var content = $('div[data-role="content"]:visible');
@@ -92,7 +95,20 @@
             e.preventDefault();
           });
           $("#save_local").bind("click", function(e) {
+
             e.preventDefault();
+			//Take a snapshot of the canvas as base64 encoded data URL
+			var snapshot = ctx.canvas.toDataURL('image/png');
+			//Store it in the last used slot in the localStorage
+			localStorage.setItem('snap_' + localStorage.index, snapshot);
+			//Replace the image in the saved page
+			$("#snap_" + localStorage.index).attr('src',snapshot);
+			//Increment the index 
+			localStorage.index = (JSON.parse(localStorage.index)+1) % 2;
+          
+			  if (!localStorage.length) {
+				$("#snap_0").attr('src',localStorage.getItem("snap_undefined"));
+			  }
           });
           $("#save_server").bind("click", function(e) {
             e.preventDefault();
@@ -104,7 +120,13 @@
 			$("#snap_" + localStorage.index).attr('src',snapshot);
 			//Increment the index 
 			localStorage.index = (JSON.parse(localStorage.index)+1) % 2;
-          });
+          
+			  if (!localStorage.length) {
+				$("#snap_0").attr('src',localStorage.getItem("snap_undefined"));
+			  }
+		  });
+		  
+		  
         })
       //]]>
     </script>
@@ -127,7 +149,32 @@
               <a href="#home" id="save_local">Save locally</a>
             </li>
             <li>
+              <a href="#saved" id="show">Show</a>
+            </li>            
+			<li>
               <a href="#home" id="save_server">Save to server</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+	
+	
+    <div data-role="page" id="saved">
+      <div data-role="header">
+        <h1>Lab4 template</h1>
+      </div>
+      <div data-role="content">
+	  
+      <div id='snapshots'>
+        <img id='snap_0' />
+      </div>
+      </div>
+      <div data-role="footer" data-position="fixed">
+        <div data-role="navbar">
+          <ul>
+            <li>
+              <a href="#home" id="refresh">Go to home</a>
             </li>
           </ul>
         </div>
