@@ -12,8 +12,23 @@
     <script type="text/javascript">
       //<![CDATA[
         $(function() {
+
           var canvas = $('#canvas')[0];
           var ctx = canvas.getContext('2d');
+
+          function drawCoordinatesOnCanvas(latitude, longitude) {
+            var text = "Latitude: "+latitude+", Longitude: "+longitude;
+            ctx.fillText(text, 10, 10 );
+          }
+          //Get location ASAP, regardless of accuracy
+          navigator.geolocation.getCurrentPosition(function(position) {  
+            drawCoordinatesOnCanvas(position.coords.latitude, position.coords.longitude);  
+          });
+
+
+
+
+
         
           var header = $('div[data-role="header"]:visible');
           var footer = $('div[data-role="footer"]:visible');
