@@ -9,11 +9,38 @@
 	<!-- Scripts -->
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
 	<script type="text/javascript" src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
+    <script type="text/javascript" src="scripts/lib/handlebars-1.0.0.beta.6.js"></script>
+    <script type="text/javascript" src="scripts/lib/underscore.js"></script>
+    <script type="text/javascript" src="scripts/lib/json2.js"></script>
+    <script type="text/javascript" src="scripts/lib/backbone.js"></script>
+    <script type="text/javascript" src="scripts/lib/backbone.localStorage.js"></script>
 	<script type="text/javascript" src="scripts/scripts.js"></script>
 	<script type="text/javascript" src="scripts/lscache.js"></script>
 
 	<script>
 		(function() {
+
+			// Placeholder for templates
+			var Templates = {};
+
+
+			// Models
+	        var Day = Backbone.Model.extend ({
+	          name : '',
+	          menus : []
+	        });
+
+			// Models
+	        var Restaurant = Backbone.Model.extend ({
+	          name : '',
+	          menus : []
+	        });
+	        // Collections
+	        var Restaurants = Backbone.Collection.extend ({
+	          model: Restaurant,
+	          localStorage: new Backbone.LocalStorage("Restaurants")
+	        });
+
 			var fixgeometry = function() {
 			  scroll(0, 0);
 
@@ -32,6 +59,11 @@
 
 		$(document).ready(function () {
 			$(window).bind("orientationchange resize pageshow", fixgeometry);
+
+			// Compile templates
+ 	        $('script[type="text/x-handlebars-template"]').each(function () {
+            Templates[this.id] = Handlebars.compile($(this).html());
+          });
 		});
       })();
 	</script>
