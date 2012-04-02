@@ -54,15 +54,15 @@
               
               // Get the draw position
               if( event.beta > 10 ) {
-                drawPositionX++;
+                drawPositionY++;
               } else if ( event.beta < -10 ) {
-                drawPositionX--;
+                drawPositionY--;
               } 
 
               if( event.gamma > 10 ) {
-                drawPositionY++;
+                drawPositionX++;
               } else if ( event.gamma < -10 ) {
-                drawPositionY--;
+                drawPositionX--;
               }
 
               // Boundaries of canvas
