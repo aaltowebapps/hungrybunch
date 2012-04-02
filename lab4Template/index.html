@@ -13,9 +13,23 @@
       //<![CDATA[
         $(function() {
 
+
           var $canvas = $('#canvas');
           var canvas = $canvas[0];
           var ctx = canvas.getContext('2d');
+
+
+          var header = $('div[data-role="header"]:visible');
+          var footer = $('div[data-role="footer"]:visible');
+          var content = $('div[data-role="content"]:visible');
+          var viewport_height = $(window).height();
+          var viewport_width = $(window).width();
+          var content_height = viewport_height - header.outerHeight() - footer.outerHeight();
+          /* Trim margin/border/padding height */
+          content_height -= (content.outerHeight() - content.height());
+          
+          canvas.width = viewport_width;
+          canvas.height = content_height;
 
           function drawCoordinatesOnCanvas(latitude, longitude) {
             var text = "Latitude: "+latitude+", Longitude: "+longitude;
@@ -26,8 +40,14 @@
             drawCoordinatesOnCanvas(position.coords.latitude, position.coords.longitude);  
           });
 
-          var drawPositionX=0;
-          var drawPositionY=0;
+          var drawPositionX=canvas.width/2;
+          var drawPositionY=canvas.height/2;
+
+          //draw a circle
+          ctx.beginPath();
+          ctx.arc(drawPositionX, drawPositionY, 10, 0, Math.PI*2, true); 
+          ctx.closePath();
+          ctx.fill();
 
           if (window.DeviceOrientationEvent) {  
             window.addEventListener("deviceorientation", function( event ) {  
@@ -49,14 +69,14 @@
               if ( drawPositionY < 0 ) {
                 drawPositionY = 0;
               }
-              if( drawPositionY > $canvas.length() ) {
-                drawPositionY = $canvas.length();
+              if( drawPositionY > canvas.height ) {
+                drawPositionY = canvas.height;
               }
               if ( drawPositionX < 0 ) {
                 drawPositionX = 0;
               }
-              if( drawPositionX > $canvas.width() ) {
-                drawPositionX = $canvas.width();
+              if( drawPositionX > canvas.width ) {
+                drawPositionX = canvas.width;
               }
 
               //draw a circle
@@ -82,17 +102,6 @@
 			  });
 
         
-          var header = $('div[data-role="header"]:visible');
-          var footer = $('div[data-role="footer"]:visible');
-          var content = $('div[data-role="content"]:visible');
-          var viewport_height = $(window).height();
-          var viewport_width = $(window).width();
-          var content_height = viewport_height - header.outerHeight() - footer.outerHeight();
-          /* Trim margin/border/padding height */
-          content_height -= (content.outerHeight() - content.height());
-          
-          canvas.width = viewport_width;
-          canvas.height = content_height;
 
           $("#refresh").bind("click", function(e) {
             e.preventDefault();
