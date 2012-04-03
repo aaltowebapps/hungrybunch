@@ -16,6 +16,11 @@
     <script type="text/javascript" src="scripts/lib/backbone.localStorage.js"></script>
 	<script type="text/javascript" src="scripts/scripts.js"></script>
 	<script type="text/javascript" src="scripts/lscache.js"></script>
+	<script>
+		$(document).ready(function () {
+			init();
+		});
+	</script>
 
 	<!--<script id='restaurants' type='text/x-handlebars-template' src="templates/menu.html">-->
 	
@@ -196,7 +201,8 @@
 	        var DayView = Backbone.View.extend ({
 	            tagName: "li",
 	            events: {
-	              "click a.start" : "setStartTime",
+	              // Johannes: had to comment this to get rid of errors.
+	              //"click a.start" : "setStartTime",
 				},
 	            initialize: function() { 
 	              this.model.bind('change', this.render, this);
@@ -212,10 +218,12 @@
 	        var RestaurantView = Backbone.View.extend ({
 	            tagName: "li",
 	            events: {
-	              "click a.start" : "setStartTime",
+	              // Johannes: had to comment this to get rid of errors.
+	              //"click a.start" : "setStartTime",
 				},
 	            initialize: function() { 
-	              this.model.bind('change', this.render, this);
+	              // Johannes: I had to comment this to get rid of error.
+	              //this.model.bind('change', this.render, this);
 	              this.template = Templates.restaurants;  
 	            },
 	            render: function() { 

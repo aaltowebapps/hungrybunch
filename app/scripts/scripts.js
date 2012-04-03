@@ -6,7 +6,7 @@
 // Api related constants
 var api_url = "http://www.lounasaika.net/api/";
 var api_req_key = "development321";
-var api_req_callback = "?";
+var api_req_callback = "?callback=?";
 var api_req_campus = "";
 var api_req_restaurant = "";
 var api_req_lat = null;
@@ -44,6 +44,9 @@ var api_res_meal = "meal";
 // Local storage related constants
 var localStorage_key = "menuOnWeek";
 
+// Array to store restaurants data
+var restaurants = new Array();
+
 // Expand Date to include function for getting a week number.
 Date.prototype.getWeek = function() {
 	var onejan = new Date(this.getFullYear(),0,1);
@@ -51,21 +54,34 @@ Date.prototype.getWeek = function() {
 }
 
 // Successful fetch response is handled here
-function success(menuData) {
-	if (menuData) {
-		var status = menuData[api_res_root][api_res_status];
+function success(responseData) {
+	if (responseData) {
+		var status = responseData[api_res_root][api_res_status];
 		if (status == api_res_ok) {
 			// Response OK
-			var updated = menuData[api_res_root][api_res_updated];
+			var updated = responseData[api_res_root][api_res_result][api_res_updated];
 			// Parse date and time from 2012-03-25T21:55:09+03:00
 			// Compare to date time on device
 			// Store campi to localstore with expiration at the very beginning of next week
-			var campi = menuData[api_res_root][api_res_result];
-			var today = new Date();
-			var weekNumber = today.getWeek();
-			var key = localStorage_key + weekNumber.toString();
-			// Have to calculate the minutesToNextWeek for expiration time
-			//lscache.set(key, campi, minutesToNextWeek);
+			var campi = responseData[api_res_root][api_res_result][api_res_campus];
+			restaurants = new Array();
+			$.each(campi, function(index, value) {
+    			//alert(index + ': ' + value[api_res_name]);
+    			var campus = campi[index][api_res_name];
+    			var res_restaurants = value[api_res_restaurant];
+				$.each(res_restaurants, function(index, value) {
+    				var restaurant = value;
+    				restaurant['campus'] = campus;
+    				restaurants.push(restaurant);
+    				//alert(value[api_res_name])
+    			});
+			});
+
+			var key = getKeyOfThisWeek();
+			// Have to calculate the minutesToNextWeek for expiration time of cache
+			// lscache.set(key, campi, minutesToNextWeek);
+			// for now just use it without expiration time
+			lscache.set(key, restaurants);
 		} else {
 			// Response not OK
 		}
@@ -75,29 +91,38 @@ function success(menuData) {
 // Fetch data
 function fetchMenus() {
 	var data = { key: api_req_key };
-	var url = api_url + api_res_output;
+	var url = api_url + api_res_output + api_req_callback;
 	// Use sample data
-	$.getJSON('assets/sampledata/sampleresponse.js', success);
+	// $.getJSON('assets/sampledata/sampleresponse.js', success);
 	// Actual get request, does not work on Chorme when using local html file.
-	//$.getJSON(url, data, success);
+	$.getJSON(url, data, success);
 }
 
 // Process loaded menus from local store
-function processLoadedMenus(json) {
-	alert(json);
+function processLoadedMenus(restaurantsFromCache) {
+	restaurants = restaurantsFromCache;
+}
+
+// Returns key used to store weekly data in local storage
+// Like "menuOnWeek24"
+function getKeyOfThisWeek() {
+	var today = new Date();
+	var weekNumber = today.getWeek();
+	var key = localStorage_key + weekNumber.toString();
+	return key;
 }
 
 // Initialize data
 function init() {
-	// Local stroage key is for example "menuOnWeek24"
-	var today = new Date();
-	var weekNumber = today.getWeek();
-	var key = localStorage_key + weekNumber.toString();
-	// Try to loaf menu from local storage
-	var json = lscache.get(key);
-	if (json) {
+	var key = getKeyOfThisWeek();
+	// This is for development, you can flush cache from local storage to force
+	// fetching of fresh data by uncommentting next line.
+	// lscache.flush();
+	// Try to load menu from local storage
+	var restaurantsFromCache = lscache.get(key);
+	if (restaurantsFromCache) {
 		// If loaded from local storage, process it
-		processLoadedMenus(json);
+		processLoadedMenus(restaurantsFromCache);
 	} else {
 		// Data not available or is expired on local storage, we have to fetch it
 		// Should be checked for available connection, device online
