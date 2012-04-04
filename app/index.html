@@ -23,61 +23,65 @@
 	</script>
 
 	<!--<script id='restaurants' type='text/x-handlebars-template' src="templates/menu.html">-->
-	
-	<script id='restaurants' type='text/x-handlebars-template'>
-		<ul data-role="listview" data-divider-theme="b" data-inset="true" class="ui-listview">
-		{{#menu}}
-			{{#monday}}
-				<li data-role="list-divider" role="heading">Monday</li>
-				{{#each meal}}
-					<li role="heading" data-theme="c" class="ui-li ui-btn ui-bar-b">{{this}}</li>
-				{{/each}}
-			{{/monday}}
-			
-			{{#tuesday}}
-				<li data-role="list-divider" role="heading">Tuesday</li>
-				{{#each meal}}
-					<li role="heading" data-theme="c" class="ui-li ui-btn ui-bar-b">{{this}}</li>
-				{{/each}}
-			{{/tuesday}}
-			
-			{{#wednesday}}
-				<li data-role="list-divider" role="heading">Wednesday</li>
-				{{#each meal}}
-					<li role="heading" data-theme="c" class="ui-li ui-btn ui-bar-b">{{this}}</li>
-				{{/each}}
-			{{/wednesday}}
-			
-			{{#thursday}}
-				<li data-role="list-divider" role="heading">Thursday</li>
-				{{#each meal}}
-					<li role="heading" data-theme="c" class="ui-li ui-btn ui-bar-b">{{this}}</li>
-				{{/each}}
-			{{/thursday}}
-			
-			{{#friday}}
-				<li data-role="list-divider" role="heading">Friday</li>
-				{{#each meal}}
-					<li role="heading" data-theme="c" class="ui-li ui-btn ui-bar-b">{{this}}</li>
-				{{/each}}
-			{{/friday}}
-			
-			{{#saturday}}
-				<li data-role="list-divider" role="heading">Saturday</li>
-				{{#each meal}}
-					<li role="heading" data-theme="c" class="ui-li ui-btn ui-bar-b">{{this}}</li>
-				{{/each}}
-			{{/saturday}}
-			
-			{{#sunday}}
-				<li data-role="list-divider" role="heading">Sunday</li>
-				{{#each meal}}
-					<li role="heading" data-theme="c" class="ui-li ui-btn ui-bar-b">{{this}}</li>
-				{{/each}}
-			{{/sunday}}
-			
-		{{/menu}}
-		</ul>
+	<script id='restaurants' type='text/x-handlebars-template'>		
+		{{#each this}}
+			<!-- check if the restaurants[index].campus is Otaniemi -->
+			{{#isOtaniemi}}	
+				<ul data-role="listview" data-inset="true" class="ui-listview">
+				<li data-role="list-divider" role="heading" style="background:#56A00E;">{{name}}</li>
+				{{#menu}}
+					{{#monday}}
+						<li data-role="list-divider" role="heading">Monday</li>
+						{{#each meal}}
+							<li role="heading" data-theme="c" class="ui-li ui-li-static ui-body-c">{{this}}</li>
+						{{/each}}
+					{{/monday}}
+					
+					{{#tuesday}}
+						<li data-role="list-divider" role="heading">Tuesday</li>
+						{{#each meal}}
+							<li role="heading" data-theme="c" class="ui-li ui-li-static ui-body-c">{{this}}</li>
+						{{/each}}
+					{{/tuesday}}
+					
+					{{#wednesday}}
+						<li data-role="list-divider" role="heading">Wednesday</li>
+						{{#each meal}}
+							<li role="heading" data-theme="c" class="ui-li ui-li-static ui-body-c">{{this}}</li>
+						{{/each}}
+					{{/wednesday}}
+					
+					{{#thursday}}
+						<li data-role="list-divider" role="heading">Thursday</li>
+						{{#each meal}}
+							<li role="heading" data-theme="c" class="ui-li ui-li-static ui-body-c">{{this}}</li>
+						{{/each}}
+					{{/thursday}}
+					
+					{{#friday}}
+						<li data-role="list-divider" role="heading">Friday</li>
+						{{#each meal}}
+							<li role="heading" data-theme="c" class="ui-li ui-li-static ui-body-c">{{this}}</li>
+						{{/each}}
+					{{/friday}}
+					
+					{{#saturday}}
+						<li data-role="list-divider" role="heading">Saturday</li>
+						{{#each meal}}
+							<li role="heading" data-theme="c" class="ui-li ui-li-static ui-body-c">{{this}}</li>
+						{{/each}}
+					{{/saturday}}
+					
+					{{#sunday}}
+						<li data-role="list-divider" role="heading">Sunday</li>
+						{{#each meal}}
+							<li role="heading" data-theme="c" class="ui-li ui-li-static ui-body-c">{{this}}</li>
+						{{/each}}
+					{{/sunday}}						
+				{{/menu}}
+				</ul>
+			{{/isOtaniemi}}
+		{{/each}}		
 	</script>
 
 	<script>
@@ -124,71 +128,22 @@
 		}; /* fixgeometry */
 
 		function loadMenu() {
-			var restaurant = 
-				{menu: {
-				monday: {
-				meal: [
-				"Yrteill&auml; maustettuja lihapy&ouml;ryk&ouml;it&auml; (L, M),Tummaa kermakastiketta (*, VL),Keitettyj&auml; perunoita (*, G, L, M)",
-				"Broileria ananas-persikkakastikkeessa (*, VL),Tummaa riisi&auml; (G, L, M)",
-				"P&auml;hkin&auml;ist&auml; kasvis-vehn&auml;risottoa (L, M)",
-				"Bistro: Kirkasta kahden kalan keittoa (G, L, M)",
-				"Bistro: Luomutofu-papusalaattia (G, L, M)",
-				"Bistro: Tonnikalapita ja jogurttikastiketta",
-				"&Agrave; la carte: Porsaanleike ananaksella Amican tapaan (L, M),Chilimajoneesia (G, L),Maalaislohkoperunoita (G, L, M)"
-				]
-				},
-				tuesday: {
-				meal: [
-				"Naudanliha-juurespataa (L, M),Keitettyj&auml; perunoita (*, G, L, M)",
-				"Rapeita kalapaloja (L, M),Tartarkastiketta (G, L),Keitettyj&auml; perunoita (*, G, L, M)",
-				"Kasvismusakaa (*)",
-				"Bistro: Pinaattikeittoa ja kananmuna",
-				"Bistro: Kirjolohi-perunasalaattia (*, G, L)",
-				"Bistro: L&auml;mmin kebableip&auml; (L)",
-				"&Agrave; la carte: Broilerin rintaleike herkkusieni-pekonikastikkeessa (G, L, M),Paprikariisi&auml; (G, L, M)"
-				]
-				},
-				wednesday: {
-				meal: [
-				"Uunimakkaraa juustot&auml;ytteell&auml; (G, L),Tomaattikastiketta (G, VL),Keitettyj&auml; perunoita (*, G, L, M)",
-				"Kanaa sitruunakastikkeessa (L, M),Tummaa riisi&auml; (G, L, M)",
-				"Mustaherukkahilloa (G, L, M)",
-				"Bistro: Yrtti-juustopastaa (VL)",
-				"Bistro: Kermaista porkkanasosekeittoa (G, VL)",
-				"Broileri-ohrasalaatti (L)",
-				"Bistro: Pepperoni-herkkusienipannupizzaa (L)",
-				"&Agrave; la carte: Sveitsinleike (L),Viipaleperunoita (G, VL)"
-				]
-				},
-				thursday: {
-				meal: [
-				"Lammaspihvej&auml; (L, M),Tzatzikia (G, L),Yrttimaustettuja viipaleperunoita (G, L, M)",
-				"Broileri-kasvisrisottoa (G, L, M)",
-				"Kookos-inkiv&auml;&auml;rimaustettua paistettua riisi&auml; (G, L, M)",
-				"Bistro: Juusto-basilikakeittoa (G, VL)",
-				"Bistro: Tonnikala-nuudelisalaatti (L, M)",
-				"&Agrave; la carte: Paahdettua lohta (G, L, M),Jogurtti-hunajakastiketta (G, L),Valkosipulisia lohkoperunoita (G, L, M)",
-				"Pasharahkaa (G, VL)",
-				"Hyv&auml;&auml; ruokahalua!",
-				"Hauskaa p&auml;&auml;si&auml;ist&auml;!"
-				]
-				},
-				friday: {
-				meal: ""
-				},
-				saturday: {
-				meal: ""
-				},
-				sunday: {
-				meal: ""
-				}}};
-			var content = Templates.restaurants(restaurant);
+			var content = Templates.restaurants(restaurants);
 			$("#menus").html(content).find("ul").listview();
 		}
 		
 		$(document).ready(function () {
 			$(window).bind("orientationchange resize pageshow", fixgeometry);
 
+			// Template helpers
+			Handlebars.registerHelper('isOtaniemi', function(block) {
+				if(this.campus == "Otaniemi") {
+					return block(this);
+				} else {
+					return block.inverse(this);
+				}
+			});
+  
 			// Compile templates
  	        $('script[type="text/x-handlebars-template"]').each(function () {
 				Templates[this.id] = Handlebars.compile($(this).html());
@@ -290,17 +245,8 @@
 		<div class="header" data-role="header">
 			<h1>FeedMe!</h1>
 		</div><!-- /header -->
-		<div class='content' data-role='content' id="menus"> 
-		<!--
-			<ul data-role="listview" data-inset="true" data-filter="false">
-				<li><a href="#">Täffä</a></li>
-				<li><a href="#">Teekkariravintolat</a></li>
-				<li><a href="#">Cantina</a></li>
-				<li><a href="#">Kvarkki</a></li>
-				<li><a href="#">Tuas</a></li>
-			</ul>
-		-->
-        </div> 
+		<div class='content' data-role='content' id="menus"> </div> 
+		
 		<div class="footer" data-role="footer">		
 			<div data-role="navbar">
 				<ul>
