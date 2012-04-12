@@ -38,8 +38,10 @@ var api_res_thursday = "thursday";
 var api_res_friday = "friday";
 var api_res_saturday = "saturday";
 var api_res_sunday = "sunday";
+var api_res_days = [api_res_monday, api_res_tuesday, api_res_wednesday, api_res_thursday, api_res_friday, api_res_saturday, api_res_sunday];
 var api_res_menu = "menu";
 var api_res_meal = "meal";
+
 
 // Local storage related constants
 var localStorage_key = "menuOnWeek";
@@ -65,15 +67,31 @@ function success(responseData) {
 			// Store campi to localstore with expiration at the very beginning of next week
 			var campi = responseData[api_res_root][api_res_result][api_res_campus];
 			restaurants = new Array();
+			// Iterate over campi
 			$.each(campi, function(index, value) {
-    			//alert(index + ': ' + value[api_res_name]);
+    			console.log(index + ': ' + value[api_res_name]);
     			var campus = campi[index][api_res_name];
     			var res_restaurants = value[api_res_restaurant];
+    			// Iterate over restaurants
 				$.each(res_restaurants, function(index, value) {
     				var restaurant = value;
+    				// Add campus as property of restaurant
     				restaurant['campus'] = campus;
     				restaurants.push(restaurant);
-    				//alert(value[api_res_name])
+    				console.log('\t' + index + ': ' + value[api_res_name]);
+    				var res_menu = value[api_res_menu];
+    				// Iterate over week days
+    				$.each(api_res_days, function(index, value) {
+    					var res_meal = res_menu[value][api_res_meal];
+    					console.log('\t\t' + value + ': ' + res_meal);
+    					// If meal is not array
+    					if (!$.isArray(res_meal)) {
+    						// Make it array
+    						res_menu[value][api_res_meal] = [res_meal];
+    						//console.log('\t\t ' + res_menu[value][api_res_meal]);
+    					}
+    					
+    				});    				
     			});
 			});
 
@@ -117,7 +135,7 @@ function init() {
 	var key = getKeyOfThisWeek();
 	// This is for development, you can flush cache from local storage to force
 	// fetching of fresh data by uncommentting next line.
-	// lscache.flush();
+	lscache.flush();
 	// Try to load menu from local storage
 	var restaurantsFromCache = lscache.get(key);
 	if (restaurantsFromCache) {

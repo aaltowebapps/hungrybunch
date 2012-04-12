@@ -37,7 +37,9 @@
     },
     "menu": {
       "monday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "tuesday": {
         "meal": [
@@ -93,10 +95,14 @@
         ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Otaniemi"
@@ -139,7 +145,9 @@
     },
     "menu": {
       "monday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "tuesday": {
         "meal": [
@@ -187,10 +195,14 @@
         ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Otaniemi"
@@ -267,13 +279,19 @@
         ]
       },
       "friday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Otaniemi"
@@ -349,13 +367,19 @@
         ]
       },
       "friday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Otaniemi"
@@ -430,13 +454,19 @@
         ]
       },
       "friday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Otaniemi"
@@ -479,7 +509,9 @@
     },
     "menu": {
       "monday": {
-        "meal": "Ravintola suljettu"
+        "meal": [
+          "Ravintola suljettu"
+        ]
       },
       "tuesday": {
         "meal": [
@@ -518,10 +550,14 @@
         ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Otaniemi"
@@ -605,13 +641,19 @@
         ]
       },
       "friday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Otaniemi"
@@ -695,13 +737,19 @@
         ]
       },
       "friday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Otaniemi"
@@ -819,10 +867,14 @@
         ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Otaniemi"
@@ -897,13 +949,19 @@
         ]
       },
       "friday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Otaniemi"
@@ -984,13 +1042,19 @@
         ]
       },
       "friday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Töölö"
@@ -1033,25 +1097,39 @@
     },
     "menu": {
       "monday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "tuesday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "wednesday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "thursday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "friday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Töölö"
@@ -1132,13 +1210,19 @@
         ]
       },
       "friday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Töölö"
@@ -1222,13 +1306,19 @@
         ]
       },
       "friday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Töölö"
@@ -1311,13 +1401,19 @@
         ]
       },
       "friday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Töölö"
@@ -1397,10 +1493,14 @@
         ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Töölö"
@@ -1443,25 +1543,39 @@
     },
     "menu": {
       "monday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "tuesday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "wednesday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "thursday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "friday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Arabia"
@@ -1504,7 +1618,9 @@
     },
     "menu": {
       "monday": {
-        "meal": "P&auml;&auml;si&auml;inen"
+        "meal": [
+          "P&auml;&auml;si&auml;inen"
+        ]
       },
       "tuesday": {
         "meal": [
@@ -1536,10 +1652,14 @@
         ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Arabia"
@@ -1582,7 +1702,9 @@
     },
     "menu": {
       "monday": {
-        "meal": "PÄÄSIÄIS"
+        "meal": [
+          "PÄÄSIÄIS"
+        ]
       },
       "tuesday": {
         "meal": [
@@ -1625,10 +1747,14 @@
         ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Arabia"
@@ -1671,25 +1797,39 @@
     },
     "menu": {
       "monday": {
-        "meal": "HAUSKAA PÄÄSIÄISTÄ !"
+        "meal": [
+          "HAUSKAA PÄÄSIÄISTÄ !"
+        ]
       },
       "tuesday": {
-        "meal": "Härkä-nuudeliwokkia (l,v)Paprika-broilerkastiketta (vl)Sieni-kasvisrisotto (g,k,l,v,ve)Kinkkusalaatti (g,l)Kasvisborschkeittoa (g,l)"
+        "meal": [
+          "Härkä-nuudeliwokkia (l,v)Paprika-broilerkastiketta (vl)Sieni-kasvisrisotto (g,k,l,v,ve)Kinkkusalaatti (g,l)Kasvisborschkeittoa (g,l)"
+        ]
       },
       "wednesday": {
-        "meal": "Porsaanleike, pippurikastiketta (l)Lohilasagnea (vl)Soijaa thaicurrykastikkeessa (g,k,l,v,ve)Hedelmäinen kalkkunasalaatti (l)Mustajuurikeittoa, auringonkukan sieminiä (g,k,vl)"
+        "meal": [
+          "Porsaanleike, pippurikastiketta (l)Lohilasagnea (vl)Soijaa thaicurrykastikkeessa (g,k,l,v,ve)Hedelmäinen kalkkunasalaatti (l)Mustajuurikeittoa, auringonkukan sieminiä (g,k,vl)"
+        ]
       },
       "thursday": {
-        "meal": "Burgundin härkää (l,v)Rapeaa chilikalaa, chilimajoneesiaHernekeittoa (g,l), pannukakkua ja hilloaKasvishernekeittoa (g,k,l,ve), pannukakkua ja hilloaCheddarsalaatti (k,vl)Kasvishernekeittoa (g,k,l,ve)Pannukakkua ja hilloa (k) 1,00&euro;"
+        "meal": [
+          "Burgundin härkää (l,v)Rapeaa chilikalaa, chilimajoneesiaHernekeittoa (g,l), pannukakkua ja hilloaKasvishernekeittoa (g,k,l,ve), pannukakkua ja hilloaCheddarsalaatti (k,vl)Kasvishernekeittoa (g,k,l,ve)Pannukakkua ja hilloa (k) 1,00&euro;"
+        ]
       },
       "friday": {
-        "meal": "SmetanalohtaKebabkastiketta (g,l,v)Kasvispyttipannua (g,k,l,ve)"
+        "meal": [
+          "SmetanalohtaKebabkastiketta (g,l,v)Kasvispyttipannua (g,k,l,ve)"
+        ]
       },
       "saturday": {
-        "meal": "HYVÄÄ VIIKONLOPPUA !"
+        "meal": [
+          "HYVÄÄ VIIKONLOPPUA !"
+        ]
       },
       "sunday": {
-        "meal": "HYVÄÄ VIIKONLOPPUA !"
+        "meal": [
+          "HYVÄÄ VIIKONLOPPUA !"
+        ]
       }
     },
     "campus": "Kumpula"
@@ -1732,25 +1872,39 @@
     },
     "menu": {
       "monday": {
-        "meal": "Hauskaa pääsiäistä!"
+        "meal": [
+          "Hauskaa pääsiäistä!"
+        ]
       },
       "tuesday": {
-        "meal": "Tomaattista lihapullakastiketta (g,v)Sieni-kasvisrisotto (g,k,l,v,ve)Kalapihvejä ja tilli-kermaviilikastiketta (l)Pähkinäistä juustosalaattia (g,k,l,pä)Suklaamoussella täytetyt vohvelit ja suklaakastiketta 1,40&euro;"
+        "meal": [
+          "Tomaattista lihapullakastiketta (g,v)Sieni-kasvisrisotto (g,k,l,v,ve)Kalapihvejä ja tilli-kermaviilikastiketta (l)Pähkinäistä juustosalaattia (g,k,l,pä)Suklaamoussella täytetyt vohvelit ja suklaakastiketta 1,40&euro;"
+        ]
       },
       "wednesday": {
-        "meal": "Juustoiset broileripihvit ja currykastiketta (v,vl)Soijaa thaicurrykastikkeessa (g,k,l,v,ve)Mausteista kalapataa (g,l,v)Meksikolainen jauhelihasalaatti (g,l,pä,v)Ananas-kaurahyve (k,l) 1,20&euro;"
+        "meal": [
+          "Juustoiset broileripihvit ja currykastiketta (v,vl)Soijaa thaicurrykastikkeessa (g,k,l,v,ve)Mausteista kalapataa (g,l,v)Meksikolainen jauhelihasalaatti (g,l,pä,v)Ananas-kaurahyve (k,l) 1,20&euro;"
+        ]
       },
       "thursday": {
-        "meal": "Burgundin härkää (l,v)Seitä pestokastikkeessa (g,pä,v,vl)Pinaattiohukaisia (k,l), puolukkasurvostaHedelmäinen kalkkunasalaatti (l)Banaanikiisseli ja kinuski-vaniljavaahto 1,20&euro;"
+        "meal": [
+          "Burgundin härkää (l,v)Seitä pestokastikkeessa (g,pä,v,vl)Pinaattiohukaisia (k,l), puolukkasurvostaHedelmäinen kalkkunasalaatti (l)Banaanikiisseli ja kinuski-vaniljavaahto 1,20&euro;"
+        ]
       },
       "friday": {
-        "meal": "Kebabkastiketta (g,l,v)Vihannespihvipihvit, papusalsaa (g,k,l,se,v,ve)Välimeren kalakeittoa (g,l)Nizzansalaatti (g,l)Marjapiirakkaa ja vaniljakastiketta 1,40&euro;"
+        "meal": [
+          "Kebabkastiketta (g,l,v)Vihannespihvipihvit, papusalsaa (g,k,l,se,v,ve)Välimeren kalakeittoa (g,l)Nizzansalaatti (g,l)Marjapiirakkaa ja vaniljakastiketta 1,40&euro;"
+        ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Kumpula"
@@ -1793,25 +1947,39 @@
     },
     "menu": {
       "monday": {
-        "meal": "Lapinkeittoa (g,vl)Kasvis-papukroketit, ruohosipuli-jogurttikastiketta (g,k,l,v)"
+        "meal": [
+          "Lapinkeittoa (g,vl)Kasvis-papukroketit, ruohosipuli-jogurttikastiketta (g,k,l,v)"
+        ]
       },
       "tuesday": {
-        "meal": "Broilerilasagnettea (v)Soijaa thaicurrykastikkeessa (g,k,l,v,ve)"
+        "meal": [
+          "Broilerilasagnettea (v)Soijaa thaicurrykastikkeessa (g,k,l,v,ve)"
+        ]
       },
       "wednesday": {
-        "meal": "Kalapyöryköitä, sitruunakermaviilikastiketta (l)Pinaattikeittoa, ½  kananmuna (k)"
+        "meal": [
+          "Kalapyöryköitä, sitruunakermaviilikastiketta (l)Pinaattikeittoa, ½  kananmuna (k)"
+        ]
       },
       "thursday": {
-        "meal": "Jauheliha-juureskastiketta (l)Tofu-perunalaatikkoa (k,l,v,ve)"
+        "meal": [
+          "Jauheliha-juureskastiketta (l)Tofu-perunalaatikkoa (k,l,v,ve)"
+        ]
       },
       "friday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Kumpula"
@@ -1854,25 +2022,39 @@
     },
     "menu": {
       "monday": {
-        "meal": "Toinen pääsiäispäivä"
+        "meal": [
+          "Toinen pääsiäispäivä"
+        ]
       },
       "tuesday": {
-        "meal": "Tofu-pähkinäkastiketta (g,k,l,pä,ve)Kalaa tacokastikkeessa (g,pä,v,vl)Broilerinuggetit, currykastiketta (l,v)Lounassalaatti"
+        "meal": [
+          "Tofu-pähkinäkastiketta (g,k,l,pä,ve)Kalaa tacokastikkeessa (g,pä,v,vl)Broilerinuggetit, currykastiketta (l,v)Lounassalaatti"
+        ]
       },
       "wednesday": {
-        "meal": "Quinoa-soijapannua (g,k,l,v,ve)MakaronilaatikkoaMustaherukkaista broilerinkastiketta (g,l)Lounassalaatti"
+        "meal": [
+          "Quinoa-soijapannua (g,k,l,v,ve)MakaronilaatikkoaMustaherukkaista broilerinkastiketta (g,l)Lounassalaatti"
+        ]
       },
       "thursday": {
-        "meal": "Kasviscouscousia, yrtti-tomaattikastiketta (k,l,v,ve)Pekonista sieni-kaalipataa (g,l,v)Broilerilasagnettea (v)Lounassalaatti"
+        "meal": [
+          "Kasviscouscousia, yrtti-tomaattikastiketta (k,l,v,ve)Pekonista sieni-kaalipataa (g,l,v)Broilerilasagnettea (v)Lounassalaatti"
+        ]
       },
       "friday": {
-        "meal": "Mango-vihanneshöystöä (g,k,l,se,v,ve)Lindströminpihvit, tummaa sipulikastiketta (g)Hunajaista kalapataa (g,vl)Lounassalaatti"
+        "meal": [
+          "Mango-vihanneshöystöä (g,k,l,se,v,ve)Lindströminpihvit, tummaa sipulikastiketta (g)Hunajaista kalapataa (g,vl)Lounassalaatti"
+        ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Keskusta"
@@ -1915,25 +2097,39 @@
     },
     "menu": {
       "monday": {
-        "meal": "Lohta salsakastikkeessa (g,pä,v,vl)Itämaista kikhernekastiketta (g,l,v,ve)Kookos-broilerihöystöä (g,vl)LounassalaattiAurajuustokeittoa (k)"
+        "meal": [
+          "Lohta salsakastikkeessa (g,pä,v,vl)Itämaista kikhernekastiketta (g,l,v,ve)Kookos-broilerihöystöä (g,vl)LounassalaattiAurajuustokeittoa (k)"
+        ]
       },
       "tuesday": {
-        "meal": "Hapanimelää porsaspataa (g,l,v)Kasvismoussakaa (g,k,v,vl)Broileria aprikoosi-mantelikastikkeessa (g,l,pä,v)Lounassalaatti"
+        "meal": [
+          "Hapanimelää porsaspataa (g,l,v)Kasvismoussakaa (g,k,v,vl)Broileria aprikoosi-mantelikastikkeessa (g,l,pä,v)Lounassalaatti"
+        ]
       },
       "wednesday": {
-        "meal": "Soija-sipulikastiketta (k,l,ve)Hernekeittoa (g,l)Lohikebakoita, ruohosipuli-jogurttikastiketta (vl)LounassalaattiKasvishernekeittoa (g,k,l,ve)"
+        "meal": [
+          "Soija-sipulikastiketta (k,l,ve)Hernekeittoa (g,l)Lohikebakoita, ruohosipuli-jogurttikastiketta (vl)LounassalaattiKasvishernekeittoa (g,k,l,ve)"
+        ]
       },
       "thursday": {
-        "meal": "Lihacurry (g,l,v)Savukalapastaa (vl)Kasvis-kaalikääryleitä, linssimuhennosta (g,k,l,v,ve)Lounassalaatti"
+        "meal": [
+          "Lihacurry (g,l,v)Savukalapastaa (vl)Kasvis-kaalikääryleitä, linssimuhennosta (g,k,l,v,ve)Lounassalaatti"
+        ]
       },
       "friday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Keskusta"
@@ -1976,25 +2172,39 @@
     },
     "menu": {
       "monday": {
-        "meal": "2. Pääsiäispäivä"
+        "meal": [
+          "2. Pääsiäispäivä"
+        ]
       },
       "tuesday": {
-        "meal": "Uunimakkara (g,l,v)Kuhapyörykät, pinaattikastikettaPapupataa (g,k,l,v,ve)Cheddarsalaatti (k,vl)Perunamuusia itseotossa"
+        "meal": [
+          "Uunimakkara (g,l,v)Kuhapyörykät, pinaattikastikettaPapupataa (g,k,l,v,ve)Cheddarsalaatti (k,vl)Perunamuusia itseotossa"
+        ]
       },
       "wednesday": {
-        "meal": "Jauhelihabolognaisea, juustoraastetta (g,l,pä,v)Itämaista kikhernekastiketta (g,l,v,ve)Juustoista uuniseitä (vl)Paahtopaistisalaattia (g,l)"
+        "meal": [
+          "Jauhelihabolognaisea, juustoraastetta (g,l,pä,v)Itämaista kikhernekastiketta (g,l,v,ve)Juustoista uuniseitä (vl)Paahtopaistisalaattia (g,l)"
+        ]
       },
       "thursday": {
-        "meal": "Cheddar-täytteinen kalarulla, ruohosipulikastiketta (v)Punajuurikroketteja, ruohosipuli-soijajogurttikastiketta (l,ve)Broileri-ananaskastiketta (l)Hernekeittoa (g,l), pannukakkua ja hilloaMeksikolainen jauhelihasalaatti (g,l,pä,v)Kasvishernekeittoa (g,k,l,ve)"
+        "meal": [
+          "Cheddar-täytteinen kalarulla, ruohosipulikastiketta (v)Punajuurikroketteja, ruohosipuli-soijajogurttikastiketta (l,ve)Broileri-ananaskastiketta (l)Hernekeittoa (g,l), pannukakkua ja hilloaMeksikolainen jauhelihasalaatti (g,l,pä,v)Kasvishernekeittoa (g,k,l,ve)"
+        ]
       },
       "friday": {
-        "meal": "SmetanalohtaBroilerinkoipi, currykastiketta (pä,v,vl)Kasviswrap, ranskankermaa (k,l,v)Tofusalaatti (k,l,ve)"
+        "meal": [
+          "SmetanalohtaBroilerinkoipi, currykastiketta (pä,v,vl)Kasviswrap, ranskankermaa (k,l,v)Tofusalaatti (k,l,ve)"
+        ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Keskusta"
@@ -2037,25 +2247,39 @@
     },
     "menu": {
       "monday": {
-        "meal": "Jauhelihabolognaisea, juustoraastetta (g,l,pä,v)Seitä pinaattikastikeessaPunajuurikroketteja, ruohosipuli-soijajogurttikastiketta (l,ve)Riistakeittoa (g,l)Parmesan-broilerisalaatti (l)Neljän viljan puuroa, vadelmakeittoa (k,l,ve)Mustikka-banaanirahka (g,k,vl) 1,20&euro;"
+        "meal": [
+          "Jauhelihabolognaisea, juustoraastetta (g,l,pä,v)Seitä pinaattikastikeessaPunajuurikroketteja, ruohosipuli-soijajogurttikastiketta (l,ve)Riistakeittoa (g,l)Parmesan-broilerisalaatti (l)Neljän viljan puuroa, vadelmakeittoa (k,l,ve)Mustikka-banaanirahka (g,k,vl) 1,20&euro;"
+        ]
       },
       "tuesday": {
-        "meal": "Valkosipulitäytteinen broilerileike, valkosipulidippiä (se,v)Lindströminpihvit, tummaa sipulikastiketta (g)Kasviscouscousia, yrtti-tomaattikastiketta (k,l,v,ve)KatkarapukeittoaKylmäsavulohisalaatti (g,l)Riisipuuroa, mansikkakeittoa (g,k)Kaura-omenapaistosta ja vaniljakastike (k,vl), 1,40&euro;"
+        "meal": [
+          "Valkosipulitäytteinen broilerileike, valkosipulidippiä (se,v)Lindströminpihvit, tummaa sipulikastiketta (g)Kasviscouscousia, yrtti-tomaattikastiketta (k,l,v,ve)KatkarapukeittoaKylmäsavulohisalaatti (g,l)Riisipuuroa, mansikkakeittoa (g,k)Kaura-omenapaistosta ja vaniljakastike (k,vl), 1,40&euro;"
+        ]
       },
       "wednesday": {
-        "meal": "Paistettua lohta, valkoviinikastiketta (vl)MakaronilaatikkoaBroileri-vihannespannua (g,l,pä)Tofu-pähkinäkastiketta (g,k,l,pä,ve)Chili-katkarapusalaatti (g,l)Kaurapuuroa, mustikkakeittoa (l,ve)Vanilja-pannacotta (g,vl) 1,20&euro;"
+        "meal": [
+          "Paistettua lohta, valkoviinikastiketta (vl)MakaronilaatikkoaBroileri-vihannespannua (g,l,pä)Tofu-pähkinäkastiketta (g,k,l,pä,ve)Chili-katkarapusalaatti (g,l)Kaurapuuroa, mustikkakeittoa (l,ve)Vanilja-pannacotta (g,vl) 1,20&euro;"
+        ]
       },
       "thursday": {
-        "meal": "Katkaraputäytteinen kalaleike, ruohosipulidippiLihapyöryköitä, ruskeaa kastiketta (l,v)Kookos-juureshöystöä (g,k,l,v,ve)Tattari-mozzarellasalaatti (g,k,l)Purjo-perunasosekeittoa (g,k,vl)Mannapuuroa, mansikkakeittoa (k)Ohukaisia, hilloa ja kermavaahtoa (k,vl) 1,20&euro;"
+        "meal": [
+          "Katkaraputäytteinen kalaleike, ruohosipulidippiLihapyöryköitä, ruskeaa kastiketta (l,v)Kookos-juureshöystöä (g,k,l,v,ve)Tattari-mozzarellasalaatti (g,k,l)Purjo-perunasosekeittoa (g,k,vl)Mannapuuroa, mansikkakeittoa (k)Ohukaisia, hilloa ja kermavaahtoa (k,vl) 1,20&euro;"
+        ]
       },
       "friday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Keskusta"
@@ -2098,25 +2322,39 @@
     },
     "menu": {
       "monday": {
-        "meal": "Jauhelihabolognaisea, juustoraastetta (g,l,pä,v)Lounassalaatti: Parmesan/ Tonnikala/ TofuTofu-gulassikeittoa (g,k,l,v,ve)Kuningatarrahka (g,k,l) 1,20&euro;"
+        "meal": [
+          "Jauhelihabolognaisea, juustoraastetta (g,l,pä,v)Lounassalaatti: Parmesan/ Tonnikala/ TofuTofu-gulassikeittoa (g,k,l,v,ve)Kuningatarrahka (g,k,l) 1,20&euro;"
+        ]
       },
       "tuesday": {
-        "meal": "KatkarapukeittoaLounassalaatti: Parmesan/ Tonnikala/ TofuKaali-kasviskeittoa (g,k,l,se,ve)Ruishiutalepuuroa, mustikkamehukeittoa (k,l,ve)Mangorahka (g,k,l) 1,20&euro;"
+        "meal": [
+          "KatkarapukeittoaLounassalaatti: Parmesan/ Tonnikala/ TofuKaali-kasviskeittoa (g,k,l,se,ve)Ruishiutalepuuroa, mustikkamehukeittoa (k,l,ve)Mangorahka (g,k,l) 1,20&euro;"
+        ]
       },
       "wednesday": {
-        "meal": "Kanakeittoa (g,l,se,v)Lounassalaatti: Katkarapu (g,l)/ Mozzarella (g,vl) / Tofu (g,ve,l)Maissikeittoa (g,k,vl)LuomuTattarihiutalepuuroa, mustikkakeittoa (g,k,l,ve)Mustikkaherkku (k,l) 1,20&euro;"
+        "meal": [
+          "Kanakeittoa (g,l,se,v)Lounassalaatti: Katkarapu (g,l)/ Mozzarella (g,vl) / Tofu (g,ve,l)Maissikeittoa (g,k,vl)LuomuTattarihiutalepuuroa, mustikkakeittoa (g,k,l,ve)Mustikkaherkku (k,l) 1,20&euro;"
+        ]
       },
       "thursday": {
-        "meal": "Itämaista kana-kookoskeittoa (g,l,se,v)Lounassalaatti: Katkarapu / Mozzarella / TofuPurjo-perunasosekeittoa (g,k,vl)Ohrahiutalepuuroa, mustikkakeittoa (k,l,ve)Hedelmärahkaa (g,k,l) 1,20&euro;"
+        "meal": [
+          "Itämaista kana-kookoskeittoa (g,l,se,v)Lounassalaatti: Katkarapu / Mozzarella / TofuPurjo-perunasosekeittoa (g,k,vl)Ohrahiutalepuuroa, mustikkakeittoa (k,l,ve)Hedelmärahkaa (g,k,l) 1,20&euro;"
+        ]
       },
       "friday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Keskusta"
@@ -2159,25 +2397,39 @@
     },
     "menu": {
       "monday": {
-        "meal": "Seitä pinaattikastikkeessa (vl)Jauhelihabolognaisea, juustoraastetta (g,l,pä,v)Tofu-gulassikeittoa (g,k,l,v,ve)"
+        "meal": [
+          "Seitä pinaattikastikkeessa (vl)Jauhelihabolognaisea, juustoraastetta (g,l,pä,v)Tofu-gulassikeittoa (g,k,l,v,ve)"
+        ]
       },
       "tuesday": {
-        "meal": "Kievin kanaa ja yrtti-aioli (g,l,se)Lindströminpihvit, tummaa sipulikastiketta (g)Kasviscouscousia, yrtti-tomaattikastiketta (k,l,v,ve)"
+        "meal": [
+          "Kievin kanaa ja yrtti-aioli (g,l,se)Lindströminpihvit, tummaa sipulikastiketta (g)Kasviscouscousia, yrtti-tomaattikastiketta (k,l,v,ve)"
+        ]
       },
       "wednesday": {
-        "meal": "Paistettua lohta, valkoviinikastiketta (vl)MakaronilaatikkoaTofu-pähkinäkastiketta (g,k,l,pä,ve)"
+        "meal": [
+          "Paistettua lohta, valkoviinikastiketta (vl)MakaronilaatikkoaTofu-pähkinäkastiketta (g,k,l,pä,ve)"
+        ]
       },
       "thursday": {
-        "meal": "Katkaraputäytteinen kalaleike, ruohosipulidippiLihapyöryköitä, ruskeaa kastiketta (l,v)Purjo-perunasosekeittoa (g,k,vl)"
+        "meal": [
+          "Katkaraputäytteinen kalaleike, ruohosipulidippiLihapyöryköitä, ruskeaa kastiketta (l,v)Purjo-perunasosekeittoa (g,k,vl)"
+        ]
       },
       "friday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Keskusta"
@@ -2220,25 +2472,39 @@
     },
     "menu": {
       "monday": {
-        "meal": "Ravintola suljettu"
+        "meal": [
+          "Ravintola suljettu"
+        ]
       },
       "tuesday": {
-        "meal": "Broilerinuggetit, currykastiketta (l,v)Kalaa tacokastikkeessa (g,pä,v,vl)Tofu-pähkinäkastiketta (g,k,l,pä,ve)"
+        "meal": [
+          "Broilerinuggetit, currykastiketta (l,v)Kalaa tacokastikkeessa (g,pä,v,vl)Tofu-pähkinäkastiketta (g,k,l,pä,ve)"
+        ]
       },
       "wednesday": {
-        "meal": "Quinoa-soijapannua (g,k,l,v,ve)MakaronilaatikkoaMustaherukkaista broilerinkastiketta (g,l)"
+        "meal": [
+          "Quinoa-soijapannua (g,k,l,v,ve)MakaronilaatikkoaMustaherukkaista broilerinkastiketta (g,l)"
+        ]
       },
       "thursday": {
-        "meal": "Broilerilasagnettea (v)Pekonista sieni-kaalipataa (g,l,v)Kasviscouscousia, yrtti-tomaattikastiketta (k,l,v,ve)"
+        "meal": [
+          "Broilerilasagnettea (v)Pekonista sieni-kaalipataa (g,l,v)Kasviscouscousia, yrtti-tomaattikastiketta (k,l,v,ve)"
+        ]
       },
       "friday": {
-        "meal": "Lindströminpihvit, tummaa sipulikastiketta (g)Hunajaista kalapataa (g,vl)Mango-vihanneshöystöä (g,k,l,se,v,ve)"
+        "meal": [
+          "Lindströminpihvit, tummaa sipulikastiketta (g)Hunajaista kalapataa (g,vl)Mango-vihanneshöystöä (g,k,l,se,v,ve)"
+        ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Keskusta"
@@ -2281,25 +2547,39 @@
     },
     "menu": {
       "monday": {
-        "meal": "Ravintola suljettu 5-9.4.2012 Hyvää pääsiäistä!"
+        "meal": [
+          "Ravintola suljettu 5-9.4.2012 Hyvää pääsiäistä!"
+        ]
       },
       "tuesday": {
-        "meal": "Jauhelihakastiketta, juustoraastetta (l,v)Kalaburgerpihvit, tilli-kermaviilikastiketta (l)Parmesan-broilerisalaatti (l)Tofu-gulassikeittoa (g,k,l,v,ve)Banaanirahka (g,k,l) 1,20&euro;"
+        "meal": [
+          "Jauhelihakastiketta, juustoraastetta (l,v)Kalaburgerpihvit, tilli-kermaviilikastiketta (l)Parmesan-broilerisalaatti (l)Tofu-gulassikeittoa (g,k,l,v,ve)Banaanirahka (g,k,l) 1,20&euro;"
+        ]
       },
       "wednesday": {
-        "meal": "Juustoiset broileripihvit ja currykastiketta (v,vl)Lindströminpihvit, tummaa sipulikastiketta (g)Kasviscouscousia, yrtti-tomaattikastiketta (k,l,v,ve)Lohisalaatti (g,l)Mangorahka 1,20&euro;"
+        "meal": [
+          "Juustoiset broileripihvit ja currykastiketta (v,vl)Lindströminpihvit, tummaa sipulikastiketta (g)Kasviscouscousia, yrtti-tomaattikastiketta (k,l,v,ve)Lohisalaatti (g,l)Mangorahka 1,20&euro;"
+        ]
       },
       "thursday": {
-        "meal": "Paistettua lohta, valkoviinikastiketta (vl)Broileri-vihannespannua (g,l,pä)Tofu-pähkinäkastiketta (g,k,l,pä,ve)Chili-katkarapusalaatti (g,l)Kaura-omenapaistos, kermavaahto (k,l) 1,20&euro;"
+        "meal": [
+          "Paistettua lohta, valkoviinikastiketta (vl)Broileri-vihannespannua (g,l,pä)Tofu-pähkinäkastiketta (g,k,l,pä,ve)Chili-katkarapusalaatti (g,l)Kaura-omenapaistos, kermavaahto (k,l) 1,20&euro;"
+        ]
       },
       "friday": {
-        "meal": "Katkaraputäytteinen kalaleike, ruohosipulidippiItämaista kanakeittoa (g,l,se,v)Kookos-juureshöystöä (g,k,l,v,ve)"
+        "meal": [
+          "Katkaraputäytteinen kalaleike, ruohosipulidippiItämaista kanakeittoa (g,l,se,v)Kookos-juureshöystöä (g,k,l,v,ve)"
+        ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Keskusta"
@@ -2342,25 +2622,39 @@
     },
     "menu": {
       "monday": {
-        "meal": "Ravintola suljettu"
+        "meal": [
+          "Ravintola suljettu"
+        ]
       },
       "tuesday": {
-        "meal": "Lohta salsakastikkeessa (g,pä,v,vl)Itämaista kikhernekastiketta (g,l,v,ve)Farmarin pihvit, pippurikastikettaKookos-broilerihöystöä (g,vl)LounassalaattiSipulikeittoa (k,vl)"
+        "meal": [
+          "Lohta salsakastikkeessa (g,pä,v,vl)Itämaista kikhernekastiketta (g,l,v,ve)Farmarin pihvit, pippurikastikettaKookos-broilerihöystöä (g,vl)LounassalaattiSipulikeittoa (k,vl)"
+        ]
       },
       "wednesday": {
-        "meal": "Hapanimelää porsaspataa (g,l,v)Kreikkalaista kalahöystöä (g,l,v)Parsa-kasvislasagnettea (k,vl)Lapinkeittoa (g,vl)Lounassalaatti"
+        "meal": [
+          "Hapanimelää porsaspataa (g,l,v)Kreikkalaista kalahöystöä (g,l,v)Parsa-kasvislasagnettea (k,vl)Lapinkeittoa (g,vl)Lounassalaatti"
+        ]
       },
       "thursday": {
-        "meal": "Broileriratatouillea (g,l,v)Lohikebakoita, ruohosipuli-jogurttikastiketta (vl)Punajuuri-kaurapastavuokaa (k,l,v,ve)"
+        "meal": [
+          "Broileriratatouillea (g,l,v)Lohikebakoita, ruohosipuli-jogurttikastiketta (vl)Punajuuri-kaurapastavuokaa (k,l,v,ve)"
+        ]
       },
       "friday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Keskusta"
@@ -2403,25 +2697,39 @@
     },
     "menu": {
       "monday": {
-        "meal": "Hyvää Pääsiäistä!"
+        "meal": [
+          "Hyvää Pääsiäistä!"
+        ]
       },
       "tuesday": {
-        "meal": "Paistettua lohta,  tilli-kermaviilikastiketta (g,l)Lihapyöryköitä, ruskeaa kastiketta (l,v)Kaali-pastagratiinia (k,vl)Leipäjuustosalaatti (g,k)Linssikeittoa (g,k,l,v,ve)"
+        "meal": [
+          "Paistettua lohta,  tilli-kermaviilikastiketta (g,l)Lihapyöryköitä, ruskeaa kastiketta (l,v)Kaali-pastagratiinia (k,vl)Leipäjuustosalaatti (g,k)Linssikeittoa (g,k,l,v,ve)"
+        ]
       },
       "wednesday": {
-        "meal": "Lohileike purjo-juustotäytteellä, ruohosipulidippiä (l)Broileria maapähkinäkastikkeessa (g,pä,vl)Kasvispilahvia,  tomaattikastiketta (k,l,v,ve)Riistasalaattia (g,l)Nuudeli-kasviskeittoa (k,l,v,ve)"
+        "meal": [
+          "Lohileike purjo-juustotäytteellä, ruohosipulidippiä (l)Broileria maapähkinäkastikkeessa (g,pä,vl)Kasvispilahvia,  tomaattikastiketta (k,l,v,ve)Riistasalaattia (g,l)Nuudeli-kasviskeittoa (k,l,v,ve)"
+        ]
       },
       "thursday": {
-        "meal": "Pippurista härkäpataa (l)Smetanasilakat (g,l)Hernekeittoa (g,l), pannukakkua ja hilloaKasvispyörykät, juustokastiketta (k,pä)Lohi-pastasalaatti (l)Kasvishernekeittoa (g,k,l,ve), pannukakkua ja hilloaKasvishernekeittoa (g,k,l,ve)pannukakkua ja hilloa 1,00&euro;"
+        "meal": [
+          "Pippurista härkäpataa (l)Smetanasilakat (g,l)Hernekeittoa (g,l), pannukakkua ja hilloaKasvispyörykät, juustokastiketta (k,pä)Lohi-pastasalaatti (l)Kasvishernekeittoa (g,k,l,ve), pannukakkua ja hilloaKasvishernekeittoa (g,k,l,ve)pannukakkua ja hilloa 1,00&euro;"
+        ]
       },
       "friday": {
-        "meal": "Jauhelihabolognaisea, juustoraastetta (g,l,pä,v)Tonnikala-katkarapukastiketta (l)Soija-kaalilaatikkoa (g,k,l,ve)Vuohenjuustokeittoa (g,k,l,v)"
+        "meal": [
+          "Jauhelihabolognaisea, juustoraastetta (g,l,pä,v)Tonnikala-katkarapukastiketta (l)Soija-kaalilaatikkoa (g,k,l,ve)Vuohenjuustokeittoa (g,k,l,v)"
+        ]
       },
       "saturday": {
-        "meal": "Hyvää viikonloppua!"
+        "meal": [
+          "Hyvää viikonloppua!"
+        ]
       },
       "sunday": {
-        "meal": "Hyvää viikonloppua!"
+        "meal": [
+          "Hyvää viikonloppua!"
+        ]
       }
     },
     "campus": "Viikki"
@@ -2464,25 +2772,39 @@
     },
     "menu": {
       "monday": {
-        "meal": "RAVINTOLA SULJETTU 5.4-9.4.2012. AVAAMME JÄLLEEN 10.4.2012 KLO 08.00. HAUSKAA PÄÄSIÄISTÄ!!!"
+        "meal": [
+          "RAVINTOLA SULJETTU 5.4-9.4.2012. AVAAMME JÄLLEEN 10.4.2012 KLO 08.00. HAUSKAA PÄÄSIÄISTÄ!!!"
+        ]
       },
       "tuesday": {
-        "meal": "Porsaanleike, rosépippurikastiketta (l)Kalkkuna-vihannespataa (g,l)Kasvispihvit, linssimuhennosta (g,k,l,v,ve)Paahtopaistisalaattia (g,l)Banaani-suklaarahka 1,20&euro;"
+        "meal": [
+          "Porsaanleike, rosépippurikastiketta (l)Kalkkuna-vihannespataa (g,l)Kasvispihvit, linssimuhennosta (g,k,l,v,ve)Paahtopaistisalaattia (g,l)Banaani-suklaarahka 1,20&euro;"
+        ]
       },
       "wednesday": {
-        "meal": "Jauheliha-tomaatti-sipulipizzaKolmen juuston pizzaKinkkumunakasta (g)Pesto-kasvispastaa (k,l,pä,v)Kalakeittoa (g,vl)Hedelmäinen kalkkunasalaatti (l)Mangokiisseli 1,20&euro;"
+        "meal": [
+          "Jauheliha-tomaatti-sipulipizzaKolmen juuston pizzaKinkkumunakasta (g)Pesto-kasvispastaa (k,l,pä,v)Kalakeittoa (g,vl)Hedelmäinen kalkkunasalaatti (l)Mangokiisseli 1,20&euro;"
+        ]
       },
       "thursday": {
-        "meal": "Nakkikastiketta (l,v)Lohikiusausta (g,vl)Falafel-pyörykät, tzatziki (k,l,se,v)Tonnikalasalaatti (g,l)Ananasriisi 1,20&euro;"
+        "meal": [
+          "Nakkikastiketta (l,v)Lohikiusausta (g,vl)Falafel-pyörykät, tzatziki (k,l,se,v)Tonnikalasalaatti (g,l)Ananasriisi 1,20&euro;"
+        ]
       },
       "friday": {
-        "meal": "Kinkku-ananas-aurajuustopizzaMozzarella-tomaatti-pestopizzaKebabkastiketta, juustoraastetta (g,l,v)Soijabolognaisea (g,k,l,v,ve)Kalaburgerpihvit, tilli-kermaviilikastiketta (l)Juustosalaatti (g,l)Sitruunapiirakka, vaniljakastike 1,40&euro;"
+        "meal": [
+          "Kinkku-ananas-aurajuustopizzaMozzarella-tomaatti-pestopizzaKebabkastiketta, juustoraastetta (g,l,v)Soijabolognaisea (g,k,l,v,ve)Kalaburgerpihvit, tilli-kermaviilikastiketta (l)Juustosalaatti (g,l)Sitruunapiirakka, vaniljakastike 1,40&euro;"
+        ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Viikki"
@@ -2525,25 +2847,39 @@
     },
     "menu": {
       "monday": {
-        "meal": "Korona suljettu. Hauskaa pääsiäistä."
+        "meal": [
+          "Korona suljettu. Hauskaa pääsiäistä."
+        ]
       },
       "tuesday": {
-        "meal": "Lihapyöryköitä, ruskeaa kastikettaKaali-pastagratiinia"
+        "meal": [
+          "Lihapyöryköitä, ruskeaa kastikettaKaali-pastagratiinia"
+        ]
       },
       "wednesday": {
-        "meal": "Broileria maapähkinäkastikkeessaKasvispilahvia,  tomaattikastiketta"
+        "meal": [
+          "Broileria maapähkinäkastikkeessaKasvispilahvia,  tomaattikastiketta"
+        ]
       },
       "thursday": {
-        "meal": "SmetanasilakatKasvispyörykät, juustokastiketta"
+        "meal": [
+          "SmetanasilakatKasvispyörykät, juustokastiketta"
+        ]
       },
       "friday": {
-        "meal": "Jauhelihabolognaisea, juustoraastettaSoija-kaalilaatikkoa"
+        "meal": [
+          "Jauhelihabolognaisea, juustoraastettaSoija-kaalilaatikkoa"
+        ]
       },
       "saturday": {
-        "meal": "Hyvää viikonloppua."
+        "meal": [
+          "Hyvää viikonloppua."
+        ]
       },
       "sunday": {
-        "meal": "Hyvää viikonloppua."
+        "meal": [
+          "Hyvää viikonloppua."
+        ]
       }
     },
     "campus": "Viikki"
@@ -2620,13 +2956,19 @@
         ]
       },
       "friday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Viikki"
@@ -2669,25 +3011,39 @@
     },
     "menu": {
       "monday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "tuesday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "wednesday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "thursday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "friday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "saturday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       },
       "sunday": {
-        "meal": ""
+        "meal": [
+          ""
+        ]
       }
     },
     "campus": "Viikki"
