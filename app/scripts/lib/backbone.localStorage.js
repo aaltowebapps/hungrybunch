@@ -24,26 +24,28 @@ function guid() {
 Backbone.LocalStorage = window.Store = function(name) {
   this.name = name;
   var store = this.localStorage().getItem(this.name);
-  this.records = (store && store.split(",")) || [];
+  this.data = (store && JSON.parse(store)) || {};
+  //this.records = (store && store.split(",")) || [];
 };
 
 _.extend(Backbone.LocalStorage.prototype, {
 
   // Save the current state of the **Store** to *localStorage*.
   save: function() {
-    this.localStorage().setItem(this.name, this.records.join(","));
+    //this.localStorage().setItem(this.name, this.records.join(","));
+	this.localStorage().setItem(this.name, JSON.stringify(this.data));
   },
 
   // Add a model, giving it a (hopefully)-unique GUID, if it doesn't already
   // have an id of it's own.
+  /*
   create: function(model) {
     if (!model.id) model.id = model.attributes[model.idAttribute] = guid();
     this.localStorage().setItem(this.name+"-"+model.id, JSON.stringify(model));
     this.records.push(model.id.toString());
     this.save();
     return model;
-  },
-
+  }, 
   // Update a model by replacing its copy in `this.data`.
   update: function(model) {
     this.localStorage().setItem(this.name+"-"+model.id, JSON.stringify(model));
@@ -71,7 +73,38 @@ _.extend(Backbone.LocalStorage.prototype, {
     this.save();
     return model;
   },
+*/
 
+ create: function(model) {
+    if (!model.id) model.set(model.idAttribute, guid());
+    this.data[model.id] = model;
+    this.save();
+    return model;
+  },
+
+  // Update a model by replacing its copy in `this.data`.
+  update: function(model) {
+    this.data[model.id] = model;
+    this.save();
+    return model;
+  },
+
+  // Retrieve a model from `this.data` by id.
+  find: function(model) {
+    return this.data[model.id];
+  },
+
+  // Return the array of all models currently in storage.
+  findAll: function() {
+    return _.values(this.data);
+  },
+
+  // Delete a model from `this.data`, returning it.
+  destroy: function(model) {
+    delete this.data[model.id];
+    this.save();
+    return model;
+  },
   localStorage: function() {
       return localStorage;
   }
