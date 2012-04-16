@@ -21,18 +21,6 @@
              {{/each}}
 			</ul>
         </div>
-
-        <!-- POC navigation, TODO make a common compontent/template -->
-        <div class="footer" data-role="footer">		
-			<div data-role="navbar">
-				<ul>
-					<li><a href="#favorites">Favorites</a></li>
-					<li><a href="#/menus/1">Menus</a></li>
-					<li><a href="#" class="ui-btn-active">Restaurants</a></li>
-				</ul>
-			</div><!-- /navbar -->
-		</div><!-- /footer -->
-        
     </script>
 
     <script type="text/x-handlebars-template" id="menuTemplate">
@@ -50,18 +38,21 @@
              {{/each}}
             </ul>
         </div>
+    </script>
+
+    <script type="text/x-handlebars-template" id="footerTemplate">
+
+        <!-- POC navigation, TODO make a common compontent/template -->
         <div class="footer" data-role="footer">		
 			<div data-role="navbar">
 				<ul>
 					<li><a href="#favorites">Favorites</a></li>
-					<li><a href="#/menus/1" class="ui-btn-active">Menus</a></li>
-					<li><a href="#">Restaurants</a></li>
+					<li><a href="#/menus/1">Menus</a></li>
+					<li><a href="#" class="ui-btn-active">Restaurants</a></li>
 				</ul>
 			</div><!-- /navbar -->
 		</div><!-- /footer -->
-
-    </script>
-
+	</script>
 
 	<!-- Scripts -->
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
@@ -92,10 +83,12 @@
 	<script>
 		//(function() {
 
-			var restaurantsTemplateSource   = $("#restaurantsTemplate").html();
+			var FooterTemplateSource   = $("#footerTemplate").html();
+
+			var restaurantsTemplateSource   = $("#restaurantsTemplate").html() + FooterTemplateSource;
 			var restaurantsTemplate = Handlebars.compile(restaurantsTemplateSource);
 
-			var menuTemplateSource   = $("#menuTemplate").html();
+			var menuTemplateSource   = $("#menuTemplate").html() + FooterTemplateSource;
 			var menuTemplate = Handlebars.compile(menuTemplateSource);
 
 
