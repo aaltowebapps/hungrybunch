@@ -26,8 +26,9 @@
     <script type="text/x-handlebars-template" id="menuTemplate">
 
         <div data-role="header">
-            <a href="#" data-icon="back" class="back ui-btn-left" data-direction="reverse" data-back="true">Back</a>
+            <a href="{{prevRestaurantUrl}}" data-icon="arrow-l" class="arrow-l ui-btn-left" data-direction="reverse" data-back="true">Previous</a>
             <h1>Menu for {{restaurant.name}} (#{{restaurant.id}})</h1>
+            <a href="{{nextRestaurantUrl}}" data-icon="arrow-r" class="arrow-r ui-btn-right" data-direction="reverse" data-back="true">Next</a>
         </div>
 
         <div data-role="content">
@@ -149,12 +150,18 @@
 			    template:menuTemplate,
 			    render:function (eventName) {
 			    	// Here we get the selected restaurant id and can select data for template accordingly
-			    	var restaurantId = this.options.restaurantId;
+
+			    	// TODO: Clean up
+			    	var restaurantId = parseInt(this.options.restaurantId)-1;
+			    	var baseUrl = "#/menus/";
+
+			    	var prevRestaurantUrl = ( restaurantId <= 0 ? '#' : baseUrl + (restaurantId));
+					var nextRestaurantUrl = baseUrl + (restaurantId+2);
 			    	
 			    	//var output = _.template($('#menu').html(), {restaurant: restaurants[restaurantId]});
 			        //$(this.el).html(output);
 
-			        $(this.el).html(this.template({'restaurant': this.collection.models[restaurantId].toJSON()}));
+			        $(this.el).html(this.template({'restaurant': this.collection.models[restaurantId].toJSON(), 'nextRestaurantUrl':nextRestaurantUrl, 'prevRestaurantUrl':prevRestaurantUrl}));
 			        console.log("Chosen restaurant model: ",this.collection.models[restaurantId].toJSON())
 			        return this;
 			    }
