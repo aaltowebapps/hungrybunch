@@ -34,9 +34,14 @@
         <div data-role="content">
             <p>Meals for chosen restaurant:</p>
             <ul data-role="listview" data-inset="true">
-            {{#each restaurant.meals}}
-                <li>{{this}}</li>
-             {{/each}}
+            {{#with restaurant}}
+            {{#each menu}}
+				<li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-b">{{day}}</li>
+				{{#each meal}}
+					<li>{{this}}</li>
+				{{/each}}
+            {{/each}}
+            {{/with}}
             </ul>
         </div>
     </script>
@@ -96,11 +101,14 @@
 			var restaurants;
 
 			var restaurantsTestData = {
-				1: { id : 1, name : 'Taffa', meals : ['Meal A for #1', 'Meal B for #1']},
-				2: { id : 2, name : 'Teekkariravintolat', meals : ['Meal A for #2', 'Meal B for #2']},
-				3: { id : 3, name : 'Kvarkki', meals : ['Meal A for #3', 'Meal B for #3']},
-				4: { id : 4, name : 'Cantina', meals : ['Meal A for #4', 'Meal B for #4']},
-				5: { id : 5, name : 'TUAS', meals : ['Meal A for #5', 'Meal B for #5']},
+				1: { id : 1, name : 'Taffa', menu : [
+					{ day: 'monday',  meal: ['Meal A for #1', 'Meal B for #1']}, 
+					{day:'tuesday', meal: ['Tuesday meal']}
+					]},
+				2: { id : 2, name : 'Teekkariravintolat', menu : [{ day: 'monday', meal : ['Meal A for #2', 'Meal B for #2']}]},
+				3: { id : 3, name : 'Kvarkki', menu : [{ day: 'monday', meal : ['Meal A for #3', 'Meal B for #3']}]},
+				4: { id : 4, name : 'Cantina', menu : [{ day : 'monday', meal : ['Meal A for #4', 'Meal B for #4']}]},
+				5: { id : 5, name : 'TUAS', menu : [{ day : 'monday', meal : ['Meal A for #5', 'Meal B for #5']}]}
 			}
 			// Set test data to local storage
 			localStorage.setItem("RestaurantsTestBySami", JSON.stringify(restaurantsTestData));
@@ -108,7 +116,7 @@
 			var Restaurant = Backbone.Model.extend ({
 	          id : 0,
 	          name : '',
-	          meals : []
+	          menu : []
 	        });
 	        var Restaurants = Backbone.Collection.extend ({
 	          model: Restaurant,
@@ -212,7 +220,7 @@
 			            this.firstPage = false;
 			            console.log("firstPage");
 			        }
-			        console.log(this.goReverse);
+
 			        var reverse = false;
 			        if( this.goReverse ) {
 			        	reverse = true;
