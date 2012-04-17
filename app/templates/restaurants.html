@@ -1,17 +1,11 @@
-<script id='restaurants' type='text/x-handlebars-template'>
-  <ul data-role="listview" class="ui-listview">
-    {{#with restaurants}}
-    <li data-corners="false" data-shadow="false" data-iconshadow="true" data-inline="false" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c">
-      <div class="ui-btn-inner ui-li">
-        <div class="ui-btn-text">
-          <a href="{{restaurantMenuUrl}}" class="ui-link-inherit">
-            <h3 class="ui-li-heading">{{restaurantName}}</h3>
-            <p class="ui-li-desc">{{restaurantDescriotion}}</p>
-          </a>
-        </div>
-        <span class="ui-icon ui-icon-arrow-r ui-icon-shadow"></span>
-      </div>
-    </li>
-    {{/with}}
+<div data-role="header">
+    <h1>Restaurants</h1>
+</div>
+
+<div class='content' data-role='content'> 
+  <ul data-role="listview" data-inset="true" data-filter="false">
+        {{#each restaurants}}
+    <li><a href="#/menus/{{id}}">{{name}}</a></li>
+         {{/each}}
   </ul>
-</script>
+</div>
