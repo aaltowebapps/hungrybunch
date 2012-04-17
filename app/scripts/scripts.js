@@ -2,6 +2,7 @@
 // FeedMe! Javascript busines logic main file
 // by Johannes Niemelä and rest of the Hungry Bunch
 //
+
 // Api related constants
 var api_url = "http://www.lounasaika.net/api/";
 var api_req_key = "development321";
@@ -48,6 +49,16 @@ var localStorage_key = "menuOnWeek";
 // Array to store restaurants data
 var restaurants = new Array();
 
+// Position
+var position;
+// Position options accuracy
+var position_high_accuracy = true;
+// Position options max age of reading in milliseconds
+var position_max_age = 30000;
+// Position options maximum timeout in milliseconds
+var position_timeout = 27000;
+// Position watch id
+var position_watch_id = null;
 
 // Expand Date to include function for getting a week number.
 Date.prototype.getWeek = function() {
@@ -154,24 +165,19 @@ function init() {
 		alert("Network connection is needed to update menus");
 	}
 
-	
+	// Check geolocation support
+	if (haveGeoSupport) {
+		// Get current position
+		currentPosition();
+		// Start to track changes in position
+		trackPositionChanges();
+	}
 }
 
 // Check online
 function isOnline() {
 	return navigator.onLine;
 }
-
-// Position
-var position;
-// Position options accuracy
-var position_high_accuracy = true;
-// Position options max age of reading in milliseconds
-var position_max_age = 30000;
-// Position options maximum timeout in milliseconds
-var position_timeout = 27000;
-// Position watch id
-var position_watch_id = null;
 
 // Check geolocation support
 function haveGeoSupport() {
@@ -214,14 +220,3 @@ function geoError(error) {
     //   3: timed out
 	alert("Geolocation error occurred. Error code: " + error.code);
 }
-
-function initGeo() {
-	// Check geolocation support
-	if (haveGeoSupport) {
-		// Get current position
-		currentPosition();
-		// Start to track changes in position
-		trackPositionChanges();
-	}
-}
-
