@@ -54,8 +54,8 @@
 		//$(window).bind("orientationchange resize pageshow", fixgeometry);
 
 		//Instantiate the collection of restaurants
-		window.restaurants = new RestaurantsCollection();
-		window.restaurants.fetch();
+		window.restaurantsData = new RestaurantsCollection();
+		window.restaurantsData.fetch();
 
 		// Create routing
 		app = new AppRouter();

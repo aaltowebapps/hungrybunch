@@ -66,13 +66,13 @@
 
 	    restaurants:function () {
 	        
-	        this.changePage(new RestaurantsView({collection: restaurants}));
+	        this.changePage(new RestaurantsView({collection: restaurantsData}));
 
 	    },
 
 	    menu:function (id) {
 	        
-	        this.changePage(new MenuView({collection: restaurants, restaurantId:id}));
+	        this.changePage(new MenuView({collection: restaurantsData, restaurantId:id}));
 	    },
 
 	    changePage:function (page) {
