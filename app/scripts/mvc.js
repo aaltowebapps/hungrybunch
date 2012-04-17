@@ -56,6 +56,9 @@ var AppRouter = Backbone.Router.extend({
             router.goReverse = true;
             return false;
         });
+        $('.ui-btn-left').live('click', function(event) {
+        	router.goReverse = true;
+        });
 
         this.firstPage = true;
     },
