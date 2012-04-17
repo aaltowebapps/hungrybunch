@@ -49,6 +49,17 @@ var localStorage_key = "menuOnWeek";
 // Array to store restaurants data
 var restaurants = new Array();
 
+// Position
+var position;
+// Position options accuracy
+var position_high_accuracy = true;
+// Position options max age of reading in milliseconds
+var position_max_age = 30000;
+// Position options maximum timeout in milliseconds
+var position_timeout = 27000;
+// Position watch id
+var position_watch_id = null;
+
 // Expand Date to include function for getting a week number.
 Date.prototype.getWeek = function() {
 	var onejan = new Date(this.getFullYear(),0,1);
@@ -100,6 +111,7 @@ function success(responseData) {
 			// lscache.set(key, campi, minutesToNextWeek);
 			// for now just use it without expiration time
 			lscache.set(key, restaurants);
+			loadMenu();
 		} else {
 			// Response not OK
 		}
@@ -119,6 +131,7 @@ function fetchMenus() {
 // Process loaded menus from local store
 function processLoadedMenus(restaurantsFromCache) {
 	restaurants = restaurantsFromCache;
+	loadMenu();
 }
 
 // Returns key used to store weekly data in local storage
@@ -141,10 +154,21 @@ function init() {
 	if (restaurantsFromCache) {
 		// If loaded from local storage, process it
 		processLoadedMenus(restaurantsFromCache);
-	} else {
-		// Data not available or is expired on local storage, we have to fetch it
-		// Should be checked for available connection, device online
+	} 
+
+	// Check connectivity
+	if (isOnline) {
+		// Online, update menus
 		fetchMenus();
-		// If connection is not availble, inform user that connection is needed.
+	} else if (!restaurantsFromCache) {
+		// No valid restaurant information and no connectivity,
+		// have to inform user that connectivity is needed.
+		alert("Network connection is needed to update menus");
 	}
+
+}
+
+// Check online
+function isOnline() {
+	return navigator.onLine;
 }
