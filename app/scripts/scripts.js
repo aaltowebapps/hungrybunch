@@ -67,7 +67,7 @@ Date.prototype.getWeek = function() {
 }
 
 // Successful fetch response is handled here
-function success(responseData) {
+function fetchSuccess(responseData) {
 	if (responseData) {
 		var status = responseData[api_res_root][api_res_status];
 		if (status == api_res_ok) {
@@ -123,9 +123,8 @@ function fetchMenus() {
 	var data = { key: api_req_key };
 	var url = api_url + api_res_output + api_req_callback;
 	// Use sample data
-	// $.getJSON('assets/sampledata/sampleresponse.js', success);
-	// Actual get request, does not work on Chorme when using local html file.
-	$.getJSON(url, data, success);
+	// $.getJSON('assets/sampledata/sampleresponse.js', fetchSuccess);
+	$.getJSON(url, data, fetchSuccess);
 }
 
 // Process loaded menus from local store
@@ -166,9 +165,59 @@ function init() {
 		alert("Network connection is needed to update menus");
 	}
 
+	// Check geolocation support
+	if (haveGeoSupport) {
+		// Get current position
+		currentPosition();
+		// Start to track changes in position
+		trackPositionChanges();
+	}
 }
 
 // Check online
 function isOnline() {
 	return navigator.onLine;
 }
+
+// Check geolocation support
+function haveGeoSupport() {
+	return navigator.geolocation;
+}
+
+// Get current position
+function currentPosition() {
+	navigator.geolocation.getCurrentPosition(geoSuccess, geoError, 
+		{enableHighAccuracy: position_high_accuracy, maximumAge: position_max_age, timeout: position_timeout});
+}
+
+// Start tracking position changes
+function trackPositionChanges() {
+	if (position_watch_id == null) {
+		position_watch_id = navigator.geolocation.watchPosition(geoSuccess, geoError, 
+			{enableHighAccuracy: position_high_accuracy, maximumAge: position_max_age, timeout: position_timeout});
+	}
+}
+
+// Stop tracking position changes
+function stopTrackPositionChanges() {
+	if (position_watch_id != null) {
+		navigator.geolocation.clearWatch(position_watch_id);
+		position_watch_id = null;
+	}
+}
+
+// Successful geolocation update
+function geoSuccess(newPosition) {
+	position = newPosition;
+}
+
+// Geolocation error
+function geoError(error) {
+    // error.code can be:
+    //   0: unknown error
+    //   1: permission denied
+    //   2: position unavailable (error response from locaton provider)
+    //   3: timed out
+	alert("Geolocation error occurred. Error code: " + error.code);
+}
+
