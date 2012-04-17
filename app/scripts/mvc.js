@@ -1,104 +1,108 @@
-//(function() {
+(function() {
 
-window.RestaurantModel = Backbone.Model.extend ({
-  id : 0,
-  name : '',
-  menu : []
-});
-window.RestaurantsCollection = Backbone.Collection.extend ({
-  model: RestaurantModel,
-  localStorage: new Backbone.LocalStorage("RestaurantsTestBySami")
-});
+	var RestaurantModel = Backbone.Model.extend ({
+	  id : 0,
+	  name : '',
+	  menu : []
+	});
 
-window.RestaurantsView = Backbone.View.extend({
-	template: restaurantsTemplate,
-    render:function (eventName) {
-    	
-        $(this.el).html(this.template({'restaurants': this.collection.toJSON()}));
+	var RestaurantsCollection = Backbone.Collection.extend ({
+	  model: RestaurantModel,
+	  localStorage: new Backbone.LocalStorage("RestaurantsTestBySami")
+	});
 
-        return this;
-    }
-});
+	var RestaurantsView = Backbone.View.extend({
+		template: restaurantsTemplate,
+	    render:function (eventName) {
+	    	
+	        $(this.el).html(this.template({'restaurants': this.collection.toJSON()}));
 
-window.MenuView = Backbone.View.extend({
-	template: menuTemplate,
-    render:function (eventName) {
-    	// Here we get the selected restaurant id and can select data for template accordingly
+	        return this;
+	    }
+	});
 
-    	// TODO: Clean up
-    	var restaurantId = parseInt(this.options.restaurantId)-1;
-    	var baseUrl = "#/menus/";
+	var MenuView = Backbone.View.extend({
+		template: menuTemplate,
+	    render:function (eventName) {
+	    	// Here we get the selected restaurant id and can select data for template accordingly
 
-    	var prevRestaurantUrl = ( restaurantId <= 0 ? '#' : baseUrl + (restaurantId));
-		var nextRestaurantUrl = baseUrl + (restaurantId+2);
-    	
-        $(this.el).html(this.template({'restaurant': this.collection.models[restaurantId].toJSON(), 'nextRestaurantUrl':nextRestaurantUrl, 'prevRestaurantUrl':prevRestaurantUrl}));
+	    	// TODO: Clean up
+	    	var restaurantId = parseInt(this.options.restaurantId)-1;
+	    	var baseUrl = "#/menus/";
 
-        return this;
-    }
-});
+	    	var prevRestaurantUrl = ( restaurantId <= 0 ? '#' : baseUrl + (restaurantId));
+			var nextRestaurantUrl = baseUrl + (restaurantId+2);
+	    	
+	        $(this.el).html(this.template({'restaurant': this.collection.models[restaurantId].toJSON(), 'nextRestaurantUrl':nextRestaurantUrl, 'prevRestaurantUrl':prevRestaurantUrl}));
 
-var AppRouter = Backbone.Router.extend({
+	        return this;
+	    }
+	});
 
-    routes:{
-        "":"restaurants",
-        "/menus/:id":"menu"
-    },
+	var AppRouter = Backbone.Router.extend({
 
-    initialize:function () {
-    	// Define sliding direction
-    	this.goReverse = false;
+	    routes:{
+	        "":"restaurants",
+	        "/menus/:id":"menu"
+	    },
 
-    	var router = this;
-        // Handle back button throughout the application
-        $('.back').live('click', function(event) {
-            window.history.back();
-            router.goReverse = true;
-            return false;
-        });
-        $('.ui-btn-left').live('click', function(event) {
-        	router.goReverse = true;
-        });
+	    initialize:function () {
+	    	// Define sliding direction
+	    	this.goReverse = false;
 
-        this.firstPage = true;
-    },
+	    	var router = this;
+	        // Handle back button throughout the application
+	        $('.back').live('click', function(event) {
+	            window.history.back();
+	            router.goReverse = true;
+	            return false;
+	        });
+	        $('.ui-btn-left').live('click', function(event) {
+	        	router.goReverse = true;
+	        });
 
-    restaurants:function () {
-        
-        this.changePage(new RestaurantsView({collection: restaurants}));
+	        this.firstPage = true;
+	    },
 
-    },
+	    restaurants:function () {
+	        
+	        this.changePage(new RestaurantsView({collection: restaurants}));
 
-    menu:function (id) {
-        
-        this.changePage(new MenuView({collection: restaurants, restaurantId:id}));
-    },
+	    },
 
-    changePage:function (page) {
-    	
-        $(page.el).attr('data-role', 'page');
-        page.render();
-        $('body').append($(page.el));
-        var transition = 'slide';
-        // We don't want to slide the first page
-        if (this.firstPage) {
-            transition = 'none';
-            this.firstPage = false;
-        }
+	    menu:function (id) {
+	        
+	        this.changePage(new MenuView({collection: restaurants, restaurantId:id}));
+	    },
 
-        var reverse = false;
-        if( this.goReverse ) {
-        	reverse = true;
-        	this.goReverse = false;
-        }
-        
-        $.mobile.changePage($(page.el), {changeHash:false, transition: transition, reverse: reverse});
-    }
+	    changePage:function (page) {
+	    	
+	        $(page.el).attr('data-role', 'page');
+	        page.render();
+	        $('body').append($(page.el));
+	        var transition = 'slide';
+	        // We don't want to slide the first page
+	        if (this.firstPage) {
+	            transition = 'none';
+	            this.firstPage = false;
+	        }
 
-});
+	        var reverse = false;
+	        if( this.goReverse ) {
+	        	reverse = true;
+	        	this.goReverse = false;
+	        }
+	        
+	        $.mobile.changePage($(page.el), {changeHash:false, transition: transition, reverse: reverse});
+	    }
 
+	});
 
+	// Make public only what needs to be globally available
+	window.RestaurantModel = RestaurantModel;
+	window.RestaurantsCollection = RestaurantsCollection;
+	window.RestaurantsView = RestaurantsView;
+	window.MenuView = MenuView;
+	window.AppRouter = AppRouter;
 
-
-
-//})();
+})();
