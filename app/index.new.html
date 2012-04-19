@@ -8,6 +8,8 @@
 	<link rel="stylesheet" type="text/css" href="styles/styles.css" />
 
 	<!-- The Templates -->
+
+	<!-- List of restaurants template -->
     <script type="text/x-handlebars-template" id="restaurantsTemplate">
 
         <div data-role="header">
@@ -23,6 +25,7 @@
         </div>
     </script>
 
+    <!-- List of menus for a restaurants template -->
     <script type="text/x-handlebars-template" id="menuTemplate">
 
         <div data-role="header">
@@ -46,21 +49,20 @@
         </div>
     </script>
 
+    <!-- Footer navigation template -->
     <script type="text/x-handlebars-template" id="footerTemplate">
-
-        <!-- POC navigation, TODO make a common compontent/template -->
         <div class="footer" data-role="footer">		
 			<div data-role="navbar">
 				<ul>
 					<li><a href="#favorites">Favorites</a></li>
 					<li><a href="#/menus/1">Menus</a></li>
-					<li><a href="#" class="ui-btn-active">Restaurants</a></li>
+					<li><a href="#">Restaurants</a></li>
 				</ul>
 			</div><!-- /navbar -->
 		</div><!-- /footer -->
 	</script>
 	  
-	<!-- Scripts -->
+	<!-- Include scripts -->
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<!-- JQuery Mobile configuration, needs to be here before including jquery mobile script -->
 	<script type="text/javascript">
@@ -84,12 +86,10 @@
     <script type="text/javascript" src="scripts/lib/json2.js"></script>
     <script type="text/javascript" src="scripts/lib/backbone.js"></script>
     <script type="text/javascript" src="scripts/lib/backbone.localStorage.js"></script>
-
-
 	<script type="text/javascript" src="scripts/scripts.js"></script>
 	<script type="text/javascript" src="scripts/lib/lscache.js"></script>
 
-	<!-- Base app logic -->
+	<!-- Base app logic script -->
 	<script type="text/javascript" src="scripts/app.js"></script>
 	<!-- Models, Views, Routers -->
     <script type="text/javascript" src="scripts/mvc.js"></script>

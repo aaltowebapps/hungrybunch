@@ -1,6 +1,10 @@
+// FeedMe object for accessing global data eveywhere.
+var FeedMe = {};
+
+// Self-invoking function, closure
 (function() {
-	var app;
 	
+	// Temporary test data
 	var restaurantsTestData = {
 		1: { 
 			id : 1, 
@@ -25,13 +29,14 @@
 	// TODO: Something like
 	//fetchDataFromApi();
 
-	var FooterTemplateSource   = $("#footerTemplate").html();
+	// Source HTML for templates, not parsed yet
+	var footerTemplateSource   = $("#footerTemplate").html();
+	var restaurantsTemplateSource   = $("#restaurantsTemplate").html() + footerTemplateSource;
+	var menuTemplateSource   = $("#menuTemplate").html() + footerTemplateSource;
 
-	var restaurantsTemplateSource   = $("#restaurantsTemplate").html() + FooterTemplateSource;
-	window.restaurantsTemplate = Handlebars.compile(restaurantsTemplateSource);
-
-	var menuTemplateSource   = $("#menuTemplate").html() + FooterTemplateSource;
-	window.menuTemplate = Handlebars.compile(menuTemplateSource);
+	// Parse templates and set visible to FeedMe-object
+	FeedMe.restaurantsTemplate = Handlebars.compile(restaurantsTemplateSource);
+	FeedMe.menuTemplate = Handlebars.compile(menuTemplateSource);
 
 
 	var fixgeometry = function() {
@@ -50,15 +55,20 @@
 	  content.height(content_height);
 	}; /* fixgeometry */
 
+	// When loading document is ready, do this...
 	$(document).ready(function () {
 		//$(window).bind("orientationchange resize pageshow", fixgeometry);
 
 		//Instantiate the collection of restaurants
-		window.restaurantsData = new RestaurantsCollection();
-		window.restaurantsData.fetch();
+		FeedMe.restaurantsData = new FeedMe.RestaurantsCollection();
 
-		// Create routing
-		app = new AppRouter();
+		// Fetch restaudant data to model
+		FeedMe.restaurantsData.fetch();
+
+		// Create app routing
+		FeedMe.app = new FeedMe.AppRouter();
+
+		// Start backbone page history
 		Backbone.history.start();
 
 	});
