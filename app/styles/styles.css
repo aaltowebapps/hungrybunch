@@ -6,4 +6,10 @@
 body {
 	background-color: red;
 	color: blue;
+	padding-bottom: 60px; /* To make sure page bottom content wont be hidden behind navigation */
+}
+.footer {
+	position: fixed;
+	width: 100%;
+	bottom: 0;
 }

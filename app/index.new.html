@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>FeedMe! by Hungry Bunch</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+	<link rel="stylesheet" type="text/css" href="styles/styles.css" />
+
+	<!-- The Templates -->
+    <script type="text/x-handlebars-template" id="restaurantsTemplate">
+
+        <div data-role="header">
+            <h1>Restaurants</h1>
+        </div>
+
+		<div class='content' data-role='content'> 
+			<ul data-role="listview" data-inset="true" data-filter="false">
+            {{#each restaurants}}
+				<li><a href="#/menus/{{id}}">{{name}}</a></li>
+             {{/each}}
+			</ul>
+        </div>
+    </script>
+
+    <script type="text/x-handlebars-template" id="menuTemplate">
+
+        <div data-role="header">
+            <a href="{{prevRestaurantUrl}}" data-icon="arrow-l" class="arrow-l ui-btn-left" data-direction="reverse" data-back="true">Previous</a>
+            <h1>Menu for {{restaurant.name}} (#{{restaurant.id}})</h1>
+            <a href="{{nextRestaurantUrl}}" data-icon="arrow-r" class="arrow-r ui-btn-right" data-direction="reverse" data-back="true">Next</a>
+        </div>
+
+        <div data-role="content">
+            <p>Meals for chosen restaurant:</p>
+            <ul data-role="listview" data-inset="true">
+            {{#with restaurant}}
+            {{#each menu}}
+				<li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-b">{{day}}</li>
+				{{#each meal}}
+					<li>{{this}}</li>
+				{{/each}}
+            {{/each}}
+            {{/with}}
+            </ul>
+        </div>
+    </script>
+
+    <script type="text/x-handlebars-template" id="footerTemplate">
+
+        <!-- POC navigation, TODO make a common compontent/template -->
+        <div class="footer" data-role="footer">		
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#favorites">Favorites</a></li>
+					<li><a href="#/menus/1">Menus</a></li>
+					<li><a href="#" class="ui-btn-active">Restaurants</a></li>
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
+	</script>
+	  
+	<!-- Scripts -->
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<!-- JQuery Mobile configuration, needs to be here before including jquery mobile script -->
+	<script type="text/javascript">
+		$(document).bind("mobileinit", function () {
+		    $.mobile.ajaxEnabled = false;
+		    $.mobile.linkBindingEnabled = false;
+		    $.mobile.hashListeningEnabled = false;
+		    $.mobile.pushStateEnabled = false;
+
+		    // Remove page from DOM when it's being replaced
+		    $('div[data-role="page"]').live('pagehide', function (event, ui) {
+		        $(event.currentTarget).remove();
+		    });
+		});
+	</script>
+	<script type="text/javascript" src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+    <script type="text/javascript" src="scripts/lib/underscore.js"></script>
+    
+
+    <script type="text/javascript" src="scripts/lib/handlebars-1.0.0.beta.6.js"></script>
+    <script type="text/javascript" src="scripts/lib/json2.js"></script>
+    <script type="text/javascript" src="scripts/lib/backbone.js"></script>
+    <script type="text/javascript" src="scripts/lib/backbone.localStorage.js"></script>
+
+
+	<script type="text/javascript" src="scripts/scripts.js"></script>
+	<script type="text/javascript" src="scripts/lib/lscache.js"></script>
+
+	<!-- Base app logic -->
+	<script type="text/javascript" src="scripts/app.js"></script>
+	<!-- Models, Views, Routers -->
+    <script type="text/javascript" src="scripts/mvc.js"></script>
+</head>
+<body>
+
+</body>
+</html>

@@ -6,10 +6,9 @@
 	<!-- Stylesheets -->
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css" />
 	<link rel="stylesheet" type="text/css" href="styles/styles.css" />
-
-
+	  
 	<!-- The Templates -->
-    <script type="text/template" id="restaurants">
+    <script type="text/x-handlebars-template" id="restaurantsTemplate">
 
         <div data-role="header">
             <h1>Restaurants</h1>
@@ -17,12 +16,37 @@
 
 		<div class='content' data-role='content'> 
 			<ul data-role="listview" data-inset="true" data-filter="false">
-            <% var index; %>
-            <% for ( index in restaurants){ %>
-				<li><a href="#/menus/<%= restaurants[index].id %>"><%= restaurants[index].name %></a></li>
-             <% } %>
+            {{#each restaurants}}
+				<li><a href="#/menus/{{id}}">{{name}}</a></li>
+             {{/each}}
 			</ul>
         </div>
+    </script>
+
+    <script type="text/x-handlebars-template" id="menuTemplate">
+
+        <div data-role="header">
+            <a href="{{prevRestaurantUrl}}" data-icon="arrow-l" class="arrow-l ui-btn-left" data-direction="reverse" data-back="true">Previous</a>
+            <h1>Menu for {{restaurant.name}} (#{{restaurant.id}})</h1>
+            <a href="{{nextRestaurantUrl}}" data-icon="arrow-r" class="arrow-r ui-btn-right" data-direction="reverse" data-back="true">Next</a>
+        </div>
+
+        <div data-role="content">
+            <p>Meals for chosen restaurant:</p>
+            <ul data-role="listview" data-inset="true">
+            {{#with restaurant}}
+            {{#each menu}}
+				<li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-b">{{day}}</li>
+				{{#each meal}}
+					<li>{{this}}</li>
+				{{/each}}
+            {{/each}}
+            {{/with}}
+            </ul>
+        </div>
+    </script>
+
+    <script type="text/x-handlebars-template" id="footerTemplate">
 
         <!-- POC navigation, TODO make a common compontent/template -->
         <div class="footer" data-role="footer">		
@@ -34,36 +58,7 @@
 				</ul>
 			</div><!-- /navbar -->
 		</div><!-- /footer -->
-        
-    </script>
-
-    <script type="text/template" id="menu">
-
-        <div data-role="header">
-            <a href="#" data-icon="back" class="back ui-btn-left" data-direction="reverse" data-back="true">Back</a>
-            <h1>Menu for <%= restaurant.name %> (#<%= restaurant.id %>)</h1>
-        </div>
-
-        <div data-role="content">
-            <p>Meals for chosen restaurant:</p>
-            <ul data-role="listview" data-inset="true">
-            <% for (var index = 0; index < restaurant.meals.length; index++){ %>
-                <li><%= restaurant.meals[index] %></li>
-             <% } %>
-            </ul>
-        </div>
-        <div class="footer" data-role="footer">		
-			<div data-role="navbar">
-				<ul>
-					<li><a href="#favorites">Favorites</a></li>
-					<li><a href="#/menus/1" class="ui-btn-active">Menus</a></li>
-					<li><a href="#">Restaurants</a></li>
-				</ul>
-			</div><!-- /navbar -->
-		</div><!-- /footer -->
-
-    </script>
-
+	</script>
 
 	<!-- Scripts -->
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
@@ -84,6 +79,7 @@
 	<script type="text/javascript" src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
 <!--    <script type="text/javascript" src="scripts/lib/handlebars-1.0.0.beta.6.js"></script> -->
     <script type="text/javascript" src="scripts/lib/underscore.js"></script>
+    <script type="text/javascript" src="scripts/lib/handlebars-1.0.0.beta.6.js"></script>
     <script type="text/javascript" src="scripts/lib/json2.js"></script>
     <script type="text/javascript" src="scripts/lib/backbone.js"></script>
     <script type="text/javascript" src="scripts/lib/backbone.localStorage.js"></script>
@@ -93,13 +89,40 @@
 	<script>
 		//(function() {
 
-			var restaurants = {
-				1: { id : 1, name : 'Taffa', meals : ['Meal A for #1', 'Meal B for #1']},
-				2: { id : 2, name : 'Teekkariravintolat', meals : ['Meal A for #2', 'Meal B for #2']},
-				3: { id : 3, name : 'Kvarkki', meals : ['Meal A for #3', 'Meal B for #3']},
-				4: { id : 4, name : 'Cantina', meals : ['Meal A for #4', 'Meal B for #4']},
-				5: { id : 5, name : 'TUAS', meals : ['Meal A for #5', 'Meal B for #5']},
+			var FooterTemplateSource   = $("#footerTemplate").html();
+
+			var restaurantsTemplateSource   = $("#restaurantsTemplate").html() + FooterTemplateSource;
+			var restaurantsTemplate = Handlebars.compile(restaurantsTemplateSource);
+
+			var menuTemplateSource   = $("#menuTemplate").html() + FooterTemplateSource;
+			var menuTemplate = Handlebars.compile(menuTemplateSource);
+
+
+			var restaurants;
+
+			var restaurantsTestData = {
+				1: { id : 1, name : 'Taffa', menu : [
+					{ day: 'monday',  meal: ['Meal A for #1', 'Meal B for #1']}, 
+					{day:'tuesday', meal: ['Tuesday meal']}
+					]},
+				2: { id : 2, name : 'Teekkariravintolat', menu : [{ day: 'monday', meal : ['Meal A for #2', 'Meal B for #2']}]},
+				3: { id : 3, name : 'Kvarkki', menu : [{ day: 'monday', meal : ['Meal A for #3', 'Meal B for #3']}]},
+				4: { id : 4, name : 'Cantina', menu : [{ day : 'monday', meal : ['Meal A for #4', 'Meal B for #4']}]},
+				5: { id : 5, name : 'TUAS', menu : [{ day : 'monday', meal : ['Meal A for #5', 'Meal B for #5']}]}
 			}
+			// Set test data to local storage
+			localStorage.setItem("RestaurantsTestBySami", JSON.stringify(restaurantsTestData));
+
+			var Restaurant = Backbone.Model.extend ({
+	          id : 0,
+	          name : '',
+	          menu : []
+	        });
+	        var Restaurants = Backbone.Collection.extend ({
+	          model: Restaurant,
+	          localStorage: new Backbone.LocalStorage("RestaurantsTestBySami")
+	        });
+
 			var fixgeometry = function() {
 			  scroll(0, 0);
 
@@ -118,25 +141,36 @@
 
 			window.RestaurantsView = Backbone.View.extend({
 
-			    template:_.template($('#restaurants').html()),
+			    //template:_.template($('#restaurants').html()),
 
+			    template:restaurantsTemplate,
 			    render:function (eventName) {
 			    	
-			        $(this.el).html(this.template({'restaurants': restaurants}));
+			        $(this.el).html(this.template({'restaurants': this.collection.toJSON()}));
+			        console.log("Restaurants collection: ", this.collection.toJSON());
+
 			        return this;
 			    }
 			});
 
 			window.MenuView = Backbone.View.extend({
-			    template:_.template($('#menu').html()),
+			    //template:_.template($('#menu').html()),
+			    template:menuTemplate,
 			    render:function (eventName) {
 			    	// Here we get the selected restaurant id and can select data for template accordingly
-			    	var restaurantId = this.options.restaurantId;
+
+			    	// TODO: Clean up
+			    	var restaurantId = parseInt(this.options.restaurantId)-1;
+			    	var baseUrl = "#/menus/";
+
+			    	var prevRestaurantUrl = ( restaurantId <= 0 ? '#' : baseUrl + (restaurantId));
+					var nextRestaurantUrl = baseUrl + (restaurantId+2);
 			    	
 			    	//var output = _.template($('#menu').html(), {restaurant: restaurants[restaurantId]});
 			        //$(this.el).html(output);
 
-			        $(this.el).html(this.template({'restaurant': restaurants[restaurantId]}));
+			        $(this.el).html(this.template({'restaurant': this.collection.models[restaurantId].toJSON(), 'nextRestaurantUrl':nextRestaurantUrl, 'prevRestaurantUrl':prevRestaurantUrl}));
+			        console.log("Chosen restaurant model: ",this.collection.models[restaurantId].toJSON())
 			        return this;
 			    }
 			});
@@ -165,12 +199,13 @@
 
 			    restaurants:function () {
 			        
-			        this.changePage(new RestaurantsView());
+			        this.changePage(new RestaurantsView({collection: restaurants}));
+			        console.log(restaurants);
 			    },
 
 			    menu:function (id) {
 			        
-			        this.changePage(new MenuView({restaurantId:id}));
+			        this.changePage(new MenuView({collection: restaurants, restaurantId:id}));
 			    },
 
 			    changePage:function (page) {
@@ -185,7 +220,7 @@
 			            this.firstPage = false;
 			            console.log("firstPage");
 			        }
-			        console.log(this.goReverse);
+
 			        var reverse = false;
 			        if( this.goReverse ) {
 			        	reverse = true;
@@ -200,8 +235,14 @@
 			$(document).ready(function () {
 				//$(window).bind("orientationchange resize pageshow", fixgeometry);
 
+			    //Instantiate the collection of restaurants
+          		restaurants = new Restaurants();
+          		restaurants.fetch();
+
+				// Create routing
 			    app = new AppRouter();
 			    Backbone.history.start();
+
 			});
 
 

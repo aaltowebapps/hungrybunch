@@ -1,53 +1,19 @@
-		<ul data-role="listview" data-divider-theme="b" data-inset="true" class="ui-listview">
-		{{#menu}}
-			{{#monday}}
-				<li data-role="list-divider" role="heading">Monday</li>
-				{{#each meal}}
-					<li role="heading" data-theme="c" class="ui-li ui-btn ui-bar-b">{{this}}</li>
-				{{/each}}
-			{{/monday}}
-			
-			{{#tuesday}}
-				<li data-role="list-divider" role="heading">Tuesday</li>
-				{{#each meal}}
-					<li role="heading" data-theme="c" class="ui-li ui-btn ui-bar-b">{{this}}</li>
-				{{/each}}
-			{{/tuesday}}
-			
-			{{#wednesday}}
-				<li data-role="list-divider" role="heading">Wednesday</li>
-				{{#each meal}}
-					<li role="heading" data-theme="c" class="ui-li ui-btn ui-bar-b">{{this}}</li>
-				{{/each}}
-			{{/wednesday}}
-			
-			{{#thursday}}
-				<li data-role="list-divider" role="heading">Thursday</li>
-				{{#each meal}}
-					<li role="heading" data-theme="c" class="ui-li ui-btn ui-bar-b">{{this}}</li>
-				{{/each}}
-			{{/thursday}}
-			
-			{{#friday}}
-				<li data-role="list-divider" role="heading">Friday</li>
-				{{#each meal}}
-					<li role="heading" data-theme="c" class="ui-li ui-btn ui-bar-b">{{this}}</li>
-				{{/each}}
-			{{/friday}}
-			
-			{{#saturday}}
-				<li data-role="list-divider" role="heading">Saturday</li>
-				{{#each meal}}
-					<li role="heading" data-theme="c" class="ui-li ui-btn ui-bar-b">{{this}}</li>
-				{{/each}}
-			{{/saturday}}
-			
-			{{#sunday}}
-				<li data-role="list-divider" role="heading">Sunday</li>
-				{{#each meal}}
-					<li role="heading" data-theme="c" class="ui-li ui-btn ui-bar-b">{{this}}</li>
-				{{/each}}
-			{{/sunday}}
-			
-		{{/menu}}
-		</ul>
+<div data-role="header">
+    <a href="{{prevRestaurantUrl}}" data-icon="arrow-l" class="arrow-l ui-btn-left" data-direction="reverse" data-back="true">Previous</a>
+    <h1>Menu for {{restaurant.name}} (#{{restaurant.id}})</h1>
+    <a href="{{nextRestaurantUrl}}" data-icon="arrow-r" class="arrow-r ui-btn-right">Next</a>
+</div>
+
+<div data-role="content">
+    <p>Meals for chosen restaurant:</p>
+    <ul data-role="listview" data-inset="true">
+    {{#with restaurant}}
+    {{#each menu}}
+		<li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-b">{{day}}</li>
+		{{#each meal}}
+			<li>{{this}}</li>
+		{{/each}}
+    {{/each}}
+    {{/with}}
+    </ul>
+</div>
