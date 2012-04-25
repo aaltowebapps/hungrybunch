@@ -220,3 +220,14 @@ function geoError(error) {
     //   3: timed out
 	alert("Geolocation error occurred. Error code: " + error.code);
 }
+
+	
+		var canvas=document.getElementById("myCanvas");
+		var ctx=canvas.getContext("2d");
+		var grd=ctx.createLinearGradient(0,0,150,0);
+		grd.addColorStop(0.3,"red");
+		grd.addColorStop(0.7,"green");
+		ctx.fillStyle=grd;
+		ctx.fillRect(0,0,150,100);
+		ctx.fillText("HOI",10,10);
+	

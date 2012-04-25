@@ -3,7 +3,7 @@ require 'sinatra'
 set :public_folder, settings.root
 
 get '/' do
-  send_file 'indes.new.html'
+  send_file 'app/index.new.html'
 end
 
 
