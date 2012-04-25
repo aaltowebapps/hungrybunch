@@ -1,9 +1,9 @@
 require 'sinatra'
 
-set :public_folder, settings.root
+set :public_folder, '/app'
 
 get '/' do
-  send_file 'app/index.new.html'
+  File.read(File.join('app', 'index.html'))
 end
 
 

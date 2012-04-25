@@ -1,0 +1,51 @@
+Team:                   Hungry Bunch
+Team leader:            Carl Blomqvist
+Application name:       feedme!
+Description:            The application displays the 10 student restaurant lunch menu's at Otaniemi.
+Document version:       2
+Last update:            15.3.2012
+By:                     Cale
+History:                1: Created.
+                        2: Added team leader.
+----------------------------------------------------------------------------------------------------
+
+Primary use cases:
+==================
+These use cases are mandatory for the application to work and to meet the user expectations.
+
+Use case 1: As a user, I want to see today's lunch menus.
+Use case 2: As a user, I want the application to start and load quickly.
+Use case 3: As a user, I want to know where the restaurants are located.
+
+Secondary use cases:
+====================
+These use cases are not mandatory for the application (or to pass the course) and can be done 
+if there is time.
+
+Use case 4: As a user, I want to see only the menus that are currently or later the day available.
+Use case 5: As a user, I want to see my favorite dishes.
+Use case 6: As a user, I want to see the restaurant details (name, address, opening hours).
+Use case 7: As a user, I want to know if there is a que in the restaurant.
+
+Platform:
+=========
+Android (if time allows, we will later use PhoneGap).
+
+Exercise criteria:
+==================
+Required technologies:
+1. At least one of HTML5 generic key APIs (canvas, local data/off-line etc)
+2. Use at least one mobile device feature (GPS, camera, sensors)
+3. A server and some element of client/server communication (eg REST) 
+
+How the primary use cases meet the requirements:
+Use case 1: 3 (client/server comm.)
+Use case 2: 1 (local data)
+Use case 3: 1 (canvas), 2 (GPS)
+
+How the secondary use cases meet the requirements:
+Use case 4: 2 (GPS), 3 (client/server comm.)
+Use case 5: 3 (client/server comm.)
+Use case 6: 3 (client/server comm.)
+Use case 7: 3 (client/server comm.)
+
