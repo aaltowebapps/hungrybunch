@@ -1,8 +1,5 @@
-// FeedMe object for accessing global data eveywhere.
-var FeedMe = {};
-
 // Self-invoking function, closure
-(function() {
+(function(FeedMe) {
 	
 	// Temporary test data
 	var restaurantsTestData = {
@@ -29,14 +26,6 @@ var FeedMe = {};
 	// TODO: Something like
 	//fetchDataFromApi();
 
-	// Source HTML for templates, not parsed yet
-	var footerTemplateSource   = $("#footerTemplate").html();
-	var restaurantsTemplateSource   = $("#restaurantsTemplate").html() + footerTemplateSource;
-	var menuTemplateSource   = $("#menuTemplate").html() + footerTemplateSource;
-
-	// Parse templates and set visible to FeedMe-object
-	FeedMe.restaurantsTemplate = Handlebars.compile(restaurantsTemplateSource);
-	FeedMe.menuTemplate = Handlebars.compile(menuTemplateSource);
 
 
 	var fixgeometry = function() {
@@ -55,21 +44,42 @@ var FeedMe = {};
 	  content.height(content_height);
 	}; /* fixgeometry */
 
-	// When loading document is ready, do this...
-	$(document).ready(function () {
-		//$(window).bind("orientationchange resize pageshow", fixgeometry);
+	// The earliest possible time to start the app, is when DOM is ready
+	$(document).ready(function() {
+		// When everything is ready, start app
+		FeedMe.startApp = function(event) {
 
-		//Instantiate the collection of restaurants
-		FeedMe.restaurantsData = new FeedMe.RestaurantsCollection();
+			//$(window).bind("orientationchange resize pageshow", fixgeometry);
+			console.log("Is api ready?",FeedMe.lounasaikaApi.isReady);
 
-		// Fetch restaudant data to model
-		FeedMe.restaurantsData.fetch();
+			if( FeedMe.lounasaikaApi.isReady === true && FeedMe.isStarted !== true ) {
 
-		// Create app routing
-		FeedMe.app = new FeedMe.AppRouter();
+				// Set backbone localStorage here to make sure data in local storage is ready
+				FeedMe.RestaurantsCollection = FeedMe.RestaurantsCollection.extend({
+					localStorage : new Backbone.LocalStorage(FeedMe.lounasaikaApi.localstorageKey)
+				})
 
-		// Start backbone page history
-		Backbone.history.start();
+				// Only start once
+				FeedMe.isStarted = true;
+				//Instantiate the collection of restaurants
+				FeedMe.restaurantsData = new FeedMe.RestaurantsCollection();
 
-	});
-})();
+				// Fetch restaurant data to model
+				FeedMe.restaurantsData.fetch();
+
+				// Create app routing
+				FeedMe.app = new FeedMe.AppRouter();
+
+				// Start backbone page history
+				Backbone.history.start();
+
+			}
+		};
+
+		// If api data is already handled, start app immediately
+		if( FeedMe.lounasaikaApi.isReady === true) {
+			FeedMe.startApp();
+		} 
+		// Otherwise will be started from the api functions
+	})
+})(FeedMe);

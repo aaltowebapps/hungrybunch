@@ -66,6 +66,11 @@
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<!-- JQuery Mobile configuration, needs to be here before including jquery mobile script -->
 	<script type="text/javascript">
+		var FeedMe = {
+			isStarted : false,
+			startApp : function() {}, // Placeholder for start functionality
+			EVENT_START_APP : 'eventStartFeedMeApp'
+		};
 		$(document).bind("mobileinit", function () {
 		    $.mobile.ajaxEnabled = false;
 		    $.mobile.linkBindingEnabled = false;
@@ -83,14 +88,38 @@
     
 
     <script type="text/javascript" src="scripts/lib/handlebars-1.0.0.beta.6.js"></script>
+    <script type="test/javascript">
+    	// Templates
+		Handlebars.registerHelper("each_with_key", function(obj, fn) {
+		    var context,
+		        buffer = "",
+		        key,
+		        keyName = fn.hash.key;
+		    for (key in obj) {
+		        if (obj.hasOwnProperty(key)) {
+		            context = obj[key];
+
+		            if (keyName) {
+		                context[keyName] = key;
+		            }
+
+		            buffer += fn(context);
+		        }
+		    }
+		    return buffer;
+		});
+    </script>
     <script type="text/javascript" src="scripts/lib/json2.js"></script>
     <script type="text/javascript" src="scripts/lib/backbone.js"></script>
     <script type="text/javascript" src="scripts/lib/backbone.localStorage.js"></script>
-	<script type="text/javascript" src="scripts/scripts.js"></script>
 	<script type="text/javascript" src="scripts/lib/lscache.js"></script>
+	
+	<!-- Lounasaika api handling -->
+	<script type="text/javascript" src="scripts/api.js"></script>
 
 	<!-- Base app logic script -->
 	<script type="text/javascript" src="scripts/app.js"></script>
+	
 	<!-- Models, Views, Routers -->
     <script type="text/javascript" src="scripts/mvc.js"></script>
 </head>

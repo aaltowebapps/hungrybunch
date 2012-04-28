@@ -1,25 +1,37 @@
 // Self-invoking function, closure
-(function() {
+(function(FeedMe) {
+
+	// Source HTML for common footer
+	var footerTemplateSource   = $("#footerTemplate").html();
+	// Parse templates and set visible to FeedMe-object
+	var restaurantsTemplate = Handlebars.compile($("#restaurantsTemplate").html() + footerTemplateSource);
+	var menuTemplate = Handlebars.compile($("#menuTemplate").html() + footerTemplateSource);
 
 	// Model for a single restaurant
 	var RestaurantModel = Backbone.Model.extend ({
 	  id : 0,
+	  campus : '',
+	  info : '',
+	  location : {},
+	  menu : {},
 	  name : '',
-	  menu : []
+	  opening_hours : {},
+	  url : ''
 	});
 
 	// Collection for all restaurants
 	var RestaurantsCollection = Backbone.Collection.extend ({
-	  model: RestaurantModel,
-	  localStorage: new Backbone.LocalStorage("RestaurantsTestBySami")
+	  model: RestaurantModel
+//	  localStorage: new Backbone.LocalStorage(FeedMe.lounasaikaApi.localstorageKey)
 	});
 
 	// View for the list of restaurants
 	var RestaurantsView = Backbone.View.extend({
 		// Compiled template
-		template: FeedMe.restaurantsTemplate,
+		template: restaurantsTemplate,
 		// This is how the list of restaurants should be rendered to page
 	    render:function (eventName) {
+	    	console.log("Rendering restaurants view", this.collection);
 	        $(this.el).html(this.template({'restaurants': this.collection.toJSON()}));
 	        return this;
 	    }
@@ -28,7 +40,7 @@
 	// View for the list of menus for a chosen restaurant
 	var MenuView = Backbone.View.extend({
 		// Compiled template
-		template: FeedMe.menuTemplate,
+		template: menuTemplate,
 		// This is how the menu listing should be rendered to page
 	    render:function (eventName) {
 	    	// Here we get the selected restaurant id and can select data for template accordingly
@@ -134,4 +146,6 @@
 	FeedMe.MenuView = MenuView;
 	FeedMe.AppRouter = AppRouter;
 
-})();
+
+
+})(FeedMe);

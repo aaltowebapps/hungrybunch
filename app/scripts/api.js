@@ -82,7 +82,6 @@
 
 	function apiReady() {
 		FeedMe.lounasaikaApi.isReady = true;
-		//$('body').trigger(FeedMe.EVENT_START_APP);
 		FeedMe.startApp();
 	}
 	// Successful fetch response is handled here
@@ -105,7 +104,6 @@
 	    			// Iterate over restaurants
 					$.each(res_restaurants, function(index, value) {
 	    				var restaurant = value;
-	    				console.log(value);
 	    				// Add campus as property of restaurant
 	    				restaurant['campus'] = campus;
 	    				restaurant['id'] = index;
@@ -136,14 +134,9 @@
 				// lscache.set(key, campi, minutesToNextWeek);
 				// for now just use it without expiration time
 				lscache.set(key, restaurants);
-				console.log("Success, fetched restaurants: ",restaurants);
 				
 				FeedMe.lounasaikaApi['restaurants'] = restaurants;
 				apiReady();
-
-				//FeedMe.lounasaikaApi.restaurants = restaurants;
-				//loadMenu();
-				//FeedMe.restaurantsData.fetch();
 			} else {
 				// Response not OK
 			}
@@ -162,11 +155,8 @@
 	// Process loaded menus from local store
 	function processLoadedMenus(restaurantsFromCache) {
 		restaurants = restaurantsFromCache;
-		//FeedMe.restaurantsData.fetch();
 		FeedMe.lounasaikaApi['restaurants'] = restaurants;
-		console.log("Processed loaded menus");
 		apiReady();
-		//loadMenu();
 	}
 
 	// Returns key used to store weekly data in local storage
@@ -192,7 +182,6 @@
 		if (restaurantsFromCache) {
 			// If loaded from local storage, process it
 			processLoadedMenus(restaurantsFromCache);
-			console.log("Got from cache");
 		} 
 		// Check connectivity
 		else if (isOnline) {
@@ -214,7 +203,6 @@
 		}
 */
 		
-		console.log("localstorage key set");
 	}
 
 	// Check online
@@ -264,19 +252,7 @@
 		alert("Geolocation error occurred. Error code: " + error.code);
 	}
 
-	//$(document).ready(function () {
-		init();
-	//});
-})(FeedMe);	
+	// Run init
+	init();
 
-/*
-		var canvas=document.getElementById("myCanvas");
-		var ctx=canvas.getContext("2d");
-		var grd=ctx.createLinearGradient(0,0,150,0);
-		grd.addColorStop(0.3,"red");
-		grd.addColorStop(0.7,"green");
-		ctx.fillStyle=grd;
-		ctx.fillRect(0,0,150,100);
-		ctx.fillText("HOI",10,10);
-	
-*/
+})(FeedMe);	
