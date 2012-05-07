@@ -27,7 +27,6 @@
 
     <!-- List of menus for a restaurants template -->
     <script type="text/x-handlebars-template" id="menuTemplate">
-
         <div data-role="header">
             <a href="{{prevRestaurantUrl}}" data-icon="arrow-l" class="arrow-l ui-btn-left" data-direction="reverse" data-back="true">Previous</a>
             <h1>Menu for {{restaurant.name}} (#{{restaurant.id}})</h1>
@@ -35,7 +34,9 @@
         </div>
 
         <div data-role="content">
-            <p>Meals for chosen restaurant:</p>
+			<p style="float: left;">Meals for chosen restaurant:</p>
+			<div id="canvas_map" style="width: 120px; height: 100px; style="float: right;"></div>
+				
             <ul data-role="listview" data-inset="true">
             {{#with restaurant}}
             {{#each menu}}
@@ -82,6 +83,7 @@
 		        $(event.currentTarget).remove();
 		    });
 		});
+		
 	</script>
 	<script type="text/javascript" src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
     <script type="text/javascript" src="scripts/lib/underscore.js"></script>
@@ -109,10 +111,12 @@
 		    return buffer;
 		});
     </script>
+	
     <script type="text/javascript" src="scripts/lib/json2.js"></script>
     <script type="text/javascript" src="scripts/lib/backbone.js"></script>
     <script type="text/javascript" src="scripts/lib/backbone.localStorage.js"></script>
-	<script type="text/javascript" src="scripts/lib/lscache.js"></script>
+	<script type="text/javascript" src="scripts/lib/lscache.js"></script>	
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 	
 	<!-- Lounasaika api handling -->
 	<script type="text/javascript" src="scripts/api.js"></script>
@@ -122,6 +126,7 @@
 	
 	<!-- Models, Views, Routers -->
     <script type="text/javascript" src="scripts/mvc.js"></script>
+	
 </head>
 <body>
 

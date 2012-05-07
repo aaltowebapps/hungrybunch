@@ -50,10 +50,23 @@
 	    	var baseUrl = "#/menus/";
 	    	var prevRestaurantUrl = ( restaurantId <= 0 ? '#' : baseUrl + (restaurantId));
 			var nextRestaurantUrl = baseUrl + (restaurantId+2);
-	    	
-	        $(this.el).html(this.template({'restaurant': this.collection.models[restaurantId].toJSON(), 'nextRestaurantUrl':nextRestaurantUrl, 'prevRestaurantUrl':prevRestaurantUrl}));
-
-	        return this;
+	    	var restaurant = this.collection.models[restaurantId].toJSON();
+			
+	        $(this.el).html(this.template({'restaurant': this.collection.models[restaurantId].toJSON(), 'nextRestaurantUrl':nextRestaurantUrl, 'prevRestaurantUrl':prevRestaurantUrl})).ready( function() {
+				var latlng = new google.maps.LatLng(restaurant.location.lat, restaurant.location.lng);
+				var myOptions = {
+					zoom: 16,
+					center: latlng,
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+				};
+				var map = new google.maps.Map(document.getElementById("canvas_map"), myOptions);				
+				var marker = new google.maps.Marker({
+					map: map,
+					position: latlng, 
+					draggable: true
+				});			
+			});
+			return this;
 	    }
 	});
 
@@ -113,11 +126,11 @@
 
 	    // This is how changing a page is handled
 	    changePage:function (page) {
-	        $(page.el).attr('data-role', 'page');
+	        $(page.el).attr('data-role', 'page');			
+	        $('body').append($(page.el));
 	    	// Render page
 	        page.render();
 	        // Add new page to document body
-	        $('body').append($(page.el));
 
 	        var transition = 'slide';
 	        // We don't want to slide the first page
