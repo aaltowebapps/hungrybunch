@@ -21,6 +21,7 @@
 	var restaurantItemTemplate = Handlebars.compile($("#restaurantItemTemplate").html());
 	var restaurantsListTemplate = Handlebars.compile($("#restaurantsListTemplate").html() + footerTemplateSource);
 	var menuTemplate = Handlebars.compile($("#menuTemplate").html() + footerTemplateSource);
+	var mapTemplate = Handlebars.compile($("#mapTemplate").html() + footerTemplateSource);
 
 	// Model for a single restaurant
 	var RestaurantModel = Backbone.Model.extend ({
@@ -123,13 +124,24 @@
 	    }
 	});
 
+	// View for the list of menus for a chosen restaurant
+	var MapView = Backbone.View.extend({
+		initialize: function() { 
+            this.template = mapTemplate;
+        },
+	    render:function (eventName) {	
+	    	$(this.el).html(this.template());        
+	        return this;
+	    }
+	});
 	// Define logic for routing
 	var AppRouter = Backbone.Router.extend({
 
 		// Map urls to pages
 	    routes:{
 	        "":"restaurants",
-	        "/menus/:id":"menu"
+	        "/menus/:id":"menu",
+	        "/map/":"map"
 	    },
 
 	    initialize:function () {
@@ -178,6 +190,10 @@
 	    // Page menu (listing of menus for a restaurant)
 	    menu:function (id) {
 	        this.changePage(new MenuView({collection: FeedMe.restaurantsData, restaurantId:id}));
+	    },
+
+	    map:function () {
+	        this.changePage(new MapView());
 	    },
 
 	    // This is how changing a page is handled
