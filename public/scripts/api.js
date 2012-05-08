@@ -85,18 +85,20 @@
 				// Store campi to localstore with expiration at the very beginning of next week
 				var campi = responseData[api_res_root][api_res_result][api_res_campus];
 				restaurants = {};
+				resultindex = 0;
 				// Iterate over campi
-				$.each(campi, function(index, value) {
+				$.each(campi, function(campusindex, value) {
 	    			//console.log(index + ': ' + value[api_res_name]);
-	    			var campus = campi[index][api_res_name];
+	    			var campus = campi[campusindex][api_res_name];
 	    			var res_restaurants = value[api_res_restaurant];
 	    			// Iterate over restaurants
+	    			console.log(res_restaurants.length);
 					$.each(res_restaurants, function(index, value) {
 	    				var restaurant = value;
 	    				// Add campus as property of restaurant
 	    				restaurant['campus'] = campus;
-	    				restaurant['id'] = index+1;
-	    				restaurants[index] = restaurant;
+	    				restaurant['id'] = resultindex+1;
+	    				restaurants[resultindex] = restaurant;
 	    				
 	    				//console.log('\t' + index + ': ' + value[api_res_name]);
 	    				var menu = [];
@@ -115,6 +117,7 @@
 	    					menu.push(res_menu[value]);
 	    				});    				
 	    				restaurant.menu = menu;
+	    				resultindex++;
 	    			});
 				});
 
