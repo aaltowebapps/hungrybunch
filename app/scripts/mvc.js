@@ -31,7 +31,7 @@
 		template: restaurantsTemplate,
 		// This is how the list of restaurants should be rendered to page
 	    render:function (eventName) {
-	    	console.log("Rendering restaurants view", this.collection);
+	    	//console.log("Rendering restaurants view", this.collection);
 	        $(this.el).html(this.template({'restaurants': this.collection.toJSON()}));
 	        return this;
 	    }
@@ -101,13 +101,13 @@
 	        $('body').live('swipeleft', function(event) {
 	        	router.goReverse = true;
 	        	// TODO move to prevous page
-	        	console.log('Detected swipe left');
+	        	//console.log('Detected swipe left');
 	        });
 
 	        // If swipe right is detected, go reverse and try to figure next page
 	        $('body').live('swiperight', function(event) {
 	        	// TODO move to next page
-	        	console.log('Detected swipe right');
+	        	//console.log('Detected swipe right');
 	        });
 
 	        // We are on first pageload until marked otherwise

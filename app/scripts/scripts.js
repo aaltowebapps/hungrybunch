@@ -80,7 +80,7 @@ function fetchSuccess(responseData) {
 			restaurants = new Array();
 			// Iterate over campi
 			$.each(campi, function(index, value) {
-    			console.log(index + ': ' + value[api_res_name]);
+    			//console.log(index + ': ' + value[api_res_name]);
     			var campus = campi[index][api_res_name];
     			var res_restaurants = value[api_res_restaurant];
     			// Iterate over restaurants
@@ -89,12 +89,12 @@ function fetchSuccess(responseData) {
     				// Add campus as property of restaurant
     				restaurant['campus'] = campus;
     				restaurants.push(restaurant);
-    				console.log('\t' + index + ': ' + value[api_res_name]);
+    				//console.log('\t' + index + ': ' + value[api_res_name]);
     				var res_menu = value[api_res_menu];
     				// Iterate over week days
     				$.each(api_res_days, function(index, value) {
     					var res_meal = res_menu[value][api_res_meal];
-    					console.log('\t\t' + value + ': ' + res_meal);
+    					//console.log('\t\t' + value + ': ' + res_meal);
     					// If meal is not array
     					if (!$.isArray(res_meal)) {
     						// Make it array

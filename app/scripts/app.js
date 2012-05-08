@@ -20,7 +20,7 @@
 		4: { id : 4, name : 'Cantina', menu : [{ day : 'monday', meal : ['Meal A for #4', 'Meal B for #4']}]},
 		5: { id : 5, name : 'TUAS', menu : [{ day : 'monday', meal : ['Meal A for #5', 'Meal B for #5']}]}
 	}
-	
+
 	// Set test data to local storage
 	//localStorage.setItem("RestaurantsTestBySami", JSON.stringify(restaurantsTestData));
 
@@ -51,7 +51,7 @@
 		FeedMe.startApp = function(event) {
 
 			//$(window).bind("orientationchange resize pageshow", fixgeometry);
-			console.log("Is api ready?",FeedMe.lounasaikaApi.isReady);
+			//console.log("Is api ready?",FeedMe.lounasaikaApi.isReady);
 
 			if( FeedMe.lounasaikaApi.isReady === true && FeedMe.isStarted !== true ) {
 
