@@ -4,7 +4,9 @@
 	Handlebars.registerHelper('distance_formatted', function() {
 		var d = this.distance;
 		var output;
-		if (d>1) 
+		if(!d) 
+			output = "*";
+		else if (d>1) 
 			output = Math.round(d)+" km";
 		else if (d<=1) 
 			output = Math.round(d*1000)+" m";
@@ -80,11 +82,10 @@
 		        var itemView = new RestaurantItemView({model: item});
 		        $items.append(itemView.render().el);
 	        });
+
+	        // TODO: Lazily update page with .page()?
+	        // TODO: Create/update listview with .listview() or .listview('refresh')?
 	        
-	        //$items.listview('refresh');
-	        
-	    	//console.log("Rendering restaurants view", this.collection);
-	        //$(this.el).html(output);
 	        return this;
 	    }
 	});
@@ -169,6 +170,7 @@
 	    // Page restaurants (listing of all restaurants)
 	    restaurants:function () {
 	    	var view = new RestaurantsView({collection: FeedMe.restaurantsData});
+
 	        this.changePage(view);
 	        window.view = view;
 	    },
@@ -181,10 +183,10 @@
 	    // This is how changing a page is handled
 	    changePage:function (page) {
 	        $(page.el).attr('data-role', 'page');			
+	        // Add new page to document body
 	        $('body').append($(page.el));
 	    	// Render page
 	        page.render();
-	        // Add new page to document body
 
 	        var transition = 'slide';
 	        // We don't want to slide the first page

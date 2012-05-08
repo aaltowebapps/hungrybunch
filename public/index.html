@@ -12,7 +12,7 @@
 	<!-- Single restaurant row template -->
     <script type="text/x-handlebars-template" id="restaurantItemTemplate">
         
-				<li data-id="{{id}}">
+				<li data-id="{{id}}" data-icon="arrow-r" data-iconpos="right" data-theme="c">
 					<a href="#/menus/{{id}}">{{name}}</a>
 					<span class="ui-li-count ui-btn-up-c ui-btn-corner-all distance">{{distance_formatted}}</span>
 				</li>
@@ -28,7 +28,7 @@
 
 		<div class='content' data-role='content'> 
 			<ul data-role="listview" id="restaurantsList" data-inset="true" data-filter="true">
-            
+             <li data-icon="arrow-r" data-iconpos="right" data-theme="c"><a>Testi: N&auml;in se toimii kun ei luoda lennossa.</a><li>
 			</ul>
         </div>
     </script>
@@ -96,31 +96,8 @@
 	<script type="text/javascript" src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
     <script type="text/javascript" src="scripts/lib/underscore.js"></script>
     
-
     <script type="text/javascript" src="scripts/lib/handlebars-1.0.0.beta.6.js"></script>
-    <script type="test/javascript">
-    	// Templates
-		Handlebars.registerHelper("each_with_key", function(obj, fn) {
-		    var context,
-		        buffer = "",
-		        key,
-		        keyName = fn.hash.key;
-		    for (key in obj) {
-		        if (obj.hasOwnProperty(key)) {
-		            context = obj[key];
-
-		            if (keyName) {
-		                context[keyName] = key;
-		            }
-
-		            buffer += fn(context);
-		        }
-		    }
-		    return buffer;
-		});
-    </script>
-	
-    <script type="text/javascript" src="scripts/lib/json2.js"></script>
+	<script type="text/javascript" src="scripts/lib/json2.js"></script>
     <script type="text/javascript" src="scripts/lib/backbone.js"></script>
     <script type="text/javascript" src="scripts/lib/backbone.localStorage.js"></script>
 	<script type="text/javascript" src="scripts/lib/lscache.js"></script>	
