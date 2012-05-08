@@ -78,11 +78,13 @@
 	    render:function (eventName) {
 	    	var $el = $(this.el).empty();
 	        $el.html(this.template({'restaurants': this.collection.toJSON(), chosenRestaurant:FeedMe.chosenRestaurant}));
-	        var $items = $el.find('#restaurantsList');
+	        var $list = $el.find('#restaurantsList');
 	        this.collection.each(function(item) {
 		        var itemView = new RestaurantItemView({model: item});
-		        $items.append(itemView.render().el);
+		        $list.append(itemView.render().el);
 	        });
+	        console.log($list);
+	        
 
 	        // TODO: Lazily update page with .page()?
 	        // TODO: Create/update listview with .listview() or .listview('refresh')?
@@ -187,6 +189,19 @@
 
 	        this.changePage(view, 'slideup');
 	        window.view = view;
+/*
+	        $('#restaurantsList').listview({
+			  autodividers: true,
+
+			  // the selector function is passed a <li> element from the listview;
+			  // it should return the appropriate divider text for that <li>
+			  // element as a string
+			  autodividersSelector: function ( li ) {
+			  	alert("there");
+			    return $(li).find('campus').text();
+			  }
+			});
+*/
 	    },
 
 	    // Page menu (listing of menus for a restaurant)
