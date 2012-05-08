@@ -9,18 +9,26 @@
 
 	<!-- The Templates -->
 
+	<!-- Single restaurant row template -->
+    <script type="text/x-handlebars-template" id="restaurantItemTemplate">
+        
+				<li data-id="{{id}}">
+					<a href="#/menus/{{id}}">{{name}}</a>
+					<span class="ui-li-count ui-btn-up-c ui-btn-corner-all distance">{{distance_formatted}}</span>
+				</li>
+
+    </script>
+
 	<!-- List of restaurants template -->
-    <script type="text/x-handlebars-template" id="restaurantsTemplate">
+    <script type="text/x-handlebars-template" id="restaurantsListTemplate">
 
         <div data-role="header">
             <h1>Restaurants</h1>
         </div>
 
 		<div class='content' data-role='content'> 
-			<ul data-role="listview" data-inset="true" data-filter="false">
-            {{#each restaurants}}
-				<li><a href="#/menus/{{id}}">{{name}}</a></li>
-             {{/each}}
+			<ul data-role="listview" id="restaurantsList" data-inset="true" data-filter="true">
+            
 			</ul>
         </div>
     </script>
@@ -35,7 +43,7 @@
 
         <div data-role="content">
 			<p style="float: left;">Meals for chosen restaurant:</p>
-			<div id="canvas_map" style="width: 120px; height: 100px; style="float: right;"></div>
+			<div id="canvas_map" style="width: 120px; height: 100px; float: right;"></div>
 				
             <ul data-role="listview" data-inset="true">
             {{#with restaurant}}
@@ -55,9 +63,9 @@
         <div class="footer" data-role="footer">		
 			<div data-role="navbar">
 				<ul>
-					<li><a href="#favorites">Favorites</a></li>
-					<li><a href="#/menus/1">Menus</a></li>
 					<li><a href="#">Restaurants</a></li>
+					<li><a href="#/menus/1">Menus</a></li>
+					<li><a href="#map">Map</a></li>
 				</ul>
 			</div><!-- /navbar -->
 		</div><!-- /footer -->
@@ -127,6 +135,9 @@
 	<!-- Models, Views, Routers -->
     <script type="text/javascript" src="scripts/mvc.js"></script>
 	
+	<!-- Geolocation -->
+    <script type="text/javascript" src="scripts/geo.js"></script>
+
 </head>
 <body>
 

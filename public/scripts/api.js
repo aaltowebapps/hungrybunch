@@ -63,17 +63,6 @@
 	// Array to store restaurants data
 	var restaurants = new Array();
 
-	// Position
-	var position;
-	// Position options accuracy
-	var position_high_accuracy = true;
-	// Position options max age of reading in milliseconds
-	var position_max_age = 30000;
-	// Position options maximum timeout in milliseconds
-	var position_timeout = 27000;
-	// Position watch id
-	var position_watch_id = null;
-
 	// Expand Date to include function for getting a week number.
 	Date.prototype.getWeek = function() {
 		var onejan = new Date(this.getFullYear(),0,1);
@@ -106,7 +95,7 @@
 	    				var restaurant = value;
 	    				// Add campus as property of restaurant
 	    				restaurant['campus'] = campus;
-	    				restaurant['id'] = index;
+	    				restaurant['id'] = index+1;
 	    				restaurants[index] = restaurant;
 	    				
 	    				//console.log('\t' + index + ': ' + value[api_res_name]);

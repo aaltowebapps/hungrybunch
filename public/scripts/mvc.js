@@ -1,38 +1,90 @@
 // Self-invoking function, closure
 (function(FeedMe) {
 
+	Handlebars.registerHelper('distance_formatted', function() {
+		var d = this.distance;
+		var output;
+		if (d>1) 
+			output = Math.round(d)+" km";
+		else if (d<=1) 
+			output = Math.round(d*1000)+" m";
+		else
+			output = "";
+	  return new Handlebars.SafeString(output);
+	});
+
 	// Source HTML for common footer
 	var footerTemplateSource   = $("#footerTemplate").html();
 	// Parse templates and set visible to FeedMe-object
-	var restaurantsTemplate = Handlebars.compile($("#restaurantsTemplate").html() + footerTemplateSource);
+	var restaurantItemTemplate = Handlebars.compile($("#restaurantItemTemplate").html());
+	var restaurantsListTemplate = Handlebars.compile($("#restaurantsListTemplate").html() + footerTemplateSource);
 	var menuTemplate = Handlebars.compile($("#menuTemplate").html() + footerTemplateSource);
 
 	// Model for a single restaurant
 	var RestaurantModel = Backbone.Model.extend ({
+		/* */
 	  id : 0,
-	  campus : '',
-	  info : '',
-	  location : {},
-	  menu : {},
-	  name : '',
-	  opening_hours : {},
-	  url : ''
+
+	  /* */
+	  distanceFormatted : function() {
+	  	var d = this.get('distance');
+		if (d>1) return Math.round(d)+" km";
+		else if (d<=1) return Math.round(d*1000)+" m";
+		return d;
+	  }
 	});
 
 	// Collection for all restaurants
 	var RestaurantsCollection = Backbone.Collection.extend ({
-	  model: RestaurantModel
+		model: RestaurantModel,
 //	  localStorage: new Backbone.LocalStorage(FeedMe.lounasaikaApi.localstorageKey)
+		comparator: function(item){
+        	return item.get('distance');
+      	}
 	});
+
+	var refreshListView = _.debounce(function() {$('#restaurantsList').listview('refresh')}, 300);
+	// View for a single restaurant in list
+	var RestaurantItemView =  Backbone.View.extend({
+		tagName: "li",
+		initialize: function() { 
+            this.model.bind('change', this.render, this);
+            this.template = restaurantItemTemplate;  
+        },
+        render: function() { 
+            $(this.el).html( this.template(this.model.toJSON()) );
+
+            // Update jquery list
+            refreshListView();
+
+            return this; 
+        }
+	});
+
+
 
 	// View for the list of restaurants
 	var RestaurantsView = Backbone.View.extend({
 		// Compiled template
-		template: restaurantsTemplate,
+		//template: restaurantsListTemplate,
+		initialize: function() { 
+            //this.collection.bind('change', this.render, this);
+            this.template = restaurantsListTemplate;
+        },
 		// This is how the list of restaurants should be rendered to page
 	    render:function (eventName) {
+	    	var $el = $(this.el).empty();
+	        $el.html(this.template({'restaurants': this.collection.toJSON()}));
+	        var $items = $el.find('#restaurantsList');
+	        this.collection.each(function(item) {
+		        var itemView = new RestaurantItemView({model: item});
+		        $items.append(itemView.render().el);
+	        });
+	        
+	        //$items.listview('refresh');
+	        
 	    	//console.log("Rendering restaurants view", this.collection);
-	        $(this.el).html(this.template({'restaurants': this.collection.toJSON()}));
+	        //$(this.el).html(output);
 	        return this;
 	    }
 	});
@@ -116,7 +168,9 @@
 
 	    // Page restaurants (listing of all restaurants)
 	    restaurants:function () {
-	        this.changePage(new RestaurantsView({collection: FeedMe.restaurantsData}));
+	    	var view = new RestaurantsView({collection: FeedMe.restaurantsData});
+	        this.changePage(view);
+	        window.view = view;
 	    },
 
 	    // Page menu (listing of menus for a restaurant)
