@@ -77,7 +77,7 @@
 		// This is how the list of restaurants should be rendered to page
 	    render:function (eventName) {
 	    	var $el = $(this.el).empty();
-	        $el.html(this.template({'restaurants': this.collection.toJSON()}));
+	        $el.html(this.template({'restaurants': this.collection.toJSON(), chosenRestaurant:FeedMe.chosenRestaurant}));
 	        var $items = $el.find('#restaurantsList');
 	        this.collection.each(function(item) {
 		        var itemView = new RestaurantItemView({model: item});
@@ -106,7 +106,8 @@
 			var nextRestaurantUrl = baseUrl + (restaurantId+2);
 	    	var restaurant = this.collection.models[restaurantId].toJSON();
 			
-	        $(this.el).html(this.template({'restaurant': this.collection.models[restaurantId].toJSON(), 'nextRestaurantUrl':nextRestaurantUrl, 'prevRestaurantUrl':prevRestaurantUrl})).ready( function() {
+	        $(this.el).html(this.template({'restaurant': this.collection.models[restaurantId].toJSON(), 'nextRestaurantUrl':nextRestaurantUrl, 'prevRestaurantUrl':prevRestaurantUrl, 'chosenRestaurant':FeedMe.chosenRestaurant}))
+	        .ready( function() {
 				var latlng = new google.maps.LatLng(restaurant.location.lat, restaurant.location.lng);
 				var myOptions = {
 					zoom: 16,
@@ -130,7 +131,7 @@
             this.template = mapTemplate;
         },
 	    render:function (eventName) {	
-	    	$(this.el).html(this.template());        
+	    	$(this.el).html(this.template({'chosenRestaurant':FeedMe.chosenRestaurant}));        
 	        return this;
 	    }
 	});
@@ -141,6 +142,7 @@
 	    routes:{
 	        "":"restaurants",
 	        "/menus/:id":"menu",
+	        "/lastmenu/":"lastmenu",
 	        "/map/":"map"
 	    },
 
@@ -183,28 +185,32 @@
 	    restaurants:function () {
 	    	var view = new RestaurantsView({collection: FeedMe.restaurantsData});
 
-	        this.changePage(view);
+	        this.changePage(view, 'slideup');
 	        window.view = view;
 	    },
 
 	    // Page menu (listing of menus for a restaurant)
 	    menu:function (id) {
-	        this.changePage(new MenuView({collection: FeedMe.restaurantsData, restaurantId:id}));
+	        this.changePage(new MenuView({collection: FeedMe.restaurantsData, restaurantId:id}), 'slide');
+	        FeedMe.chosenRestaurant = id;
+	    },
+	    lastmenu:function() {
+		    this.changePage(new MenuView({collection: FeedMe.restaurantsData, restaurantId:FeedMe.chosenRestaurant}), 'slideup');
 	    },
 
 	    map:function () {
-	        this.changePage(new MapView());
+	        this.changePage(new MapView(), 'slideup');
 	    },
 
 	    // This is how changing a page is handled
-	    changePage:function (page) {
+	    changePage:function (page, transition) {
 	        $(page.el).attr('data-role', 'page');			
 	        // Add new page to document body
 	        $('body').append($(page.el));
 	    	// Render page
 	        page.render();
 
-	        var transition = 'slide';
+	        //var transition = 'slide';
 	        // We don't want to slide the first page
 	        if (this.firstPage) {
 	            transition = 'none';

@@ -70,9 +70,9 @@
         <div class="footer" data-role="footer">		
 			<div data-role="navbar">
 				<ul>
-					<li><a href="#">Restaurants</a></li>
-					<li><a href="#/menus/1">Menus</a></li>
-					<li><a href="#/map/">Map</a></li>
+					<li><a href="#" data-transition="slideup">Restaurants</a></li>
+					<li><a href="#/lastmenu/" data-transition="slideup">Menus</a></li>
+					<li><a href="#/map/" data-transition="slideup">Map</a></li>
 				</ul>
 			</div><!-- /navbar -->
 		</div><!-- /footer -->
@@ -83,6 +83,7 @@
 	<!-- JQuery Mobile configuration, needs to be here before including jquery mobile script -->
 	<script type="text/javascript">
 		var FeedMe = {
+			chosenRestaurant : 1,
 			isStarted : false,
 			startApp : function() {}, // Placeholder for start functionality
 			EVENT_START_APP : 'eventStartFeedMeApp'
@@ -92,6 +93,7 @@
 		    $.mobile.linkBindingEnabled = false;
 		    $.mobile.hashListeningEnabled = false;
 		    $.mobile.pushStateEnabled = false;
+		    $.mobile.defaultPageTransition = 'slide';
 
 		    // Remove page from DOM when it's being replaced
 		    $('div[data-role="page"]').live('pagehide', function (event, ui) {
