@@ -43,13 +43,10 @@
 		model: RestaurantModel,
 //	  localStorage: new Backbone.LocalStorage(FeedMe.lounasaikaApi.localstorageKey)
 		comparator: function(item){
-        	return item.get('distance');
+        	return item.get('distance') || 9999999999;
       	}
 	});
 
-	var refreshListView = _.debounce(function() {
-		//$('#restaurantsList').listview('refresh');
-	}, 300);
 	// View for a single restaurant in list
 	var RestaurantItemView =  Backbone.View.extend({
 		tagName: "li",
@@ -60,9 +57,6 @@
         },
         render: function() { 
             $(this.el).html( this.template(this.model.toJSON()) );
-
-            console.log("Rendered item: "+this.cid);
-
             return this; 
         }
 	});
@@ -70,16 +64,23 @@
 
 	// View for the list of restaurants
 	var RestaurantsListView = Backbone.View.extend({
-		// Compiled template
-		//template: restaurantsListTemplate,
 		initialize: function() { 
             this.collection.bind('change', this.debouncedRender, this);
             this.template = restaurantsListTemplate;
         },
         debouncedRender : _.debounce(function() {
+        	// Force sorting the collection before re-rendering
+        	this.collection.sort();
 			this.render();
+
 			// As we created a new list, jQuery Mobile needs to render it to listview now
-			$(this.el).find('#restaurantsList').listview();
+			console.log($(this.el).find('#restaurantsList').listview({
+			  autodividers: true,
+			  autodividersSelector: function ( li ) {
+			    return $(li).find('a').attr('title').text();
+			  }
+			}));
+			$(this.el).find('#restaurantsList').listview('refresh');
 		}, 300),
 		// This is how the list of restaurants should be rendered to page
 	    render:function (eventName) {
@@ -228,19 +229,7 @@
 
 	        this.changePage(view, 'slideup');
 	        window.view = view;
-/*
-	        $('#restaurantsList').listview({
-			  autodividers: true,
 
-			  // the selector function is passed a <li> element from the listview;
-			  // it should return the appropriate divider text for that <li>
-			  // element as a string
-			  autodividersSelector: function ( li ) {
-			  	alert("there");
-			    return $(li).find('campus').text();
-			  }
-			});
-*/
 	    },
 
 	    // Page menu (listing of menus for a restaurant)
