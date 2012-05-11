@@ -19,7 +19,8 @@
 	var footerTemplateSource   = $("#footerTemplate").html();
 	// Parse templates and set visible to FeedMe-object
 	var restaurantItemTemplate = Handlebars.compile($("#restaurantItemTemplate").html());
-	var restaurantsListTemplate = Handlebars.compile($("#restaurantsListTemplate").html() + footerTemplateSource);
+	var restaurantsListTemplate = Handlebars.compile($("#restaurantsListTemplate").html());
+	var restaurantsPageTemplate = Handlebars.compile($("#restaurantsPageTemplate").html() + footerTemplateSource);
 	var menuTemplate = Handlebars.compile($("#menuTemplate").html() + footerTemplateSource);
 	var mapTemplate = Handlebars.compile($("#mapTemplate").html() + footerTemplateSource);
 
@@ -46,34 +47,40 @@
       	}
 	});
 
-	var refreshListView = _.debounce(function() {$('#restaurantsList').listview('refresh')}, 300);
+	var refreshListView = _.debounce(function() {
+		//$('#restaurantsList').listview('refresh');
+	}, 300);
 	// View for a single restaurant in list
 	var RestaurantItemView =  Backbone.View.extend({
 		tagName: "li",
 		initialize: function() { 
-            this.model.bind('change', this.render, this);
+			// Let's not bind to changes on rows, but on the entire collection instead
+            //this.model.bind('change', this.render, this);
             this.template = restaurantItemTemplate;  
         },
         render: function() { 
             $(this.el).html( this.template(this.model.toJSON()) );
 
-            // Update jquery list
-            refreshListView();
+            console.log("Rendered item: "+this.cid);
 
             return this; 
         }
 	});
 
 
-
 	// View for the list of restaurants
-	var RestaurantsView = Backbone.View.extend({
+	var RestaurantsListView = Backbone.View.extend({
 		// Compiled template
 		//template: restaurantsListTemplate,
 		initialize: function() { 
-            //this.collection.bind('change', this.render, this);
+            this.collection.bind('change', this.debouncedRender, this);
             this.template = restaurantsListTemplate;
         },
+        debouncedRender : _.debounce(function() {
+			this.render();
+			// As we created a new list, jQuery Mobile needs to render it to listview now
+			$(this.el).find('#restaurantsList').listview();
+		}, 300),
 		// This is how the list of restaurants should be rendered to page
 	    render:function (eventName) {
 	    	var $el = $(this.el).empty();
@@ -83,12 +90,30 @@
 		        var itemView = new RestaurantItemView({model: item});
 		        $list.append(itemView.render().el);
 	        });
-	        console.log($list);
+	        console.log("Rendered list");
 	        
 
 	        // TODO: Lazily update page with .page()?
 	        // TODO: Create/update listview with .listview() or .listview('refresh')?
 	        
+	        return this;
+	    }
+	});
+
+
+	// View for the restaurants page
+	var RestaurantsView = Backbone.View.extend({
+		initialize: function() { 
+            this.template = restaurantsPageTemplate;
+        },
+	    render:function (eventName) {
+		    var listView = new RestaurantsListView({collection: this.collection});
+
+			var $el = $(this.el).empty();
+	    	$el.html(this.template());
+	    	$el.find('#restaurantsListWrapper').append(listView.render().el);
+
+	    	console.log('Rendered restaurants page');
 	        return this;
 	    }
 	});
@@ -166,15 +191,28 @@
 	        	router.goReverse = true;
 	        });
 
-	        // If swipe left is detected, go reverse and try to figure previous page
-	        $('body').live('swipeleft', function(event) {
-	        	router.goReverse = true;
+	        // If swipe right is detected, go reverse and try to figure previous page
+	        $('body').live('swiperight', function(event) {
+	        	if( router.currentPageName == 'menu') {
+	        		if( router.currentRestaurant > 1) {
+	        			router.goReverse = true;
+	        			router.menu(currentRestaurant - 1);
+	        		} else {
+	        			router.restaurants();
+	        		}
+	        	}
 	        	// TODO move to prevous page
 	        	//console.log('Detected swipe left');
 	        });
 
-	        // If swipe right is detected, go reverse and try to figure next page
-	        $('body').live('swiperight', function(event) {
+	        // If swipe left is detected, go to the next page
+	        $('body').live('swipeleft', function(event) {
+	        	if( router.currentPageName == 'menu') {
+	        		router.goReverse = true;
+	        		if( router.currentRestaurant < FeedMe.restaurantsData.length ) {
+	        			router.menu(currentRestaurant + 1);
+	        		}
+	        	}
 	        	// TODO move to next page
 	        	//console.log('Detected swipe right');
 	        });
@@ -185,6 +223,7 @@
 
 	    // Page restaurants (listing of all restaurants)
 	    restaurants:function () {
+			this.currentPageName = 'restaurants';
 	    	var view = new RestaurantsView({collection: FeedMe.restaurantsData});
 
 	        this.changePage(view, 'slideup');
@@ -206,14 +245,18 @@
 
 	    // Page menu (listing of menus for a restaurant)
 	    menu:function (id) {
-	        this.changePage(new MenuView({collection: FeedMe.restaurantsData, restaurantId:id}), 'slide');
 	        FeedMe.chosenRestaurant = id;
+	        this.currentPageName = 'menu';
+	        this.currentRestaurant = id;
+	        this.changePage(new MenuView({collection: FeedMe.restaurantsData, restaurantId:id}), 'slide');
 	    },
 	    lastmenu:function() {
-		    this.changePage(new MenuView({collection: FeedMe.restaurantsData, restaurantId:FeedMe.chosenRestaurant}), 'slideup');
+	    	this.currentPageName = 'menu';
+		    this.changePage(new MenuView({collection: FeedMe.restaurantsData, restaurantId:this.currentRestaurant}), 'slideup');
 	    },
 
 	    map:function () {
+	        this.currentPageName = 'map';
 	        this.changePage(new MapView(), 'slideup');
 	    },
 

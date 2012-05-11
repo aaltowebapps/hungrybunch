@@ -11,27 +11,35 @@
 
 	<!-- Single restaurant row template -->
     <script type="text/x-handlebars-template" id="restaurantItemTemplate">
-        
-				<li data-id="{{id}}" data-icon="arrow-r" data-iconpos="right" data-theme="c">
+
 					<a href="#/menus/{{id}}"><span class="campus">{{campus}}</span>: {{name}}</a>
 					<span class="ui-li-count ui-btn-up-c ui-btn-corner-all distance">{{distance_formatted}}</span>
-				</li>
 
     </script>
 
 	<!-- List of restaurants template -->
     <script type="text/x-handlebars-template" id="restaurantsListTemplate">
 
+			<ul data-role="listview" id="restaurantsList" data-autodividers="true" data-inset="true" data-filter="true">
+				<!-- Restaurant items will be populated here-->
+			</ul>
+
+    </script>
+
+	<!-- Restaurants page template -->
+    <script type="text/x-handlebars-template" id="restaurantsPageTemplate">
+
         <div data-role="header">
             <h1>Restaurants</h1>
         </div>
 
 		<div class='content' data-role='content'> 
-			<ul data-role="listview" id="restaurantsList" data-autodividers="true" data-inset="true" data-filter="true">
-             
-			</ul>
+			<div id="restaurantsListWrapper">
+				<!-- Restaurants list will be populated here -->
+			</div>
         </div>
     </script>
+
 
     <!-- List of menus for a restaurants template -->
     <script type="text/x-handlebars-template" id="menuTemplate">
