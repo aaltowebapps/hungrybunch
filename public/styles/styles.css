@@ -1,12 +1,5 @@
-//
-// FeedMe! Custom styles main file
-// by Johannes Niemelä and rest of the Hungry Bunch
-//
-
-body {
-	background-color: red;
-	color: blue;
-	padding-bottom: 60px; /* To make sure page bottom content wont be hidden behind navigation */
+.content {
+	margin-bottom: 50px !important; /* To make sure page bottom content wont be hidden behind navigation */
 }
 .footer {
 	position: fixed;
