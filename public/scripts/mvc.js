@@ -127,14 +127,19 @@
 	    render:function (eventName) {
 	    	// Here we get the selected restaurant id and can select data for template accordingly
 
-	    	// TODO: Determine next and previous pages, not necessary +-1 id
-	    	var restaurantId = parseInt(this.options.restaurantId)-1;
+	    	var currentRestaurantId = parseInt(this.options.restaurantId);
+	    	var currentModel = FeedMe.restaurantsData.get(currentRestaurantId);
+	    	var index = this.collection.indexOf(currentModel);
+			var previousRestaurant = this.collection.at(index-1);
+			var nextRestaurant = this.collection.at(index+1);
+
 	    	var baseUrl = "#/menus/";
-	    	var prevRestaurantUrl = ( restaurantId <= 0 ? '#' : baseUrl + (restaurantId));
-			var nextRestaurantUrl = baseUrl + (restaurantId+2);
-	    	var restaurant = this.collection.models[restaurantId].toJSON();
+	    	var prevRestaurantUrl = ( previousRestaurant ? baseUrl + previousRestaurant.id : '#');
+	    	var nextRestaurantUrl = ( nextRestaurant ? baseUrl + nextRestaurant.id : '#');
+
+	    	var restaurant = currentModel.toJSON();
 			
-	        $(this.el).html(this.template({'restaurant': this.collection.models[restaurantId].toJSON(), 'nextRestaurantUrl':nextRestaurantUrl, 'prevRestaurantUrl':prevRestaurantUrl, 'chosenRestaurant':FeedMe.chosenRestaurant}))
+	        $(this.el).html(this.template({'restaurant': restaurant, 'nextRestaurantUrl':nextRestaurantUrl, 'prevRestaurantUrl':prevRestaurantUrl, 'chosenRestaurant':FeedMe.chosenRestaurant}))
 	        .ready( function() {
 				var latlng = new google.maps.LatLng(restaurant.location.lat, restaurant.location.lng);
 				var myOptions = {
@@ -191,7 +196,7 @@
 	        $('.ui-btn-left').live('click', function(event) {
 	        	router.goReverse = true;
 	        });
-
+/*
 	        // If swipe right is detected, go reverse and try to figure previous page
 	        $('body').live('swiperight', function(event) {
 	        	if( router.currentPageName == 'menu') {
@@ -217,7 +222,7 @@
 	        	// TODO move to next page
 	        	//console.log('Detected swipe right');
 	        });
-
+*/
 	        // We are on first pageload until marked otherwise
 	        this.firstPage = true;
 	    },
