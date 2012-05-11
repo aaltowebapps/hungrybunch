@@ -1,4 +1,4 @@
-.content {
+.content, .ui-content {
 	margin-bottom: 50px !important; /* To make sure page bottom content wont be hidden behind navigation */
 }
 .footer {

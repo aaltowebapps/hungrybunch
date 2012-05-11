@@ -12,7 +12,7 @@
 	<!-- Single restaurant row template -->
     <script type="text/x-handlebars-template" id="restaurantItemTemplate">
 
-					<a href="#/menus/{{id}}" title="{{campus}}">{{name}}</a>
+					<a href="#/menus/{{id}}" title="{{campus}}">{{campus}}: {{name}}</a>
 					<span class="ui-li-count ui-btn-up-c ui-btn-corner-all distance">{{distance_formatted}}</span>
 
     </script>
@@ -20,7 +20,7 @@
 	<!-- List of restaurants template -->
     <script type="text/x-handlebars-template" id="restaurantsListTemplate">
 
-			<ul data-role="listview" id="restaurantsList" data-autodividers="true" data-inset="true" data-filter="true">
+			<ul data-role="listview" id="restaurantsList" data-autodividers="true" data-inset="false" data-filter="true">
 				<!-- Restaurant items will be populated here-->
 			</ul>
 
