@@ -74,12 +74,12 @@
 			this.render();
 
 			// As we created a new list, jQuery Mobile needs to render it to listview now
-			console.log($(this.el).find('#restaurantsList').listview({
+			$(this.el).find('#restaurantsList').listview({
 			  autodividers: true,
 			  autodividersSelector: function ( li ) {
 			    return $(li).find('a').attr('title').text();
 			  }
-			}));
+			});
 			$(this.el).find('#restaurantsList').listview('refresh');
 		}, 300),
 		// This is how the list of restaurants should be rendered to page
@@ -91,11 +91,6 @@
 		        var itemView = new RestaurantItemView({model: item});
 		        $list.append(itemView.render().el);
 	        });
-	        console.log("Rendered list");
-	        
-
-	        // TODO: Lazily update page with .page()?
-	        // TODO: Create/update listview with .listview() or .listview('refresh')?
 	        
 	        return this;
 	    }
@@ -114,7 +109,6 @@
 	    	$el.html(this.template());
 	    	$el.find('#restaurantsListWrapper').append(listView.render().el);
 
-	    	console.log('Rendered restaurants page');
 	        return this;
 	    }
 	});
@@ -198,7 +192,6 @@
 			// Draw restaurant as markers on map
     		var markers = [];
     		FeedMe.restaurantsData.each(function(item) {
-    			console.log('#/menus/'+item.collection.indexOf(item));
     			var location = item.get('location');
     			if( location && location.lat && location.lng ) {
     				var latlng = new google.maps.LatLng(location.lat, location.lng);

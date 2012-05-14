@@ -88,11 +88,10 @@
 				resultindex = 0;
 				// Iterate over campi
 				$.each(campi, function(campusindex, value) {
-	    			//console.log(index + ': ' + value[api_res_name]);
 	    			var campus = campi[campusindex][api_res_name];
 	    			var res_restaurants = value[api_res_restaurant];
 	    			// Iterate over restaurants
-	    			console.log(res_restaurants.length);
+	    			
 					$.each(res_restaurants, function(index, value) {
 	    				var restaurant = value;
 	    				// Add campus as property of restaurant
@@ -100,18 +99,15 @@
 	    				restaurant['id'] = resultindex+1;
 	    				restaurants[resultindex] = restaurant;
 	    				
-	    				//console.log('\t' + index + ': ' + value[api_res_name]);
 	    				var menu = [];
 	    				var res_menu = value[api_res_menu];
 	    				// Iterate over week days
 	    				$.each(api_res_days, function(index, value) {
 	    					var res_meal = res_menu[value][api_res_meal];
-	    					//console.log('\t\t' + value + ': ' + res_meal);
 	    					// If meal is not array
 	    					if (!$.isArray(res_meal)) {
 	    						// Make it array
 	    						res_menu[value][api_res_meal] = [res_meal];
-	    						//console.log('\t\t ' + res_menu[value][api_res_meal]);
 	    					}
 	    					res_menu[value]['day'] = translation_weekday[value];
 	    					menu.push(res_menu[value]);
