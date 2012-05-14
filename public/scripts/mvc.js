@@ -5,7 +5,7 @@
 		var d = this.distance;
 		var output;
 		if(!d) 
-			output = "*";
+			output = "?";
 		else if (d>1) 
 			output = Math.round(d)+" km";
 		else if (d<=1) 
@@ -158,13 +158,57 @@
 	    }
 	});
 
-	// View for the list of menus for a chosen restaurant
+	// View for the map page
 	var MapView = Backbone.View.extend({
 		initialize: function() { 
             this.template = mapTemplate;
         },
 	    render:function (eventName) {	
-	    	$(this.el).html(this.template({'chosenRestaurant':FeedMe.chosenRestaurant}));        
+	    	$(this.el).html(this.template({'chosenRestaurant':FeedMe.chosenRestaurant}));
+
+	    	// TODO: Set map element "#canvas_map" to full screen size
+
+	    	var userPosition = null;
+	    	var userMarker = null;
+	    	if( FeedMe.geo.position && FeedMe.geo.position.coords ) {
+	    		userPosition = new google.maps.LatLng(FeedMe.geo.position.coords.latitude, FeedMe.geo.position.coords.longitude);
+	    	} else {
+	    		userPosition = new google.maps.LatLng(60.167091,24.943557);
+	    	}
+
+	
+
+    		// TODO: bind event listener for user position and set new position when changed
+
+			var myOptions = {
+				zoom: 16,
+				center: userPosition,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+			var map = new google.maps.Map(document.getElementById("canvas_map"), myOptions);				
+	    	
+	    	// TODO: Draw user position on map as a dot or something different from the restaurant markers
+			var userMarker = new google.maps.Marker({
+				map: map,
+				position: userPosition, 
+				draggable: false
+			});
+
+			// Draw restaurant as markers on map
+    		var markers = [];
+    		FeedMe.restaurantsData.each(function(item) {
+    			var location = item.get('location');
+    			if( location && location.lat && location.lng ) {
+    				var latlng = new google.maps.LatLng(location.lat, location.lng);
+					var marker = new google.maps.Marker({
+						map: map,
+						position: latlng, 
+						draggable: false
+					});
+					markers.push(marker);
+				}   
+	        }); 
+
 	        return this;
 	    }
 	});
