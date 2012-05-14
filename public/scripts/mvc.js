@@ -167,6 +167,8 @@
 	    	$(this.el).html(this.template({'chosenRestaurant':FeedMe.chosenRestaurant}));
 
 	    	// TODO: Set map element "#canvas_map" to full screen size
+	    	$(this.el).find('#canvas_map').width($(document).width());
+	    	$(this.el).find('#canvas_map').height($(document).height()-100);
 
 	    	var userPosition = null;
 	    	var userMarker = null;

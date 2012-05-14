@@ -7,3 +7,7 @@
 	bottom: 0;
 	z-index: 1000;
 }
+#map_content {
+	padding: 0;
+	overflow: auto;
+}
