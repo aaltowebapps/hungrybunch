@@ -185,9 +185,8 @@
 				center: userPosition,
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			};
-			var map = new google.maps.Map(document.getElementById("canvas_map"), myOptions);				
-	    	
-	    	// TODO: Draw user position on map as a dot or something different from the restaurant markers
+			var map = new google.maps.Map(document.getElementById("canvas_map"), myOptions);	
+				    	// TODO: Draw user position on map as a dot or something different from the restaurant markers
 			var userMarker = new google.maps.Marker({
 				map: map,
 				position: userPosition, 
@@ -197,14 +196,20 @@
 			// Draw restaurant as markers on map
     		var markers = [];
     		FeedMe.restaurantsData.each(function(item) {
+    			console.log('#/menus/'+item.collection.indexOf(item));
     			var location = item.get('location');
     			if( location && location.lat && location.lng ) {
     				var latlng = new google.maps.LatLng(location.lat, location.lng);
 					var marker = new google.maps.Marker({
+						url: '#/menus/'+item.get('id'),
 						map: map,
 						position: latlng, 
 						draggable: false
 					});
+					google.maps.event.addListener(marker, 'click', function() {
+						window.location.href = marker.url;
+					});			
+			    	
 					markers.push(marker);
 				}   
 	        }); 
