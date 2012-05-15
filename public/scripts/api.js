@@ -163,7 +163,7 @@
 		
 		// This is for development, you can flush cache from local storage to force
 		// fetching of fresh data by uncommentting next line.
-		lscache.flush();
+		//lscache.flush();
 		
 		// Try to load menu from local storage
 		var restaurantsFromCache = lscache.get(key);
