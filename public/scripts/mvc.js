@@ -191,11 +191,6 @@
 			};
 			var map = new google.maps.Map(document.getElementById("canvas_map"), myOptions);	
 			FeedMe.map = map;
-			// TODO: Smarter binding and unbinding
-			$(document).bind('pageshow', function() {
-				google.maps.event.trigger(FeedMe.map,'resize');
-				$(document).unbind('pageshow');
-			});
 	    	// TODO: Draw user position on map as a dot or something different from the restaurant markers
 			var userMarker = new google.maps.Marker({
 				map: map,
@@ -222,6 +217,13 @@
 					markers.push(marker);
 				}   
 	        }); 
+
+			// TODO: Smarter binding and unbinding
+			$(document).on('pageshow.mapview', function() {
+				google.maps.event.trigger(FeedMe.map,'resize');
+				map.setCenter(userPosition);
+				$(document).off('pageshow.mapview');
+			});
 
 	        return this;
 	    }
