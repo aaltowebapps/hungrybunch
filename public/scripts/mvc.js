@@ -195,7 +195,8 @@
 			var userMarker = new google.maps.Marker({
 				map: map,
 				position: userPosition, 
-				draggable: false
+				draggable: false,
+				title: 'Your position'
 			});
 
 			// Draw restaurant as markers on map
@@ -208,7 +209,9 @@
 						url: '#/menus/'+item.get('id'),
 						map: map,
 						position: latlng, 
-						draggable: false
+						draggable: false,
+						title: item.get('name'),
+						icon: 'images/restaurant.png'
 					});
 					google.maps.event.addListener(marker, 'click', function() {
 						window.location.href = marker.url;
