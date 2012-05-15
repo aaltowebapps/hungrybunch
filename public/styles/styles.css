@@ -11,3 +11,8 @@
 	padding: 0;
 	overflow: auto;
 }
+#staticMap {
+	-moz-border-radius: .6em;
+	-webkit-border-radius: .6em;
+	border-radius: .6em;
+}

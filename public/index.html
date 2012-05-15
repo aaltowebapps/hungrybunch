@@ -44,14 +44,13 @@
     <!-- List of menus for a restaurants template -->
     <script type="text/x-handlebars-template" id="menuTemplate">
         <div data-role="header">
-            <a href="{{prevRestaurantUrl}}" data-icon="arrow-l" class="arrow-l ui-btn-left" data-direction="reverse" data-back="true">Previous</a>
+            <a href="{{prevRestaurantUrl}}" data-icon="arrow-l" class="arrow-l ui-btn-left" data-direction="reverse" data-back="true">{{prevLabel}}</a>
             <h1>Menu for {{restaurant.name}} (#{{restaurant.id}})</h1>
-            <a href="{{nextRestaurantUrl}}" data-icon="arrow-r" class="arrow-r ui-btn-right" data-direction="reverse" data-back="true">Next</a>
+            <a href="{{nextRestaurantUrl}}" data-icon="arrow-r" class="arrow-r ui-btn-right" data-direction="reverse" data-back="true">{{nextLabel}}</a>
         </div>
 
         <div data-role="content">
-			<p style="float: left;">Meals for chosen restaurant:</p>
-			<div id="canvas_map" style="width: 120px; height: 100px; float: right;"></div>
+			<img id="staticMap" src="http://maps.googleapis.com/maps/api/staticmap?{{mapParameters}}" alt="Restaurant location on map" />
 				
             <ul data-role="listview" data-inset="true">
             {{#with restaurant}}
@@ -80,9 +79,9 @@
         <div class="footer" data-role="footer">		
 			<div data-role="navbar">
 				<ul>
-					<li><a href="#" data-transition="slideup">Restaurants</a></li>
-					<li><a href="#/lastmenu/" data-transition="slideup">Menus</a></li>
-					<li><a href="#/map/" data-transition="slideup">Map</a></li>
+					<li><a href="#" data-transition="slideup" data-icon="home">Restaurants</a></li>
+					<li><a href="#/lastmenu/" data-transition="slideup" data-icon="grid">Menus</a></li>
+					<li><a href="#/map/" data-transition="slideup" data-icon="star">Map</a></li>
 				</ul>
 			</div><!-- /navbar -->
 		</div><!-- /footer -->

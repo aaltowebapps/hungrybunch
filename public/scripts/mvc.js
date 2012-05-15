@@ -113,6 +113,9 @@
 	    }
 	});
 
+	var previousRestaurant = 0;
+	var nextRestaurant = 0;
+
 	// View for the list of menus for a chosen restaurant
 	var MenuView = Backbone.View.extend({
 		// Compiled template
@@ -124,30 +127,21 @@
 	    	var currentRestaurantId = parseInt(this.options.restaurantId);
 	    	var currentModel = FeedMe.restaurantsData.get(currentRestaurantId);
 	    	var index = this.collection.indexOf(currentModel);
-			var previousRestaurant = this.collection.at(index-1);
-			var nextRestaurant = this.collection.at(index+1);
+			previousRestaurant = this.collection.at(index-1);
+			nextRestaurant = this.collection.at(index+1);
 
 	    	var baseUrl = "#/menus/";
 	    	var prevRestaurantUrl = ( previousRestaurant ? baseUrl + previousRestaurant.id : '#');
 	    	var nextRestaurantUrl = ( nextRestaurant ? baseUrl + nextRestaurant.id : '#');
 
+	    	var prevLabel = previousRestaurant ? previousRestaurant.get('name') : 'Restaurants';
+	    	var nextLabel = nextRestaurant ? nextRestaurant.get('name') : 'Restaurants';
+
 	    	var restaurant = currentModel.toJSON();
-			
-	        $(this.el).html(this.template({'restaurant': restaurant, 'nextRestaurantUrl':nextRestaurantUrl, 'prevRestaurantUrl':prevRestaurantUrl, 'chosenRestaurant':FeedMe.chosenRestaurant}))
-	        .ready( function() {
-				var latlng = new google.maps.LatLng(restaurant.location.lat, restaurant.location.lng);
-				var myOptions = {
-					zoom: 16,
-					center: latlng,
-					mapTypeId: google.maps.MapTypeId.ROADMAP
-				};
-				var map = new google.maps.Map(document.getElementById("canvas_map"), myOptions);				
-				var marker = new google.maps.Marker({
-					map: map,
-					position: latlng, 
-					draggable: true
-				});			
-			});
+
+			var mapParameters = 'center='+restaurant.location.lat+','+restaurant.location.lng+'&zoom=13&size='+($(document).width()-30)+'x100&sensor=true&markers='+restaurant.location.lat+','+restaurant.location.lng;
+
+	        $(this.el).html(this.template({'restaurant': restaurant, 'nextRestaurantUrl':nextRestaurantUrl, 'prevRestaurantUrl':prevRestaurantUrl, 'chosenRestaurant':FeedMe.chosenRestaurant, 'prevLabel':prevLabel, 'nextLabel':nextLabel, 'mapParameters':mapParameters}));
 			return this;
 	    }
 	});
@@ -240,13 +234,13 @@
 	        $('.ui-btn-left').live('click', function(event) {
 	        	router.goReverse = true;
 	        });
-/*
+
 	        // If swipe right is detected, go reverse and try to figure previous page
 	        $('body').live('swiperight', function(event) {
 	        	if( router.currentPageName == 'menu') {
-	        		if( router.currentRestaurant > 1) {
+	        		if( previousRestaurant ) {
 	        			router.goReverse = true;
-	        			router.menu(currentRestaurant - 1);
+	        			router.menu(previousRestaurant.id);
 	        		} else {
 	        			router.restaurants();
 	        		}
@@ -258,15 +252,15 @@
 	        // If swipe left is detected, go to the next page
 	        $('body').live('swipeleft', function(event) {
 	        	if( router.currentPageName == 'menu') {
-	        		router.goReverse = true;
-	        		if( router.currentRestaurant < FeedMe.restaurantsData.length ) {
-	        			router.menu(currentRestaurant + 1);
+	        		if( nextRestaurant ) {
+		        		router.goReverse = false;
+	        			router.menu(nextRestaurant.id);
 	        		}
 	        	}
 	        	// TODO move to next page
 	        	//console.log('Detected swipe right');
 	        });
-*/
+
 	        // We are on first pageload until marked otherwise
 	        this.firstPage = true;
 	    },
