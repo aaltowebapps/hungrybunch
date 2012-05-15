@@ -26,16 +26,30 @@
 
 	// Model for a single restaurant
 	var RestaurantModel = Backbone.Model.extend ({
-		/* */
-	  id : 0,
-
-	  /* */
-	  distanceFormatted : function() {
-	  	var d = this.get('distance');
-		if (d>1) return Math.round(d)+" km";
-		else if (d<=1) return Math.round(d*1000)+" m";
-		return d;
-	  }
+		id : 0,
+		initialize : function() {
+			// If user position is known, calculate distance
+			if(FeedMe.geo.position) {
+				this.updateDistance(FeedMe.geo.position.coords.latitude, FeedMe.geo.position.coords.longitude);
+			}
+		},
+		distanceFormatted : function() {
+		  	var d = this.get('distance');
+			if (d>1) return Math.round(d)+" km";
+			else if (d<=1) return Math.round(d*1000)+" m";
+			return d;
+		},
+	  	updateDistance : function(lat,lng) {
+	  		if( lat && lng ) {
+				var itemLat = this.get('location').lat;
+				var itemLng = this.get('location').lng;
+				var distance = null;
+				if( itemLat && itemLng ) {
+					distance = FeedMe.geo.calculateDistance(lat, lng, itemLat, itemLng);
+				}
+				this.set({distance: distance});
+	  		}
+		}
 	});
 
 	// Collection for all restaurants
@@ -176,7 +190,13 @@
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			};
 			var map = new google.maps.Map(document.getElementById("canvas_map"), myOptions);	
-				    	// TODO: Draw user position on map as a dot or something different from the restaurant markers
+			FeedMe.map = map;
+			// TODO: Smarter binding and unbinding
+			$(document).bind('pageshow', function() {
+				google.maps.event.trigger(FeedMe.map,'resize');
+				$(document).unbind('pageshow');
+			});
+	    	// TODO: Draw user position on map as a dot or something different from the restaurant markers
 			var userMarker = new google.maps.Marker({
 				map: map,
 				position: userPosition, 
@@ -284,7 +304,7 @@
 	    },
 	    lastmenu:function() {
 	    	this.currentPageName = 'menu';
-		    this.changePage(new MenuView({collection: FeedMe.restaurantsData, restaurantId:this.currentRestaurant}), 'slideup');
+		    this.changePage(new MenuView({collection: FeedMe.restaurantsData, restaurantId: this.currentRestaurant ? this.currentRestaurant : 1}), 'slideup');
 	    },
 
 	    map:function () {

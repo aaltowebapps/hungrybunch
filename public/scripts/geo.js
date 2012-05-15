@@ -60,22 +60,18 @@
 
 	// Successful geolocation update
 	var geoSuccess = function(newPosition) {
-		//$('body').trigger(GEOLOCATION_POSITION_SUCCESS, {position: position});
+		//$(document).trigger(GEOLOCATION_POSITION_SUCCESS, {position: position});
 		FeedMe.geo.position = newPosition;
 		console.log("Got position:", newPosition);
 
 		var lat = newPosition.coords.latitude;
 		var lng = newPosition.coords.longitude;
 		// Update distances to model data
-		FeedMe.restaurantsData.each(function(item, index){
-			var itemLat = item.get('location').lat;
-			var itemLng = item.get('location').lng;
-			var distance = null;
-			if( itemLat && itemLng ) {
-				distance = calculateDistance(lat, lng, itemLat, itemLng);
-			}
-			item.set({distance: distance});
-		});
+		if( FeedMe.restaurantsData ) {
+			FeedMe.restaurantsData.each(function(item, index){
+				item.updateDistance(lat,lng);
+			});
+		}
 	};
 
 	// Geolocation error
