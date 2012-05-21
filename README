@@ -1,4 +1,5 @@
 Folder 'public' contains the applications files.
-Folder 'documents' contain the application specifications.
+Folder 'documents' contains the application specifications.
+Folder 'cordova' contains the PhoneGap files, including installation file for Android.
 
-The rest is just class examples etc.
+See it in action: http://hungrybunch.herokuapp.com/
